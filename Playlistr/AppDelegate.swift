@@ -12,11 +12,56 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let authenticator = SpotifyAuthenticator();
+    let kClientId = "3d912a8a1aa64b11b07abeecc30df390"
+    let kCallbackURL = "playlistr-login://callback"
+    let kTokenSwapURL = "http://localhost:1234/swap"
+    
+    var session:SPTSession?
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+
+        let auth = SPTAuth.defaultInstance();
+        auth.clientID = kClientId;
+        auth.requestedScopes = [SPTAuthStreamingScope];
+        auth.redirectURL = NSURL(string: kCallbackURL);
+
+        let loginURL = auth.loginURL;
+        
+        
+        if(auth.session == nil || !auth.session.isValid()){
+            delay(0.1) {
+                application.openURL(loginURL);
+            }
+        } else {
+            print("here");
+//            SpotifyUserSingleton.user.handle(auth.session, pvc: profileVC);
+        }
+                
+        return true;
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+//        var canAuthenticate: Bool = false;
+        if(SPTAuth.defaultInstance().canHandleURL(url)) {
+            SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: { (error, session) -> Void in
+                if(error != nil) {
+                    print("*** Auth error: \(error)")
+                    return;
+                }
+                
+            });
+        }
+        return false;
     }
 
     func applicationWillResignActive(application: UIApplication) {

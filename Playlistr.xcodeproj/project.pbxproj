@@ -13,6 +13,12 @@
 		EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5871BAF288D001BC449 /* Images.xcassets */; };
 		EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5891BAF288D001BC449 /* LaunchScreen.xib */; };
 		EA07E5971BAF288D001BC449 /* PlaylistrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5961BAF288D001BC449 /* PlaylistrTests.swift */; };
+		EA07E5D51BAF47BF001BC449 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */; };
+		EADC228D1BAF7CA000EB884A /* PlaylistTableViewSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADC228C1BAF7CA000EB884A /* PlaylistTableViewSource.swift */; settings = {ASSET_TAGS = (); }; };
+		EADC22921BAF861F00EB884A /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22911BAF861F00EB884A /* Spotify.framework */; settings = {ASSET_TAGS = (); }; };
+		EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22931BAF868C00EB884A /* AVFoundation.framework */; };
+		EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22951BAF869D00EB884A /* SystemConfiguration.framework */; };
+		EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,13 @@
 		EA07E5901BAF288D001BC449 /* PlaylistrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaylistrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA07E5951BAF288D001BC449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA07E5961BAF288D001BC449 /* PlaylistrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistrTests.swift; sourceTree = "<group>"; };
+		EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EADC228C1BAF7CA000EB884A /* PlaylistTableViewSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewSource.swift; sourceTree = "<group>"; };
+		EADC22911BAF861F00EB884A /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		EADC22931BAF868C00EB884A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EADC22951BAF869D00EB884A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EADC22971BAF879900EB884A /* Playlistr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Playlistr-Bridging-Header.h"; sourceTree = "<group>"; };
+		EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyAuthenticator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +56,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */,
+				EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */,
+				EADC22921BAF861F00EB884A /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +78,7 @@
 				EA07E57D1BAF288D001BC449 /* Playlistr */,
 				EA07E5931BAF288D001BC449 /* PlaylistrTests */,
 				EA07E57C1BAF288D001BC449 /* Products */,
+				EADC228E1BAF856A00EB884A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,11 +95,15 @@
 			isa = PBXGroup;
 			children = (
 				EA07E5801BAF288D001BC449 /* AppDelegate.swift */,
+				EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */,
 				EA07E5821BAF288D001BC449 /* ViewController.swift */,
+				EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */,
+				EADC228C1BAF7CA000EB884A /* PlaylistTableViewSource.swift */,
 				EA07E5841BAF288D001BC449 /* Main.storyboard */,
 				EA07E5871BAF288D001BC449 /* Images.xcassets */,
 				EA07E5891BAF288D001BC449 /* LaunchScreen.xib */,
 				EA07E57E1BAF288D001BC449 /* Supporting Files */,
+				EADC22971BAF879900EB884A /* Playlistr-Bridging-Header.h */,
 			);
 			path = Playlistr;
 			sourceTree = "<group>";
@@ -110,6 +131,17 @@
 				EA07E5951BAF288D001BC449 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EADC228E1BAF856A00EB884A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EADC22951BAF869D00EB884A /* SystemConfiguration.framework */,
+				EADC22931BAF868C00EB884A /* AVFoundation.framework */,
+				EADC22911BAF861F00EB884A /* Spotify.framework */,
+			);
+			name = Frameworks;
+			path = Playlistr;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,11 +188,13 @@
 		EA07E5731BAF288D001BC449 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Katelyn Findlay";
 				TargetAttributes = {
 					EA07E57A1BAF288D001BC449 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = A763TL54A9;
 					};
 					EA07E58F1BAF288D001BC449 = {
 						CreatedOnToolsVersion = 6.4;
@@ -212,8 +246,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */,
 				EA07E5831BAF288D001BC449 /* ViewController.swift in Sources */,
 				EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */,
+				EADC228D1BAF7CA000EB884A /* PlaylistTableViewSource.swift in Sources */,
+				EA07E5D51BAF47BF001BC449 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,9 +379,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Playlistr",
+				);
 				INFOPLIST_FILE = Playlistr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Playlistr/Playlistr-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -352,9 +402,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Playlistr",
+				);
 				INFOPLIST_FILE = Playlistr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Playlistr/Playlistr-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -411,6 +473,7 @@
 				EA07E59C1BAF288D001BC449 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA07E59D1BAF288D001BC449 /* Build configuration list for PBXNativeTarget "PlaylistrTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +482,7 @@
 				EA07E59F1BAF288D001BC449 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
