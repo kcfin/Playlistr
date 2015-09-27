@@ -8,6 +8,36 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="hvS-Hj-cy0">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="xh1-Gg-CHq" customClass="LoginViewController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WKL-pg-YVF"/>
+                        <viewControllerLayoutGuide type="bottom" id="VN3-3R-CTb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sm6-dI-LDA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EQ-nx-e0z">
+                                <rect key="frame" x="235" y="226" width="131" height="30"/>
+                                <color key="backgroundColor" red="0.76446132248631249" green="0.89060527146464641" blue="0.67417138373450314" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Log In With Spotify">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="xh1-Gg-CHq" eventType="touchUpInside" id="aJk-Ut-4cA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s1m-0F-ic0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="-821"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="vEA-3j-Pna">
             <objects>
@@ -65,7 +95,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" textLabel="ZKh-h2-0w1" style="IBUITableViewCellStyleDefault" id="13z-kG-QOf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="profileCell" textLabel="ZKh-h2-0w1" style="IBUITableViewCellStyleDefault" id="13z-kG-QOf">
                                         <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="13z-kG-QOf" id="sb6-5J-uWj">
@@ -81,6 +111,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>

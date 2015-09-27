@@ -31,20 +31,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         let auth = SPTAuth.defaultInstance();
+//        let loginURL = auth.loginURL;
         auth.clientID = kClientId;
         auth.requestedScopes = [SPTAuthStreamingScope];
         auth.redirectURL = NSURL(string: kCallbackURL);
 
-        let loginURL = auth.loginURL;
-        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds);
+        window?.makeKeyAndVisible();
+        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
         
         if(auth.session == nil || !auth.session.isValid()){
-            delay(0.1) {
-                application.openURL(loginURL);
-            }
+            window?.rootViewController = loginVC;
         } else {
-            print("here");
-//            SpotifyUserSingleton.user.handle(auth.session, pvc: profileVC);
+            window?.rootViewController = storyboard.instantiateInitialViewController();
         }
                 
         return true;

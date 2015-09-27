@@ -19,6 +19,7 @@
 		EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22931BAF868C00EB884A /* AVFoundation.framework */; };
 		EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22951BAF869D00EB884A /* SystemConfiguration.framework */; };
 		EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */; settings = {ASSET_TAGS = (); }; };
+		EAFE35FE1BB8614A0055B195 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE35FD1BB8614A0055B195 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		EADC22951BAF869D00EB884A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EADC22971BAF879900EB884A /* Playlistr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Playlistr-Bridging-Header.h"; sourceTree = "<group>"; };
 		EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyAuthenticator.swift; sourceTree = "<group>"; };
+		EAFE35FD1BB8614A0055B195 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				EA07E5801BAF288D001BC449 /* AppDelegate.swift */,
+				EAFE35FD1BB8614A0055B195 /* LoginViewController.swift */,
 				EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */,
 				EA07E5821BAF288D001BC449 /* ViewController.swift */,
 				EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */,
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAFE35FE1BB8614A0055B195 /* LoginViewController.swift in Sources */,
 				EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */,
 				EA07E5831BAF288D001BC449 /* ViewController.swift in Sources */,
 				EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */,
@@ -388,7 +392,7 @@
 					"$(PROJECT_DIR)/Playlistr",
 				);
 				INFOPLIST_FILE = Playlistr/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,7 +415,7 @@
 					"$(PROJECT_DIR)/Playlistr",
 				);
 				INFOPLIST_FILE = Playlistr/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
