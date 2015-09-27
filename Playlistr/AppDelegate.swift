@@ -12,36 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let authenticator = SpotifyAuthenticator();
-    let kClientId = "3d912a8a1aa64b11b07abeecc30df390"
-    let kCallbackURL = "playlistr-login://callback"
-    let kTokenSwapURL = "http://localhost:1234/swap"
-    
-    var session:SPTSession?
-    
-    func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
-    }
+    let authenticator: SpotifyAuthenticator = SpotifyAuthenticator();
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-        let auth = SPTAuth.defaultInstance();
-//        let loginURL = auth.loginURL;
-        auth.clientID = kClientId;
-        auth.requestedScopes = [SPTAuthStreamingScope];
-        auth.redirectURL = NSURL(string: kCallbackURL);
-
+        authenticator.setAuthInfo();
         window = UIWindow(frame: UIScreen.mainScreen().bounds);
         window?.makeKeyAndVisible();
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
         let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
         
-        if(auth.session == nil || !auth.session.isValid()){
+        if(authenticator.auth.session == nil || !authenticator.auth.session.isValid()){
             window?.rootViewController = loginVC;
         } else {
             window?.rootViewController = storyboard.instantiateInitialViewController();
@@ -49,20 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         return true;
     }
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-//        var canAuthenticate: Bool = false;
-        if(SPTAuth.defaultInstance().canHandleURL(url)) {
-            SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: { (error, session) -> Void in
-                if(error != nil) {
-                    print("*** Auth error: \(error)")
-                    return;
-                }
-                
-            });
-        }
-        return false;
-    }
+
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

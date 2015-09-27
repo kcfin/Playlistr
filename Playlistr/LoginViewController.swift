@@ -11,33 +11,22 @@ import UIKit
 class LoginViewController: UIViewController, SPTAuthViewDelegate {
 
     let authenticator: SpotifyAuthenticator = SpotifyAuthenticator();
-    let authVC: SPTAuthViewController = SPTAuthViewController();
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        self.modalPresentationStyle = UIModalPresentationStyle.CurrentContext;
-        self.definesPresentationContext = true;
-        setupAuthVC();
     }
 
     override func viewWillAppear(animated: Bool) {
         if(authenticator.auth.hasTokenRefreshService) {
             if(authenticator.renewToken()) {
                 goToMainView();
+                return;
             }
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func setupAuthVC() {
-        authVC.delegate = self;
-        let backButton: UIBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil);
-        authVC.navigationItem.backBarButtonItem = backButton;
-        authVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
-        authVC.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
     }
     
     func goToMainView() {
@@ -47,6 +36,12 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     
     // MARK: - IBActions
     @IBAction func loginButtonPressed(sender: AnyObject) {
+        let authVC = SPTAuthViewController.authenticationViewController();
+        authVC.delegate = self;
+        authVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
+        authVC.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
+        self.modalPresentationStyle = UIModalPresentationStyle.CurrentContext;
+        self.definesPresentationContext = true;
         presentViewController(authVC, animated: false, completion: nil);
     }
     
@@ -56,7 +51,9 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
-        goToMainView();
+        print("got here");
+        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeVC");
+        presentViewController(homeVC, animated: true, completion: nil);
     }
     
     func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
