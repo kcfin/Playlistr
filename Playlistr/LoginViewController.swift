@@ -19,7 +19,8 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     override func viewWillAppear(animated: Bool) {
         if(authenticator.auth.hasTokenRefreshService) {
             if(authenticator.renewToken()) {
-                goToMainView();
+                let appDelegate = UIApplication.sharedApplication().delegate;
+                appDelegate?.window??.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController();
                 return;
             }
         }
@@ -27,11 +28,6 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func goToMainView() {
-        let appDelegate = UIApplication.sharedApplication().delegate;
-        appDelegate?.window??.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController();
     }
     
     // MARK: - IBActions
@@ -51,7 +47,6 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
-        print("got here");
         let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeVC");
         presentViewController(homeVC, animated: true, completion: nil);
     }

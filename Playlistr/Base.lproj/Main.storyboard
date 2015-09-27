@@ -19,9 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EQ-nx-e0z">
-                                <rect key="frame" x="235" y="226" width="131" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EQ-nx-e0z">
+                                <rect key="frame" x="200" y="275" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.76446132248631249" green="0.89060527146464641" blue="0.67417138373450314" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="FOM-5Z-yaP"/>
+                                    <constraint firstAttribute="height" constant="50" id="QNa-Nq-aIc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                 <state key="normal" title="Log In With Spotify">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -31,6 +36,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7EQ-nx-e0z" firstAttribute="centerX" secondItem="sm6-dI-LDA" secondAttribute="centerX" id="Q0z-EH-YU0"/>
+                            <constraint firstItem="7EQ-nx-e0z" firstAttribute="centerY" secondItem="sm6-dI-LDA" secondAttribute="centerY" id="k93-7l-lhY"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="1Wp-vS-ZMB" kind="presentation" id="HCC-8A-XDq"/>

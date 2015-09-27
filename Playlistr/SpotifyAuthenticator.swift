@@ -14,7 +14,7 @@ class SpotifyAuthenticator: NSObject {
         auth.clientID = Config.kClientId;
         auth.requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthUserReadEmailScope, SPTAuthUserReadPrivateScope, SPTAuthUserLibraryReadScope];
         auth.redirectURL = NSURL(string: Config.kCallbackURL);
-        auth.sessionUserDefaultsKey = Config.sessionKey;
+//        auth.sessionUserDefaultsKey = Config.sessionKey;
     }
     
     func renewToken() -> Bool {

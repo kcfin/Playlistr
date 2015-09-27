@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     func setupImageView() {
         profileImageView.layer.borderWidth = 3.0;
         profileImageView.layer.borderColor = UIColor.whiteColor().CGColor;
-        profileImageView.layer.cornerRadius = 50;
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2;
     }
     
     func setupNameLabel() {
