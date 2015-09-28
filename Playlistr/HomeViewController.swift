@@ -14,24 +14,27 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
-    var profileDataSource: PlaylistTableViewSource?;
+    var user: SpotifyUser?;
+    var profileDataSource: PlaylistTableViewSource = PlaylistTableViewSource();
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        profileDataSource = PlaylistTableViewSource();
+        setupImageView();
+        setupNameLabel();
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         playlistTableView.dataSource = profileDataSource;
         playlistTableView.delegate = profileDataSource;
     }
 
     func setupImageView() {
+        profileImageView.image = user?.profileImage;
         profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
     }
     
     func setupNameLabel() {
-    }
-    
-    override func viewDidLayoutSubviews() {
-        setupImageView();
+        nameLabel.text = user?.name;
     }
     
     override func didReceiveMemoryWarning() {

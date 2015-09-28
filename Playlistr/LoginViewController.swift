@@ -49,7 +49,9 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
-        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeVC");
+//        let vm = ProfileViewModel(withPerson: SpotifyUser(withSession: session));
+        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeVC") as! HomeViewController;
+//        homeVC.viewModel = vm;
         presentViewController(homeVC, animated: true, completion: nil);
     }
     
