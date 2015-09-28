@@ -14,13 +14,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
-    var user: SpotifyUser?;
+//    var user: SpotifyUser?;
     var profileDataSource: PlaylistTableViewSource = PlaylistTableViewSource();
     
     override func viewDidLoad() {
         super.viewDidLoad();
         setupImageView();
         setupNameLabel();
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,12 +30,18 @@ class HomeViewController: UIViewController {
     }
 
     func setupImageView() {
-        profileImageView.image = user?.profileImage;
+        profileImageView.image = SpotifyUser.user.profileImage;
         profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
     }
     
     func setupNameLabel() {
-        nameLabel.text = user?.name;
+        nameLabel.text = SpotifyUser.user.name;
+    }
+    
+    func reloadData() {
+        profileImageView.image = SpotifyUser.user.profileImage;
+        profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
+        nameLabel.text = SpotifyUser.user.name;
     }
     
     override func didReceiveMemoryWarning() {

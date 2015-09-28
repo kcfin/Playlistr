@@ -12,24 +12,28 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     let authenticator: SpotifyAuthenticator = SpotifyAuthenticator();
+    var user: SpotifyUser?;
     
     override func viewDidLoad() {
         super.viewDidLoad();
         loginButton.layer.cornerRadius = loginButton.frame.size.height/2;
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToHomeScreen", name: "InitializeUser", object: nil);
     }
 
     override func viewWillAppear(animated: Bool) {
         if(authenticator.auth.hasTokenRefreshService) {
             if(authenticator.renewToken()) {
-                let appDelegate = UIApplication.sharedApplication().delegate;
-                appDelegate?.window??.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController();
-                return;
+                goToHomeScreen();
             }
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func goToHomeScreen() {
+        performSegueWithIdentifier("LoginToHomeView", sender: nil);
     }
     
     // MARK: - IBActions
@@ -49,14 +53,10 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
-//        let vm = ProfileViewModel(withPerson: SpotifyUser(withSession: session));
-        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeVC") as! HomeViewController;
-//        homeVC.viewModel = vm;
-        presentViewController(homeVC, animated: true, completion: nil);
+        SpotifyUser.user.handle(withSession: session);
     }
     
     func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
         print("*** Cancelled log in.");
     }
-
 }

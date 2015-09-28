@@ -20,12 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible();
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
-        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
+//        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
+        let rootView = storyboard.instantiateInitialViewController();
+        window?.rootViewController = rootView;
         
         if(authenticator.auth.session == nil || !authenticator.auth.session.isValid()){
-            window?.rootViewController = loginVC;
+            dispatch_async(dispatch_get_main_queue(), {
+                rootView?.performSegueWithIdentifier("GoToLogin", sender: nil);
+            })
         } else {
-            window?.rootViewController = storyboard.instantiateInitialViewController();
+            SpotifyUser.user.handle(withSession: authenticator.auth.session);
         }
                 
         return true;

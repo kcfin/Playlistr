@@ -10,13 +10,14 @@ import UIKit
 
 class SpotifyUser {
 
+    static let user = SpotifyUser();
     var sptUser: SPTUser?;
     var session: SPTSession?;
     var name: String?;
     var profileImage: UIImage?;
     var playlists: [SPTPlaylistList]?;
     
-    init(withSession curSession: SPTSession) {
+    func handle(withSession curSession: SPTSession) {
         session = curSession;
         SPTUser.requestCurrentUserWithAccessToken(session?.accessToken, callback: {(error, object) -> Void in
             if(error != nil) {
@@ -24,13 +25,16 @@ class SpotifyUser {
                 return;
             } else {
                 self.sptUser = object as? SPTUser;
-                self.setupUserInfo();
+                self.initializeUserInfo();
             }
         });
     }
     
-    func setupUserInfo() {
-        name = sptUser?.displayName;
-        profileImage = UIImage(data: NSData(contentsOfURL: (sptUser?.largestImage.imageURL)!)!);
+    func initializeUserInfo() {
+        self.name = self.sptUser?.displayName;
+        if let url = self.sptUser?.largestImage.imageURL {
+            self.profileImage = UIImage(data: NSData(contentsOfURL: url)!);
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
     }
 }

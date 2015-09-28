@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5801BAF288D001BC449 /* AppDelegate.swift */; };
-		EA07E5861BAF288D001BC449 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5841BAF288D001BC449 /* Main.storyboard */; };
 		EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5871BAF288D001BC449 /* Images.xcassets */; };
 		EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5891BAF288D001BC449 /* LaunchScreen.xib */; };
 		EA07E5971BAF288D001BC449 /* PlaylistrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5961BAF288D001BC449 /* PlaylistrTests.swift */; };
 		EA07E5D51BAF47BF001BC449 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */; };
+		EA3A97CC1BB8EAD2005CE103 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		EA718B371BB8F84600CBDC8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA718B361BB8F84600CBDC8D /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		EAB31E2A1BB8BDB800B47CF6 /* SpotifyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB31E291BB8BDB800B47CF6 /* SpotifyUser.swift */; settings = {ASSET_TAGS = (); }; };
 		EAD5E0291BB8912900BE68CA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5E0281BB8912900BE68CA /* Config.swift */; settings = {ASSET_TAGS = (); }; };
 		EAD5E02F1BB8B36F00BE68CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -37,13 +38,14 @@
 		EA07E57B1BAF288D001BC449 /* Playlistr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playlistr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA07E57F1BAF288D001BC449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA07E5801BAF288D001BC449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EA07E5851BAF288D001BC449 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA07E5871BAF288D001BC449 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EA07E58A1BAF288D001BC449 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EA07E5901BAF288D001BC449 /* PlaylistrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaylistrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA07E5951BAF288D001BC449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA07E5961BAF288D001BC449 /* PlaylistrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistrTests.swift; sourceTree = "<group>"; };
 		EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		EA718B361BB8F84600CBDC8D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EAB31E291BB8BDB800B47CF6 /* SpotifyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyUser.swift; sourceTree = "<group>"; };
 		EAD5E0281BB8912900BE68CA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -101,10 +103,11 @@
 				EA07E5801BAF288D001BC449 /* AppDelegate.swift */,
 				EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */,
 				EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */,
+				EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */,
 				EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */,
 				EADC228C1BAF7CA000EB884A /* PlaylistTableViewSource.swift */,
 				EAB31E291BB8BDB800B47CF6 /* SpotifyUser.swift */,
-				EA07E5841BAF288D001BC449 /* Main.storyboard */,
+				EA718B361BB8F84600CBDC8D /* Main.storyboard */,
 				EA07E57E1BAF288D001BC449 /* Supporting Files */,
 			);
 			path = Playlistr;
@@ -232,7 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA07E5861BAF288D001BC449 /* Main.storyboard in Resources */,
+				EA718B371BB8F84600CBDC8D /* Main.storyboard in Resources */,
 				EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */,
 				EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */,
 			);
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD5E02F1BB8B36F00BE68CA /* LoginViewController.swift in Sources */,
+				EA3A97CC1BB8EAD2005CE103 /* RootViewController.swift in Sources */,
 				EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */,
 				EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */,
 				EAD5E0291BB8912900BE68CA /* Config.swift in Sources */,
@@ -281,14 +285,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EA07E5841BAF288D001BC449 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA07E5851BAF288D001BC449 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EA07E5891BAF288D001BC449 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
