@@ -10,10 +10,12 @@ import UIKit
 
 class LoginViewController: UIViewController, SPTAuthViewDelegate {
 
+    @IBOutlet weak var loginButton: UIButton!
     let authenticator: SpotifyAuthenticator = SpotifyAuthenticator();
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        loginButton.layer.cornerRadius = loginButton.frame.size.height/2;
     }
 
     override func viewWillAppear(animated: Bool) {

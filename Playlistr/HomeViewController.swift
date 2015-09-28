@@ -21,17 +21,17 @@ class HomeViewController: UIViewController {
         profileDataSource = PlaylistTableViewSource();
         playlistTableView.dataSource = profileDataSource;
         playlistTableView.delegate = profileDataSource;
-        setupImageView();
     }
 
     func setupImageView() {
-        profileImageView.layer.borderWidth = 3.0;
-        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor;
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2;
+        profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
     }
     
     func setupNameLabel() {
-        nameLabel.font = UIFont.systemFontOfSize(30);
+    }
+    
+    override func viewDidLayoutSubviews() {
+        setupImageView();
     }
     
     override func didReceiveMemoryWarning() {
