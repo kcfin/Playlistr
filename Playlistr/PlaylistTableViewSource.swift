@@ -31,4 +31,10 @@ class PlaylistTableViewSource: NSObject, UITableViewDataSource, UITableViewDeleg
         return;
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.separatorInset = UIEdgeInsetsZero;
+        tableView.layoutMargins = UIEdgeInsetsZero;
+        cell.layoutMargins = UIEdgeInsetsZero;
+    }
+    
 }
