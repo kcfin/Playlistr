@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
-    <elements/>
+    <entity name="Playlist" syncable="YES">
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Track" inverseName="playlist" inverseEntity="Track" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="playlistUser" inverseEntity="User" syncable="YES"/>
+        <relationship name="year" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="playlist" inverseEntity="Year" syncable="YES"/>
+    </entity>
+    <entity name="Track" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="playlist" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Playlist" inverseName="track" inverseEntity="Playlist" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <relationship name="playlistUser" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Playlist" inverseName="user" inverseEntity="Playlist" syncable="YES"/>
+    </entity>
+    <entity name="Year" syncable="YES">
+        <relationship name="playlist" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Playlist" inverseName="year" inverseEntity="Playlist" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Playlist" positionX="-81" positionY="65" width="128" height="118"/>
+        <element name="Year" positionX="169" positionY="72" width="128" height="58"/>
+        <element name="User" positionX="-63" positionY="-99" width="128" height="58"/>
+        <element name="Track" positionX="-63" positionY="243" width="128" height="103"/>
+    </elements>
 </model>
