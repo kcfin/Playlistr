@@ -14,7 +14,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
-//    var user: SpotifyUser?;
     var profileDataSource: PlaylistTableViewSource = PlaylistTableViewSource();
     
     override func viewDidLoad() {
