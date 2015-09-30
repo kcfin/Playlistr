@@ -1,5 +1,5 @@
 //
-//  User+CoreDataProperties.swift
+//  Track+CoreDataProperties.swift
 //  Playlistr
 //
 //  Created by Katelyn Findlay on 9/30/15.
@@ -12,11 +12,11 @@
 import Foundation
 import CoreData
 
-extension User {
+extension Track {
 
-    @NSManaged var image: NSData?
+    @NSManaged var artist: String?
+    @NSManaged var dateAdded: NSDate?
     @NSManaged var name: String?
-    @NSManaged var parsingPlaylist: NSSet?
-    @NSManaged var year: NSOrderedSet?
+    @NSManaged var playlist: NSSet?
 
 }

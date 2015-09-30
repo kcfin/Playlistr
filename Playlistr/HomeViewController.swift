@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
+    var playlistFRC: NSFetchedResultsController?;
     var profileDataSource: PlaylistTableViewSource = PlaylistTableViewSource();
     
     override func viewDidLoad() {
@@ -24,8 +26,8 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        playlistTableView.dataSource = profileDataSource;
-        playlistTableView.delegate = profileDataSource;
+        playlistTableView.dataSource = self;
+        playlistTableView.delegate = self;
     }
 
     func setupImageView() {
@@ -42,6 +44,8 @@ class HomeViewController: UIViewController {
     func reloadData() {
         setupImageView();
         setupNameLabel();
+        playlistFRC = FetchedResultsController.newParsingPlaylistFRC();
+        playlistFRC?.delegate = self;
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,6 +53,33 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Table View Methods
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return (playlistFRC?.sections?.count)!;
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (playlistFRC?.sections?[section].numberOfObjects)!;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath);
+        
+        let pp = playlistFRC?.objectAtIndexPath(indexPath) as! ParsingPlaylist;
+        cell.textLabel?.text = pp.snapshotId;
+        return cell;
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        return;
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.separatorInset = UIEdgeInsetsZero;
+        tableView.layoutMargins = UIEdgeInsetsZero;
+        cell.layoutMargins = UIEdgeInsetsZero;
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

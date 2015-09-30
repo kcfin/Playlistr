@@ -12,7 +12,6 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     let authenticator: SpotifyAuthenticator = SpotifyAuthenticator();
-    var user: SpotifyUser?;
     
     override func viewDidLoad() {
         super.viewDidLoad();

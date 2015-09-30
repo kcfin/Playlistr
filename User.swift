@@ -34,7 +34,14 @@ class User: NSManagedObject {
         return user;
     }
     
+    func addParsingPlaylist(playlist: ParsingPlaylist) {
+        let playlists = User.currentUser()?.mutableSetValueForKey("parsingPlaylist");
+        playlists?.addObject(playlist);
+        CoreDataHelper.data.save();
+    }
+    
     class func removeCurrentUser() {
+        
         //TODO: remove user from core data
     }
     

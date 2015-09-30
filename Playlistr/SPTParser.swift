@@ -20,13 +20,16 @@ class SPTParser {
         User.newUser(sptUser.displayName, imgData: imgData);
     }
     
-    class func compareUsersBeforeParse(sptUser: SPTUser) {
-        if let cachedUser = User.currentUser() {
-            if(cachedUser.name == sptUser.displayName) {
-                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-                return;
-            }
-        }
-        parseSPTUser(sptUser);
+    class func parseSnapshotPlaylists(snapshotPlaylist: SPTPlaylistSnapshot) {
+        let playlist = ParsingPlaylist.newParsingPlaylist(snapshotPlaylist.snapshotId);
+        User.currentUser()?.addParsingPlaylist(playlist);
+        
+//        if let snapshots = snapshotPlaylists {
+//            for playlist in snapshots {
+//                let parsingPlaylist = ParsingPlaylist.newParsingPlaylist(playlist.snapshotId);
+//                User.currentUser()?.addParsingPlaylist(parsingPlaylist);
+//            }
+//            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+//        }
     }
 }

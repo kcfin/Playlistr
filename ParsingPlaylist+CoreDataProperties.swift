@@ -1,5 +1,5 @@
 //
-//  User+CoreDataProperties.swift
+//  ParsingPlaylist+CoreDataProperties.swift
 //  Playlistr
 //
 //  Created by Katelyn Findlay on 9/30/15.
@@ -12,11 +12,9 @@
 import Foundation
 import CoreData
 
-extension User {
+extension ParsingPlaylist {
 
-    @NSManaged var image: NSData?
-    @NSManaged var name: String?
-    @NSManaged var parsingPlaylist: NSSet?
-    @NSManaged var year: NSOrderedSet?
+    @NSManaged var snapshotId: String?
+    @NSManaged var user: User?
 
 }
