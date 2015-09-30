@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootView?.performSegueWithIdentifier("GoToLogin", sender: nil);
             })
         } else {
-            SpotifyUser.user.handle(withSession: authenticator.auth.session);
+            let requester = SpotifyRequester();
+            requester.fetchUser(withSession: authenticator.auth.session);
         }
                 
         return true;

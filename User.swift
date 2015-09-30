@@ -11,18 +11,22 @@ import CoreData
 
 class User: NSManagedObject {
 
-    var cachedUser: User?;
+    static var cachedUser: User?;
     var session: SPTSession?;
-    var image: UIImage?;
+    var profileImage: UIImage?;
     var coreData: CoreDataHelper = CoreDataHelper();
+
     
-    func user() -> User {
+    static func user() -> User {
         if(cachedUser == nil) {
             // request from core data and set user
+            let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+            let context = appDelegate.managedObjectContext;
             let fetchRequest = NSFetchRequest(entityName: "User");
             
             do {
-                let fetchedResults = try coreData.context.executeFetchRequest(fetchRequest) as! [User];
+                let fetchedResults = try context.executeFetchRequest(fetchRequest) as! [User];
                 cachedUser = fetchedResults.first;
             } catch let error as NSError {
                 print("Could not fetch user: \(error)")
@@ -31,12 +35,20 @@ class User: NSManagedObject {
         return cachedUser!;
     }
     
-    func initAndSaveUser(withName inName: String, withImageURL imageURL: String) {
+     func initAndSaveUser(withName inName: String, withImageURL imageURL: String) {
         let userEntity = NSEntityDescription.entityForName("User", inManagedObjectContext: coreData.context);
         let user = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: coreData.context);
         user.setValue(inName, forKey: "name");
         user.setValue(imageURL, forKey: "imageURL");
+        convertToImage(withURLString: imageURL);
         coreData.save();
+    }
+    
+    func convertToImage(withURLString urlString: String)
+    {
+        if let url = NSURL(string: urlString) {
+            profileImage = UIImage(data: NSData(contentsOfURL: url)!);
+        }
     }
     
 }

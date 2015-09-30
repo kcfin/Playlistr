@@ -11,10 +11,10 @@ import Foundation
 class SPTParser {
     
     func parseSPTUser(sptUser: SPTUser) {
-        let user = User();
         do {
             let urlString = try String(contentsOfURL: sptUser.largestImage.imageURL);
             user.initAndSaveUser(withName: sptUser.displayName, withImageURL: urlString);
+            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
         } catch let error as NSError! {
             print("Could not convert user image URL to string: \(error)")
         }

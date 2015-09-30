@@ -18,8 +18,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        setupImageView();
-        setupNameLabel();
+//        setupImageView();
+//        setupNameLabel();
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
     }
@@ -30,18 +30,18 @@ class HomeViewController: UIViewController {
     }
 
     func setupImageView() {
-        profileImageView.image = SpotifyUser.user.profileImage;
+        profileImageView.image = User.user().profileImage;
         profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
     }
     
     func setupNameLabel() {
-        nameLabel.text = SpotifyUser.user.name;
+        nameLabel.text = User.user().name;
     }
     
     func reloadData() {
-        profileImageView.image = SpotifyUser.user.profileImage;
+        profileImageView.image = User.user().profileImage;
         profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
-        nameLabel.text = SpotifyUser.user.name;
+        nameLabel.text = User.user().name;
     }
     
     override func didReceiveMemoryWarning() {
