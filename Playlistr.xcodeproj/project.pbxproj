@@ -18,6 +18,12 @@
 		EA9A71801BBA26980028DA4A /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A717F1BBA26980028DA4A /* CoreDataHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		EA9A71821BBA449B0028DA4A /* PlayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71811BBA449B0028DA4A /* PlayListTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EA9A71891BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71871BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		EA9A71921BBB7CFC0028DA4A /* Playlist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71901BBB7CFC0028DA4A /* Playlist+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		EA9A71931BBB7CFC0028DA4A /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71911BBB7CFC0028DA4A /* Playlist.swift */; settings = {ASSET_TAGS = (); }; };
+		EA9A71961BBB87480028DA4A /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71941BBB87480028DA4A /* User+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		EA9A71971BBB87480028DA4A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71951BBB87480028DA4A /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		EA9A71991BBB88F30028DA4A /* SpotifyRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71981BBB88F30028DA4A /* SpotifyRequester.swift */; settings = {ASSET_TAGS = (); }; };
+		EA9A719B1BBB89230028DA4A /* SPTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A719A1BBB89230028DA4A /* SPTParser.swift */; settings = {ASSET_TAGS = (); }; };
 		EAB31E2A1BB8BDB800B47CF6 /* SpotifyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB31E291BB8BDB800B47CF6 /* SpotifyUser.swift */; settings = {ASSET_TAGS = (); }; };
 		EAD5E0291BB8912900BE68CA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5E0281BB8912900BE68CA /* Config.swift */; settings = {ASSET_TAGS = (); }; };
 		EAD5E02F1BB8B36F00BE68CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -54,6 +60,13 @@
 		EA9A717F1BBA26980028DA4A /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		EA9A71811BBA449B0028DA4A /* PlayListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListTableViewController.swift; sourceTree = "<group>"; };
 		EA9A71881BBA508B0028DA4A /* PlaylistrModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlaylistrModel.xcdatamodel; sourceTree = "<group>"; };
+		EA9A71901BBB7CFC0028DA4A /* Playlist+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Playlist+CoreDataProperties.swift"; path = "../Playlist+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EA9A71911BBB7CFC0028DA4A /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Playlist.swift; path = ../Playlist.swift; sourceTree = "<group>"; };
+		EA9A71941BBB87480028DA4A /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EA9A71951BBB87480028DA4A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
+		EA9A71981BBB88F30028DA4A /* SpotifyRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyRequester.swift; sourceTree = "<group>"; };
+		EA9A719A1BBB89230028DA4A /* SPTParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTParser.swift; sourceTree = "<group>"; };
+		EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		EAB31E291BB8BDB800B47CF6 /* SpotifyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyUser.swift; sourceTree = "<group>"; };
 		EAD5E0281BB8912900BE68CA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +130,8 @@
 				EA9A71811BBA449B0028DA4A /* PlayListTableViewController.swift */,
 				EADC228C1BAF7CA000EB884A /* PlaylistTableViewSource.swift */,
 				EAB31E291BB8BDB800B47CF6 /* SpotifyUser.swift */,
+				EA9A71981BBB88F30028DA4A /* SpotifyRequester.swift */,
+				EA9A719A1BBB89230028DA4A /* SPTParser.swift */,
 				EA718B361BB8F84600CBDC8D /* Main.storyboard */,
 				EA9A71861BBA503B0028DA4A /* CoreData */,
 				EA07E57E1BAF288D001BC449 /* Supporting Files */,
@@ -156,6 +171,10 @@
 		EA9A71861BBA503B0028DA4A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				EA9A71941BBB87480028DA4A /* User+CoreDataProperties.swift */,
+				EA9A71951BBB87480028DA4A /* User.swift */,
+				EA9A71901BBB7CFC0028DA4A /* Playlist+CoreDataProperties.swift */,
+				EA9A71911BBB7CFC0028DA4A /* Playlist.swift */,
 				EA9A717F1BBA26980028DA4A /* CoreDataHelper.swift */,
 				EA9A71871BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld */,
 			);
@@ -275,12 +294,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9A71921BBB7CFC0028DA4A /* Playlist+CoreDataProperties.swift in Sources */,
 				EA9A71801BBA26980028DA4A /* CoreDataHelper.swift in Sources */,
 				EAD5E02F1BB8B36F00BE68CA /* LoginViewController.swift in Sources */,
+				EA9A71991BBB88F30028DA4A /* SpotifyRequester.swift in Sources */,
+				EA9A71931BBB7CFC0028DA4A /* Playlist.swift in Sources */,
+				EA9A71971BBB87480028DA4A /* User.swift in Sources */,
 				EA3A97CC1BB8EAD2005CE103 /* RootViewController.swift in Sources */,
 				EA9A71411BB9E1C40028DA4A /* DateConverter.swift in Sources */,
+				EA9A719B1BBB89230028DA4A /* SPTParser.swift in Sources */,
 				EA9A71891BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld in Sources */,
 				EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */,
+				EA9A71961BBB87480028DA4A /* User+CoreDataProperties.swift in Sources */,
 				EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */,
 				EAD5E0291BB8912900BE68CA /* Config.swift in Sources */,
 				EADC228D1BAF7CA000EB884A /* PlaylistTableViewSource.swift in Sources */,
@@ -518,9 +543,10 @@
 		EA9A71871BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */,
 				EA9A71881BBA508B0028DA4A /* PlaylistrModel.xcdatamodel */,
 			);
-			currentVersion = EA9A71881BBA508B0028DA4A /* PlaylistrModel.xcdatamodel */;
+			currentVersion = EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */;
 			path = PlaylistrModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
-    <entity name="Playlist" syncable="YES">
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES">
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="track" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Track" inverseName="playlist" inverseEntity="Track" syncable="YES"/>
@@ -13,7 +13,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="playlist" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Playlist" inverseName="track" inverseEntity="Playlist" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
+    <entity name="User" representedClassName=".User" syncable="YES">
         <relationship name="playlistUser" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Playlist" inverseName="user" inverseEntity="Playlist" syncable="YES"/>
     </entity>
     <entity name="Year" syncable="YES">

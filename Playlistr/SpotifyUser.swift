@@ -15,7 +15,7 @@ class SpotifyUser {
     var session: SPTSession?;
     var name: String?;
     var profileImage: UIImage?;
-    var playlists: [SPTPlaylistList]?;
+    var playlists: SPTPlaylistList?;
     
     func handle(withSession curSession: SPTSession) {
         session = curSession;
@@ -36,5 +36,16 @@ class SpotifyUser {
             self.profileImage = UIImage(data: NSData(contentsOfURL: url)!);
         }
         NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+    }
+    
+    func fetchPlaylists() {
+        SPTPlaylistList.playlistsForUser(name, withSession: session, callback: {(error, object) -> Void in
+            if(error != nil) {
+                print("error: %@", error.localizedDescription);
+                return;
+            } else {
+                self.playlists = object as? SPTPlaylistList;
+            }
+        })
     }
 }
