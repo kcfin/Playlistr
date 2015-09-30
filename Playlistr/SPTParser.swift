@@ -10,13 +10,23 @@ import Foundation
 
 class SPTParser {
     
-    func parseSPTUser(sptUser: SPTUser) {
-        do {
-            let urlString = try String(contentsOfURL: sptUser.largestImage.imageURL);
-            user.initAndSaveUser(withName: sptUser.displayName, withImageURL: urlString);
-            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-        } catch let error as NSError! {
-            print("Could not convert user image URL to string: \(error)")
+    class func parseSPTUser(sptUser: SPTUser)  {
+        var imgData: NSData? = nil;
+        if let imgURLData = NSData(contentsOfURL: sptUser.largestImage.imageURL) {
+            if let image = UIImage(data: imgURLData) {
+                imgData = UIImagePNGRepresentation(image);
+            }
         }
+        User.newUser(sptUser.displayName, imgData: imgData);
+    }
+    
+    class func compareUsersBeforeParse(sptUser: SPTUser) {
+        if let cachedUser = User.currentUser() {
+            if(cachedUser.name == sptUser.displayName) {
+                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+                return;
+            }
+        }
+        parseSPTUser(sptUser);
     }
 }

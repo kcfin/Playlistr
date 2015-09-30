@@ -49,15 +49,14 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     
     // MARK: - SPTAuthViewDelegate Methods
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didFailToLogin error: NSError!) {
-        print("*** Failed to log in: %@", error);
+        print("*Failed to log in: \(error)");
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
-        let requester = SpotifyRequester();
-        requester.fetchUser(withSession: session); 
+        SpotifyRequester.fetchUser(withSession: authenticator.auth.session);
     }
     
     func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
-        print("*** Cancelled log in.");
+        print("Cancelled log in");
     }
 }

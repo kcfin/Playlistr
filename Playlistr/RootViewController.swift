@@ -22,6 +22,6 @@ class RootViewController: UIViewController {
     }
     
     func goToHomeScreen() {
-        performSegueWithIdentifier("GoToHomeView", sender: nil);
+        performSegueWithIdentifier("GoToNavController", sender: nil);
     }
 }

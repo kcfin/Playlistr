@@ -67,6 +67,7 @@
 		EA9A71981BBB88F30028DA4A /* SpotifyRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyRequester.swift; sourceTree = "<group>"; };
 		EA9A719A1BBB89230028DA4A /* SPTParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTParser.swift; sourceTree = "<group>"; };
 		EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		EA9A719D1BBC51CD0028DA4A /* PlaylistrModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		EAB31E291BB8BDB800B47CF6 /* SpotifyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyUser.swift; sourceTree = "<group>"; };
 		EAD5E0281BB8912900BE68CA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -543,10 +544,11 @@
 		EA9A71871BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				EA9A719D1BBC51CD0028DA4A /* PlaylistrModel 3.xcdatamodel */,
 				EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */,
 				EA9A71881BBA508B0028DA4A /* PlaylistrModel.xcdatamodel */,
 			);
-			currentVersion = EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */;
+			currentVersion = EA9A719D1BBC51CD0028DA4A /* PlaylistrModel 3.xcdatamodel */;
 			path = PlaylistrModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

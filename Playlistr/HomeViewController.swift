@@ -18,9 +18,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-//        setupImageView();
-//        setupNameLabel();
-        
+        setupImageView();
+        setupNameLabel();
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
     }
     
@@ -30,18 +29,19 @@ class HomeViewController: UIViewController {
     }
 
     func setupImageView() {
-        profileImageView.image = User.user().profileImage;
+        if let data = User.currentUser()?.image {
+            profileImageView.image = UIImage(data: data);
+        }
         profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
     }
     
     func setupNameLabel() {
-        nameLabel.text = User.user().name;
+        nameLabel.text = User.currentUser()?.name;
     }
     
     func reloadData() {
-        profileImageView.image = User.user().profileImage;
-        profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
-        nameLabel.text = User.user().name;
+        setupImageView();
+        setupNameLabel();
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,14 +52,14 @@ class HomeViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "GoToPlaylist") {
-            if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
-                if let playlistIndex = playlistTableView.indexPathForSelectedRow?.row {
-                    // destination.playlist = playlists[playlistIndex];
-                    // set what is needed
-                }
-            }
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if(segue.identifier == "GoToPlaylist") {
+////            if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
+////                if let playlistIndex = playlistTableView.indexPathForSelectedRow?.row {
+//                    // destination.playlist = playlists[playlistIndex];
+//                    // set what is needed
+//                }
+//            }
+//        }
+//    }
 }

@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible();
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
-//        let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
         let rootView = storyboard.instantiateInitialViewController();
         window?.rootViewController = rootView;
         
@@ -30,8 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootView?.performSegueWithIdentifier("GoToLogin", sender: nil);
             })
         } else {
-            let requester = SpotifyRequester();
-            requester.fetchUser(withSession: authenticator.auth.session);
+            SpotifyRequester.fetchUser(withSession: authenticator.auth.session);
         }
                 
         return true;

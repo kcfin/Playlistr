@@ -16,6 +16,6 @@ extension User {
 
     @NSManaged var playlistUser: NSOrderedSet?
     @NSManaged var name: String?
-    @NSManaged var imageURL: String?
+    @NSManaged var image: NSData?
 
 }

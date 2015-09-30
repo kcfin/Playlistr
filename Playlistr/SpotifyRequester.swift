@@ -9,17 +9,15 @@
 import Foundation
 
 class SpotifyRequester {
-    var sptUser: SPTUser?;
     
-    func fetchUser(withSession session: SPTSession) {
-        let parser = SPTParser();
+    class func fetchUser(withSession session: SPTSession) {
         SPTUser.requestCurrentUserWithAccessToken(session.accessToken, callback: {(error, object) -> Void in
             if(error != nil) {
                 print("error: %@", error.localizedDescription);
                 return;
             } else {
                 if let user = object as? SPTUser {
-                    parser.parseSPTUser(user);
+                    SPTParser.compareUsersBeforeParse(user);
                 }
             }
         });
