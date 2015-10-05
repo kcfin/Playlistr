@@ -9,13 +9,12 @@
 import UIKit
 import CoreData
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
+class HomeViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
-    var playlistFRC: NSFetchedResultsController?;
     var profileDataSource: PlaylistTableViewSource = PlaylistTableViewSource();
     
     override func viewDidLoad() {
@@ -26,8 +25,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        playlistTableView.dataSource = self;
-        playlistTableView.delegate = self;
+        reloadData();
+        playlistTableView.dataSource = profileDataSource;
+        playlistTableView.delegate = profileDataSource;
     }
 
     func setupImageView() {
@@ -44,8 +44,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func reloadData() {
         setupImageView();
         setupNameLabel();
-        playlistFRC = FetchedResultsController.newParsingPlaylistFRC();
-        playlistFRC?.delegate = self;
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,31 +52,32 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     // MARK: - Table View Methods
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return (playlistFRC?.sections?.count)!;
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (playlistFRC?.sections?[section].numberOfObjects)!;
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath);
-        
-        let pp = playlistFRC?.objectAtIndexPath(indexPath) as! ParsingPlaylist;
-        cell.textLabel?.text = pp.snapshotId;
-        return cell;
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        return;
-    }
-    
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.separatorInset = UIEdgeInsetsZero;
-        tableView.layoutMargins = UIEdgeInsetsZero;
-        cell.layoutMargins = UIEdgeInsetsZero;
-    }
+//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 1;
+////        return (playlistFRC?.sections?.count)!;
+//    }
+//    
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+////        return (playlistFRC?.sections?[section].numberOfObjects)!;
+//    }
+//    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath);
+//        
+//        let pp = playlistFRC?.objectAtIndexPath(indexPath) as! ParsingPlaylist;
+//        cell.textLabel?.text = pp.snapshotId;
+//        return cell;
+//    }
+//    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        return;
+//    }
+//    
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        tableView.separatorInset = UIEdgeInsetsZero;
+//        tableView.layoutMargins = UIEdgeInsetsZero;
+//        cell.layoutMargins = UIEdgeInsetsZero;
+//    }
     
     // MARK: - Navigation
 

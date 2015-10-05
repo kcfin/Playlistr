@@ -52,7 +52,9 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
-        SpotifyRequester.fetchUser(withSession: authenticator.auth.session);
+        let parser = SPTParser(withPrivateContext: true, withRequester: SpotifyRequester(), withSession: session);
+        parser.importData();
+//        SpotifyRequester.fetchUser(withSession: authenticator.auth.session);
     }
     
     func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
