@@ -29,9 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 rootView?.performSegueWithIdentifier("GoToLogin", sender: nil);
             })
         } else {
-            let parser = SPTParser(withPrivateContext: true, withRequester: SpotifyRequester(), withSession: authenticator.auth.session);
-            parser.importData();
-//            SpotifyRequester.fetchUser(withSession: authenticator.auth.session);
+            if (User.currentUser() != nil) {
+                dispatch_async(dispatch_get_main_queue(), {
+                    rootView?.performSegueWithIdentifier("GoToNavController", sender: nil);
+                })
+            }
         }
                 
         return true;
@@ -60,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        self.saveContext();
+        CoreDataHelper.data.save();
     }
     
 

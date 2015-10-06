@@ -15,12 +15,8 @@ class SPTParser {
     var requester: SpotifyRequester
     var session: SPTSession
     
-    init(withPrivateContext isPrivate: Bool, withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
-        if(isPrivate) {
-            context = CoreDataHelper.data.privateContext;
-        } else {
-            context = CoreDataHelper.data.context;
-        }
+    init(withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
+        context = CoreDataHelper.data.privateContext;
         requester = curRequester;
         session = inSession;
     }
@@ -32,6 +28,7 @@ class SPTParser {
     func importUser() {
         requester.fetchUser(withSession: session, withCallback: {(user) -> Void in
             self.context.performBlock({
+                
                 var imgData: NSData? = nil;
                 if let imgURLData = NSData(contentsOfURL: user.largestImage.imageURL) {
                     if let image = UIImage(data: imgURLData) {
@@ -40,6 +37,7 @@ class SPTParser {
                 }
                 User.newUser(user.displayName, imgData: imgData, context: self.context);
                 CoreDataHelper.data.privateSave();
+                CoreDataHelper.data.save();
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
             })
         })
