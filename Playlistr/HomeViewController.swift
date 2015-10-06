@@ -9,18 +9,22 @@
 import UIKit
 import CoreData
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
     var profileDataSource: PlaylistTableViewSource = PlaylistTableViewSource();
+    var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController();
     
     override func viewDidLoad() {
         super.viewDidLoad();
         setupImageView();
         setupNameLabel();
+//        fetchedResultsController = getFetchedResultsController();
+//        fetchedResultsController.delegate = self;
+//        fetchedResultsController.performFetch();
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
     }
     
@@ -49,6 +53,19 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Fetched Results Controller Methods
+    func getFetchedResultsController() -> NSFetchedResultsController {
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: playlistFetchRequest(), managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: nil, cacheName: nil);
+        return fetchedResultsController;
+    }
+    
+    func playlistFetchRequest() -> NSFetchRequest {
+        let fetchRequest = NSFetchRequest(entityName: "ParsingPlaylist");
+        let sortDescriptor = NSSortDescriptor(key: "desc", ascending: true);
+        fetchRequest.sortDescriptors = [sortDescriptor];
+        return fetchRequest;
     }
 
     // MARK: - Table View Methods

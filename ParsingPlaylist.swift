@@ -15,8 +15,8 @@ class ParsingPlaylist: NSManagedObject {
         let userEntity = NSEntityDescription.entityForName("ParsingPlaylist", inManagedObjectContext: CoreDataHelper.data.privateContext);
         let parsingPlaylist = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! ParsingPlaylist;
         parsingPlaylist.snapshotId = id;
-        print("new playlist private save")
-        CoreDataHelper.data.privateSave();
+//        print("new playlist private save")
+//        CoreDataHelper.data.privateSave();
         return parsingPlaylist;
     }
 }

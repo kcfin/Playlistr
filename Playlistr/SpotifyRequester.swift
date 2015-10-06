@@ -57,8 +57,10 @@ class SpotifyRequester {
         });
     }
     
-    func fetchSnapshotPlaylist(withSession session: SPTSession, withCallback callback: (SPTPlaylistSnapshot) -> Void) {
+    func fetchSnapshotPlaylist(withSession session: SPTSession, withCallback callback: (SPTPlaylistSnapshot, Bool) -> Void) {
         fetchParsingPlaylists(withSession: session, withCallback: { (playlistList) -> Void in
+            var index = 0;
+            var shouldSave = false;
             for partialPlaylist in playlistList.items {
                 SPTPlaylistSnapshot.playlistWithURI(partialPlaylist.uri, session: session, callback: {(error, object) -> Void in
                     if(error != nil) {
@@ -66,8 +68,13 @@ class SpotifyRequester {
                         return;
                     }
                     if let snapshot = object as? SPTPlaylistSnapshot {
-                        callback(snapshot);
+                        index++;
+                        if(index == playlistList.items.count) {
+                            shouldSave = true;
+                        }
+                        callback(snapshot, shouldSave);
                     }
+                    
                 })
             }
         });

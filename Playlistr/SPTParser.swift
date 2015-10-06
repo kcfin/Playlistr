@@ -22,14 +22,13 @@ class SPTParser {
     }
     
     func importData() {
-        
-        importUser();
-        importParsingPlaylists();
+        self.importUser();
+        self.importParsingPlaylists();
     }
     
     func importUser() {
         requester.fetchUser(withSession: session, withCallback: {(user) -> Void in
-            self.context.performBlock({
+            self.context.performBlockAndWait({
                 
                 var imgData: NSData? = nil;
                 if let imgURLData = NSData(contentsOfURL: user.largestImage.imageURL) {
@@ -44,11 +43,14 @@ class SPTParser {
     }
     
     func importParsingPlaylists() {
-        requester.fetchSnapshotPlaylist(withSession: session, withCallback: {(snapshot) -> Void in
-            self.context.performBlock({
+        self.requester.fetchSnapshotPlaylist(withSession: self.session, withCallback: {(snapshot, shouldSave) -> Void in
+            self.context.performBlockAndWait({
                 let playlist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
                 User.currentUser()?.addParsingPlaylist(playlist);
                 print(snapshot.name);
+                if(shouldSave) {
+                    CoreDataHelper.data.privateSave();
+                }
             })
         })
     }
