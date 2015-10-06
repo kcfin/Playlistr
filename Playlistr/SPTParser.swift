@@ -37,7 +37,6 @@ class SPTParser {
                     }
                 }
                 User.newUser(user.displayName, imgData: imgData);
-                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
             })
         })
     }
@@ -50,6 +49,7 @@ class SPTParser {
                 print(snapshot.name);
                 if(shouldSave) {
                     CoreDataHelper.data.privateSave();
+                    NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
                 }
             })
         })

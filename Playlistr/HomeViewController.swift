@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -22,16 +22,20 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
         super.viewDidLoad();
         setupImageView();
         setupNameLabel();
-//        fetchedResultsController = getFetchedResultsController();
-//        fetchedResultsController.delegate = self;
-//        fetchedResultsController.performFetch();
+        fetchedResultsController = getFetchedResultsController();
+        fetchedResultsController.delegate = self;
+        do {
+            try fetchedResultsController.performFetch();
+        } catch let error as NSError {
+            print("error fetching results: \(error)")
+        }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
     }
     
     override func viewWillAppear(animated: Bool) {
         reloadData();
-        playlistTableView.dataSource = profileDataSource;
-        playlistTableView.delegate = profileDataSource;
+        playlistTableView.dataSource = self;
+        playlistTableView.delegate = self;
     }
 
     func setupImageView() {
@@ -63,38 +67,42 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     func playlistFetchRequest() -> NSFetchRequest {
         let fetchRequest = NSFetchRequest(entityName: "ParsingPlaylist");
-        let sortDescriptor = NSSortDescriptor(key: "desc", ascending: true);
+        let sortDescriptor = NSSortDescriptor(key: "snapshotId", ascending: true);
         fetchRequest.sortDescriptors = [sortDescriptor];
         return fetchRequest;
     }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        playlistTableView.reloadData();
+    }
 
     // MARK: - Table View Methods
-//    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 1;
-////        return (playlistFRC?.sections?.count)!;
-//    }
-//    
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////        return (playlistFRC?.sections?[section].numberOfObjects)!;
-//    }
-//    
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath);
-//        
-//        let pp = playlistFRC?.objectAtIndexPath(indexPath) as! ParsingPlaylist;
-//        cell.textLabel?.text = pp.snapshotId;
-//        return cell;
-//    }
-//    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        return;
-//    }
-//    
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.separatorInset = UIEdgeInsetsZero;
-//        tableView.layoutMargins = UIEdgeInsetsZero;
-//        cell.layoutMargins = UIEdgeInsetsZero;
-//    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        let sections = fetchedResultsController.sections?.count;
+        return sections!
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let rows = fetchedResultsController.sections?[section].numberOfObjects;
+        return rows!;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath);
+        let pp = fetchedResultsController.objectAtIndexPath(indexPath) as! ParsingPlaylist;
+        cell.textLabel?.text = pp.snapshotId;
+        return cell;
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        return;
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.separatorInset = UIEdgeInsetsZero;
+        tableView.layoutMargins = UIEdgeInsetsZero;
+        cell.layoutMargins = UIEdgeInsetsZero;
+    }
     
     // MARK: - Navigation
 
