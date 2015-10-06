@@ -28,8 +28,7 @@ class SPTParser {
     
     func importUser() {
         requester.fetchUser(withSession: session, withCallback: {(user) -> Void in
-            self.context.performBlockAndWait({
-                
+            self.context.performBlock({
                 var imgData: NSData? = nil;
                 if let imgURLData = NSData(contentsOfURL: user.largestImage.imageURL) {
                     if let image = UIImage(data: imgURLData) {
@@ -43,7 +42,7 @@ class SPTParser {
     
     func importParsingPlaylists() {
         self.requester.fetchSnapshotPlaylist(withSession: self.session, withCallback: {(snapshot, shouldSave) -> Void in
-            self.context.performBlockAndWait({
+            self.context.performBlock({
                 let playlist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
                 User.currentUser()?.addParsingPlaylist(playlist);
                 print(snapshot.name);

@@ -39,11 +39,11 @@ class SpotifyRequester {
         callback(user);
     }
     
-    func fetchParsingPlaylists(withSession session: SPTSession, withCallback callback: (SPTPlaylistList) -> Void) {
-        fetchAllParsingPlaylists(withSession: session, withCallback: callback);
-    }
+//    func fetchParsingPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPlaylistSnapshot]) -> Void) {
+//        fetchAllParsingPlaylists(withSession: session, withCallback: callback);
+//    }
     
-    func fetchAllParsingPlaylists(withSession session: SPTSession, withCallback callback: (SPTPlaylistList) -> Void) {
+    func fetchParsingPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPartialPlaylist]) -> Void) {
         
         SPTPlaylistList.playlistsForUserWithSession(session, callback: {(error, object) -> Void in
             if(error != nil) {
@@ -51,17 +51,37 @@ class SpotifyRequester {
                 return;
             }
             if let list = object as? SPTPlaylistList {
-                callback(list);
-                // do multiple pages
+                self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: list, withArray: [SPTPartialPlaylist]());
             }
         });
+    }
+    
+    func fetchAllPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPartialPlaylist]) -> Void, withList playlistList: SPTListPage, var withArray playlistArray: [SPTPartialPlaylist]) {
+        
+        for playlist in playlistList.items {
+            playlistArray.append(playlist as! SPTPartialPlaylist);
+        }
+        
+        if playlistList.hasNextPage {
+            playlistList.requestNextPageWithSession(session, callback: {(error, object) -> Void in
+                if(error != nil) {
+                    print("error: \(error.localizedDescription)");
+                    return;
+                }
+                if let newPage = object as? SPTListPage {
+                    self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: newPage, withArray: playlistArray);
+                }
+            })
+        } else {
+            callback(playlistArray);
+        }
     }
     
     func fetchSnapshotPlaylist(withSession session: SPTSession, withCallback callback: (SPTPlaylistSnapshot, Bool) -> Void) {
         fetchParsingPlaylists(withSession: session, withCallback: { (playlistList) -> Void in
             var index = 0;
             var shouldSave = false;
-            for partialPlaylist in playlistList.items {
+            for partialPlaylist in playlistList {
                 SPTPlaylistSnapshot.playlistWithURI(partialPlaylist.uri, session: session, callback: {(error, object) -> Void in
                     if(error != nil) {
                         print("error: \(error.localizedDescription)");
@@ -69,7 +89,7 @@ class SpotifyRequester {
                     }
                     if let snapshot = object as? SPTPlaylistSnapshot {
                         index++;
-                        if(index == playlistList.items.count) {
+                        if(index == playlistList.count) {
                             shouldSave = true;
                         }
                         callback(snapshot, shouldSave);
