@@ -30,16 +30,16 @@ class User: NSManagedObject {
         let user = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: context) as! User;
         user.name = displayName;
         user.image = imgData;
-//        CoreDataHelper.data.save();
+        CoreDataHelper.data.privateSave();
         return user;
     }
     
-//    func addParsingPlaylist(playlist: ParsingPlaylist) {
-//        let playlists = User.currentUser()?.mutableSetValueForKey("parsingPlaylist");
-//        playlists?.addObject(playlist);
+    func addParsingPlaylist(playlist: ParsingPlaylist) {
+        let playlists = User.currentUser()?.mutableSetValueForKey("parsingPlaylist");
+        playlists?.addObject(playlist);
 //        CoreDataHelper.data.save();
-//    }
-//    
+    }
+//
 //    class func removeCurrentUser() {
 //        
 //        //TODO: remove user from core data

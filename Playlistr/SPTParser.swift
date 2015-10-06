@@ -22,7 +22,9 @@ class SPTParser {
     }
     
     func importData() {
+        
         importUser();
+        importParsingPlaylists();
     }
     
     func importUser() {
@@ -36,9 +38,19 @@ class SPTParser {
                     }
                 }
                 User.newUser(user.displayName, imgData: imgData, context: self.context);
-                CoreDataHelper.data.privateSave();
                 CoreDataHelper.data.save();
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+            })
+        })
+    }
+    
+    func importParsingPlaylists() {
+        requester.fetchSnapshotPlaylist(withSession: session, withCallback: {(snapshot) -> Void in
+            self.context.performBlock({
+                let playlist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
+                User.currentUser()?.addParsingPlaylist(playlist);
+                print(snapshot.name);
+                CoreDataHelper.data.save();
             })
         })
     }

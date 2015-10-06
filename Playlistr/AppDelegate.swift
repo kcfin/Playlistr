@@ -33,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 dispatch_async(dispatch_get_main_queue(), {
                     rootView?.performSegueWithIdentifier("GoToNavController", sender: nil);
                 })
+            } else {
+                let parser = SPTParser(withRequester: SpotifyRequester(), withSession: authenticator.auth.session);
+                parser.importData();
             }
         }
                 
