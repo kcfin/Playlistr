@@ -15,7 +15,7 @@ class User: NSManagedObject {
         let request = NSFetchRequest(entityName: "User");
         let results: [AnyObject]?;
         do {
-            results = try CoreDataHelper.data.context.executeFetchRequest(request);
+            results = try CoreDataHelper.data.privateContext.executeFetchRequest(request);
         } catch let error as NSError {
             results = nil
             print("Error fetching user: \(error)");
@@ -25,11 +25,12 @@ class User: NSManagedObject {
         return user;
     }
     
-    class func newUser(displayName: String, imgData: NSData?, context: NSManagedObjectContext) -> User {
-        let userEntity = NSEntityDescription.entityForName("User", inManagedObjectContext: context);
-        let user = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: context) as! User;
+    class func newUser(displayName: String, imgData: NSData?) -> User {
+        let userEntity = NSEntityDescription.entityForName("User", inManagedObjectContext: CoreDataHelper.data.privateContext);
+        let user = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! User;
         user.name = displayName;
         user.image = imgData;
+        print("new user private save")
         CoreDataHelper.data.privateSave();
         return user;
     }
@@ -37,12 +38,15 @@ class User: NSManagedObject {
     func addParsingPlaylist(playlist: ParsingPlaylist) {
         let playlists = User.currentUser()?.mutableSetValueForKey("parsingPlaylist");
         playlists?.addObject(playlist);
-//        CoreDataHelper.data.save();
+        print("playlist relationship private save")
+        CoreDataHelper.data.privateSave();
     }
-//
-//    class func removeCurrentUser() {
-//        
-//        //TODO: remove user from core data
-//    }
-    
+
+    class func removeCurrentUser() {
+        if let user = User.currentUser() {
+            CoreDataHelper.data.privateContext.deleteObject(user);
+            print("delete user private save")
+            CoreDataHelper.data.privateSave();
+        }
+    }
 }

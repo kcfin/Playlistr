@@ -37,8 +37,7 @@ class SPTParser {
                         imgData = UIImagePNGRepresentation(image);
                     }
                 }
-                User.newUser(user.displayName, imgData: imgData, context: self.context);
-                CoreDataHelper.data.save();
+                User.newUser(user.displayName, imgData: imgData);
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
             })
         })
@@ -50,31 +49,7 @@ class SPTParser {
                 let playlist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
                 User.currentUser()?.addParsingPlaylist(playlist);
                 print(snapshot.name);
-                CoreDataHelper.data.save();
             })
         })
     }
-    
-//    class func parseSPTUser(sptUser: SPTUser)  {
-//        var imgData: NSData? = nil;
-//        if let imgURLData = NSData(contentsOfURL: sptUser.largestImage.imageURL) {
-//            if let image = UIImage(data: imgURLData) {
-//                imgData = UIImagePNGRepresentation(image);
-//            }
-//        }
-//        User.newUser(sptUser.displayName, imgData: imgData);
-//    }
-//    
-//    class func parseSnapshotPlaylists(snapshotPlaylist: SPTPlaylistSnapshot) {
-//        let playlist = ParsingPlaylist.newParsingPlaylist(snapshotPlaylist.snapshotId);
-//        User.currentUser()?.addParsingPlaylist(playlist);
-//        
-////        if let snapshots = snapshotPlaylists {
-////            for playlist in snapshots {
-////                let parsingPlaylist = ParsingPlaylist.newParsingPlaylist(playlist.snapshotId);
-////                User.currentUser()?.addParsingPlaylist(parsingPlaylist);
-////            }
-////            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-////        }
-//    }
 }

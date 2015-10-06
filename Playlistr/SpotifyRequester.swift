@@ -32,7 +32,8 @@ class SpotifyRequester {
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
                 return;
             } else {
-                // delete the user from coredata
+                // need to remove previous user and replace with current user
+                User.removeCurrentUser();
             }
         }
         callback(user);
