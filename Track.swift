@@ -11,6 +11,12 @@ import CoreData
 
 class Track: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
-
+    class func newTrack(name: String, date: NSDate) -> Track {
+        let entity = NSEntityDescription.entityForName("Track", inManagedObjectContext: CoreDataHelper.data.privateContext);
+        let track = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! Track;
+        track.name = name;
+        track.dateAdded = date;
+//        track.artist = artist;
+        return track;
+    }
 }
