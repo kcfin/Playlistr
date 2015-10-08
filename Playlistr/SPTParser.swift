@@ -43,14 +43,11 @@ class SPTParser {
     }
     
     func importParsingPlaylists() {
-        self.requester.fetchParsingPlaylists(withSession: self.session, withCallback: {(playlists, shouldSave) -> Void in
+        self.requester.fetchParsingPlaylists(withSession: self.session, withFinalCallback: {(snapshot) -> Void in
             self.context.performBlock({
                 print("total playlist");
-                self.snapshotPlaylists = playlists;
-                
-                if(shouldSave) {
-                    self.createNewPlaylists();
-                }
+                let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
+                newPlaylist.user = User.currentUser();
             })
         })
     }

@@ -39,7 +39,7 @@ class SpotifyRequester {
         callback(user);
     }
     
-    func fetchParsingPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPlaylistSnapshot], Bool) -> Void) {
+    func fetchParsingPlaylists(withSession session: SPTSession, withFinalCallback fCallback: SPTPlaylistSnapshot -> Void) {
         
         SPTPlaylistList.playlistsForUserWithSession(session, callback: {(error, object) -> Void in
             if(error != nil) {
@@ -47,7 +47,7 @@ class SpotifyRequester {
                 return;
             }
             if let list = object as? SPTPlaylistList {
-                self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: list, withArray: [SPTPlaylistSnapshot]());
+                self.fetchAllPlaylists(withSession: session, withList: list, withFinalCallBack: fCallback);
             }
         });
     }
@@ -76,7 +76,7 @@ class SpotifyRequester {
 //    }
     
     
-    func fetchAllPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPlaylistSnapshot], Bool) -> Void, withList playlistList: SPTListPage, withArray playlistArray: [SPTPlaylistSnapshot]) {
+    func fetchAllPlaylists(withSession session: SPTSession, withList playlistList: SPTListPage, withFinalCallBack fCallback: SPTPlaylistSnapshot -> Void) {
         
         var playlists: [SPTPartialPlaylist] = [SPTPartialPlaylist]();
         for item in playlistList.items {
@@ -85,7 +85,7 @@ class SpotifyRequester {
             }
         }
 
-        fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, withNewArray: playlistArray, withCallback: {(snapshots) -> Void in
+        fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, withCallback: {() -> Void in
             if (playlistList.hasNextPage) {
                 playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
                     print("fetched next page")
@@ -94,17 +94,20 @@ class SpotifyRequester {
                         return;
                     }
                     if let newPage = object as? SPTListPage {
-                        self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: newPage, withArray: snapshots);
+                        self.fetchAllPlaylists(withSession: session, withList: newPage, withFinalCallBack: fCallback);
                     }
                 })
             } else {
-                callback(snapshots, true);
-                print("final array \(snapshots.count)");
+                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+                CoreDataHelper.data.privateSave();
+
+//                finalC(snapshots, true);
+//                print("final array \(snapshots.count)");
             }
-        })
+            }, withFinalCallback: fCallback);
     }
     
-    func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], var withNewArray playlistArray: [SPTPlaylistSnapshot], withCallback callback: ([SPTPlaylistSnapshot]) -> Void) {
+    func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], withCallback callback: () -> Void, withFinalCallback fCallback: SPTPlaylistSnapshot -> Void) {
         if (playlistList.count > 0)  {
             SPTPlaylistSnapshot.playlistWithURI(playlistList.first!.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
                 if(error != nil) {
@@ -113,14 +116,15 @@ class SpotifyRequester {
                 }
                 if let snapshot = object as? SPTPlaylistSnapshot {
                     print("got snapshot \(snapshot.name)");
-                    playlistArray.append(snapshot);
+//                    playlistArray.append(snapshot);
+                    fCallback(snapshot);
                     playlistList.removeFirst();
-                    self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, withNewArray: playlistArray, withCallback: callback);
+                    self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, withCallback: callback, withFinalCallback: fCallback);
                 }
             })
         } else {
             print("finished list");
-            callback(playlistArray);
+            callback();
         }
     }
     
