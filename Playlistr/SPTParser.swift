@@ -14,6 +14,7 @@ class SPTParser {
     var context: NSManagedObjectContext
     var requester: SpotifyRequester
     var session: SPTSession
+    var parsingPlaylists: [SPTPartialPlaylist] = [SPTPartialPlaylist]();
     
     init(withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
         context = CoreDataHelper.data.privateContext;
@@ -28,7 +29,7 @@ class SPTParser {
     
     func importUser() {
         requester.fetchUser(withSession: session, withCallback: {(user) -> Void in
-            self.context.performBlock({
+//            self.context.performBlock({
                 var imgData: NSData? = nil;
                 if let imgURLData = NSData(contentsOfURL: user.largestImage.imageURL) {
                     if let image = UIImage(data: imgURLData) {
@@ -37,31 +38,46 @@ class SPTParser {
                 }
                 User.newUser(user.displayName, imgData: imgData);
             })
-        })
+//        })
     }
     
     func importParsingPlaylists() {
-        self.requester.fetchSnapshotPlaylist(withSession: self.session, withCallback: {(snapshot, shouldSave) -> Void in
-            self.context.performBlockAndWait({
-                let playlist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
-                User.currentUser()?.addParsingPlaylist(playlist);
-                print(snapshot.name);
-                self.context.performBlockAndWait({
-                    self.requester.fetchTracksForPlaylist(withSession: self.session, withSnapshot: snapshot, withCallback: {(track) -> Void in
-                        self.context.performBlockAndWait{
-                            let newTrack = Track.newTrack(track.name, date: track.addedAt);
-                            self.getDates(forTrack: newTrack);
-                        }
-                    });
-                })
+//        var tracks = [Track]();
+        self.requester.fetchParsingPlaylists(withSession: self.session, withCallback: {(playlists, shouldSave) -> Void in
+//            self.context.performBlock({
+//                print(snapshot.name);
+//                let playlist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
+//                playlist.user = User.currentUser();
+            self.parsingPlaylists = playlists;
+//                User.currentUser()?.addParsingPlaylist(playlist);
+//                self.context.performBlockAndWait({
+//                    self.requester.fetchTracksForPlaylist(withSession: self.session, withSnapshot: snapshot, withCallback: {(track) -> Void in
+//                        self.context.performBlockAndWait{
+//                            let newTrack = Track.newTrack(track.name, date: track.addedAt);
+//                            tracks.append(newTrack);
+////                            self.getDates(forTrack: newTrack);
+//                        }
+//                    });
+//                })
                 
                 if(shouldSave) {
-                    
-                    CoreDataHelper.data.privateSave();
-                    NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+                    self.createNewPlaylists();
                 }
-            })
+//            })
         })
+    }
+//    
+    func createNewPlaylists() {
+//        self.context.performBlockAndWait({
+            for playlist in self.parsingPlaylists {
+                    print(playlist.name);
+                    let newPlaylist = ParsingPlaylist.newParsingPlaylist(playlist.name);
+                    newPlaylist.user = User.currentUser();
+                }
+            
+            CoreDataHelper.data.privateSave();
+            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+//        })
     }
     
     func getDates(forTrack track: Track) {
