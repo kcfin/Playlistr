@@ -39,7 +39,7 @@ class SpotifyRequester {
         callback(user);
     }
     
-    func fetchParsingPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPartialPlaylist], Bool) -> Void) {
+    func fetchParsingPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPlaylistSnapshot], Bool) -> Void) {
         
         SPTPlaylistList.playlistsForUserWithSession(session, callback: {(error, object) -> Void in
             if(error != nil) {
@@ -47,62 +47,100 @@ class SpotifyRequester {
                 return;
             }
             if let list = object as? SPTPlaylistList {
-                self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: list, withArray: [SPTPartialPlaylist]());
+                self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: list, withArray: [SPTPlaylistSnapshot]());
             }
         });
     }
     
-    func fetchAllPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPartialPlaylist], Bool) -> Void, withList playlistList: SPTListPage, var withArray playlistArray: [SPTPartialPlaylist]) {
+
+    
+//    func fetchSnapshotForPlaylist(withSession session: SPTSession, withPartialPlaylists playlistList: [SPTPartialPlaylist], var withNewArray playlistArray: [SPTPlaylistSnapshot], withCallback callback: ([SPTPlaylistSnapshot]) -> Void) {
+//        
+//        var index = 0;
+//        for playlist in playlistList {
+//            SPTPlaylistSnapshot.playlistWithURI(playlist.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
+//                if(error != nil) {
+//                    print("error: \(error.localizedDescription)");
+//                    return;
+//                }
+//                index++;
+//                if let snapshot = object as? SPTPlaylistSnapshot {
+//                    print("got snapshot \(snapshot.name)");
+//                    playlistArray.append(snapshot);
+//                }
+//                if(index == playlistList.count) {
+//                    callback(playlistArray);
+//                }
+//            })
+//        }
+//    }
+    
+    
+    func fetchAllPlaylists(withSession session: SPTSession, withCallback callback: ([SPTPlaylistSnapshot], Bool) -> Void, withList playlistList: SPTListPage, withArray playlistArray: [SPTPlaylistSnapshot]) {
         
-        for playlist in playlistList.items {
-            if let temp = playlist as? SPTPartialPlaylist {
-                if (playlist.trackCount > 0) {
-                    playlistArray.append(temp);
-                }
+        var playlists: [SPTPartialPlaylist] = [SPTPartialPlaylist]();
+        for item in playlistList.items {
+            if let playlist = item as? SPTPartialPlaylist {
+                playlists.append(playlist);
             }
         }
-        
-        if playlistList.hasNextPage {
-            playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
+
+        fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, withNewArray: playlistArray, withCallback: {(snapshots) -> Void in
+            if (playlistList.hasNextPage) {
+                playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
+                    print("fetched next page")
+                    if(error != nil) {
+                        print("error: \(error.localizedDescription)");
+                        return;
+                    }
+                    if let newPage = object as? SPTListPage {
+                        self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: newPage, withArray: snapshots);
+                    }
+                })
+            } else {
+                callback(snapshots, true);
+                print("final array \(snapshots.count)");
+            }
+        })
+    }
+    
+    func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], var withNewArray playlistArray: [SPTPlaylistSnapshot], withCallback callback: ([SPTPlaylistSnapshot]) -> Void) {
+        if (playlistList.count > 0)  {
+            SPTPlaylistSnapshot.playlistWithURI(playlistList.first!.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
                 if(error != nil) {
                     print("error: \(error.localizedDescription)");
                     return;
                 }
-                if let newPage = object as? SPTListPage {
-                    self.fetchAllPlaylists(withSession: session, withCallback: callback, withList: newPage, withArray: playlistArray);
+                if let snapshot = object as? SPTPlaylistSnapshot {
+                    print("got snapshot \(snapshot.name)");
+                    playlistArray.append(snapshot);
+                    playlistList.removeFirst();
+                    self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, withNewArray: playlistArray, withCallback: callback);
                 }
             })
         } else {
-            callback(playlistArray, true);
-            print(playlistArray.count);
+            print("finished list");
+            callback(playlistArray);
         }
     }
     
-//    func fetchSnapshotPlaylist(withSession session: SPTSession, withCallback callback: (SPTPlaylistSnapshot, Bool) -> Void) {
-//        fetchParsingPlaylists(withSession: session, withCallback: { (playlistList) -> Void in
-//            var index = 0;
-//            var shouldSave = false;
-//            
-//            
-//            
-//            for partialPlaylist in playlistList {
-//                SPTPlaylistSnapshot.playlistWithURI(partialPlaylist.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
-//                    if(error != nil) {
-//                        print("error: \(error.localizedDescription)");
-//                        return;
-//                    }
-//                    if let snapshot = object as? SPTPlaylistSnapshot {
-//                        index++;
-//                        if(index == playlistList.count) {
-//                            print(playlistList.count)
-//                            shouldSave = true;
-//                        }
-//                        callback(snapshot, shouldSave);
-//                    }
-//                })
-//            }
-//        })
-//    }
+    func fetchSnapshotPlaylist(withSession session: SPTSession, withPlaylist playlist: SPTPartialPlaylist, withCallback callback: (SPTPlaylistSnapshot) -> Void) {
+        SPTPlaylistSnapshot.playlistWithURI(playlist.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
+            
+            print("snapshot call made");
+            if(error != nil) {
+                print("error: \(error.localizedDescription)");
+                return;
+            }
+            if let snapshot = object as? SPTPlaylistSnapshot {
+                print("Snapshot \(snapshot.name)")
+                
+                callback(snapshot);
+                
+            }
+        })
+        
+    }
     
     func fetchTracksForPlaylist(withSession session: SPTSession, withSnapshot snapshot: SPTPlaylistSnapshot, withCallback callback: (SPTPlaylistTrack) -> Void) {
         
@@ -122,20 +160,16 @@ class SpotifyRequester {
             }
         }
         
-//        CoreDataHelper.data.privateContext.performBlockAndWait({
-            if (snapshot.hasNextPage) {
-                snapshot.requestNextPageWithSession(session, callback: {(error, object) -> Void in
-                    if(error != nil) {
-                        print("error: \(error.localizedDescription)");
-                        return;
-                    }
-                    if let newPage = object as? SPTListPage {
-                        self.fetchAllTracks(withSession: session, withCallback: callback, withSnapshot: newPage)
-                    }
-                })
-            }
-//        })
-        
+        if (snapshot.hasNextPage) {
+            snapshot.requestNextPageWithSession(session, callback: {(error, object) -> Void in
+                if(error != nil) {
+                    print("error: \(error.localizedDescription)");
+                    return;
+                }
+                if let newPage = object as? SPTListPage {
+                    self.fetchAllTracks(withSession: session, withCallback: callback, withSnapshot: newPage)
+                }
+            })
+        }
     }
-    
 }
