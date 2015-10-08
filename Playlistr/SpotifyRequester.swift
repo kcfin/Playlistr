@@ -52,28 +52,28 @@ class SpotifyRequester {
         });
     }
     
-
     
-//    func fetchSnapshotForPlaylist(withSession session: SPTSession, withPartialPlaylists playlistList: [SPTPartialPlaylist], var withNewArray playlistArray: [SPTPlaylistSnapshot], withCallback callback: ([SPTPlaylistSnapshot]) -> Void) {
-//        
-//        var index = 0;
-//        for playlist in playlistList {
-//            SPTPlaylistSnapshot.playlistWithURI(playlist.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
-//                if(error != nil) {
-//                    print("error: \(error.localizedDescription)");
-//                    return;
-//                }
-//                index++;
-//                if let snapshot = object as? SPTPlaylistSnapshot {
-//                    print("got snapshot \(snapshot.name)");
-//                    playlistArray.append(snapshot);
-//                }
-//                if(index == playlistList.count) {
-//                    callback(playlistArray);
-//                }
-//            })
-//        }
-//    }
+    
+    //    func fetchSnapshotForPlaylist(withSession session: SPTSession, withPartialPlaylists playlistList: [SPTPartialPlaylist], var withNewArray playlistArray: [SPTPlaylistSnapshot], withCallback callback: ([SPTPlaylistSnapshot]) -> Void) {
+    //
+    //        var index = 0;
+    //        for playlist in playlistList {
+    //            SPTPlaylistSnapshot.playlistWithURI(playlist.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
+    //                if(error != nil) {
+    //                    print("error: \(error.localizedDescription)");
+    //                    return;
+    //                }
+    //                index++;
+    //                if let snapshot = object as? SPTPlaylistSnapshot {
+    //                    print("got snapshot \(snapshot.name)");
+    //                    playlistArray.append(snapshot);
+    //                }
+    //                if(index == playlistList.count) {
+    //                    callback(playlistArray);
+    //                }
+    //            })
+    //        }
+    //    }
     
     
     func fetchAllPlaylists(withSession session: SPTSession, withList playlistList: SPTListPage, withFinalCallBack fCallback: SPTPlaylistSnapshot -> Void) {
@@ -84,43 +84,44 @@ class SpotifyRequester {
                 playlists.append(playlist);
             }
         }
-
+        
         fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, withCallback: {() -> Void in
-            if (playlistList.hasNextPage) {
-                playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
-                    print("fetched next page")
-                    if(error != nil) {
-                        print("error: \(error.localizedDescription)");
-                        return;
-                    }
-                    if let newPage = object as? SPTListPage {
-                        self.fetchAllPlaylists(withSession: session, withList: newPage, withFinalCallBack: fCallback);
-                    }
-                })
-            } else {
-                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-                CoreDataHelper.data.privateSave();
-
-//                finalC(snapshots, true);
-//                print("final array \(snapshots.count)");
-            }
-            }, withFinalCallback: fCallback);
+            CoreDataHelper.data.privateContext.performBlock({
+                if (playlistList.hasNextPage) {
+                    playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
+                        print("fetched next page")
+                        if(error != nil) {
+                            print("error: \(error.localizedDescription)");
+                            return;
+                        }
+                        if let newPage = object as? SPTListPage {
+                            self.fetchAllPlaylists(withSession: session, withList: newPage, withFinalCallBack: fCallback);
+                        }
+                    })
+                } else {
+                    NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+                    CoreDataHelper.data.privateSave();
+                    
+                }
+            })
+                }, withFinalCallback: fCallback);
     }
     
     func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], withCallback callback: () -> Void, withFinalCallback fCallback: SPTPlaylistSnapshot -> Void) {
         if (playlistList.count > 0)  {
             SPTPlaylistSnapshot.playlistWithURI(playlistList.first!.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
-                if(error != nil) {
-                    print("error: \(error.localizedDescription)");
-                    return;
-                }
-                if let snapshot = object as? SPTPlaylistSnapshot {
-                    print("got snapshot \(snapshot.name)");
-//                    playlistArray.append(snapshot);
-                    fCallback(snapshot);
-                    playlistList.removeFirst();
-                    self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, withCallback: callback, withFinalCallback: fCallback);
-                }
+                CoreDataHelper.data.privateContext.performBlock({
+                    if(error != nil) {
+                        print("error: \(error.localizedDescription)");
+                        return;
+                    }
+                    if let snapshot = object as? SPTPlaylistSnapshot {
+                        print("got snapshot \(snapshot.name)");
+                        fCallback(snapshot);
+                        playlistList.removeFirst();
+                        self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, withCallback: callback, withFinalCallback: fCallback);
+                    }
+                })
             })
         } else {
             print("finished list");
@@ -130,18 +131,17 @@ class SpotifyRequester {
     
     func fetchSnapshotPlaylist(withSession session: SPTSession, withPlaylist playlist: SPTPartialPlaylist, withCallback callback: (SPTPlaylistSnapshot) -> Void) {
         SPTPlaylistSnapshot.playlistWithURI(playlist.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
-            
-            print("snapshot call made");
-            if(error != nil) {
-                print("error: \(error.localizedDescription)");
-                return;
-            }
-            if let snapshot = object as? SPTPlaylistSnapshot {
-                print("Snapshot \(snapshot.name)")
-                
-                callback(snapshot);
-                
-            }
+            CoreDataHelper.data.privateContext.performBlock({
+                print("snapshot call made");
+                if(error != nil) {
+                    print("error: \(error.localizedDescription)");
+                    return;
+                }
+                if let snapshot = object as? SPTPlaylistSnapshot {
+                    print("Snapshot \(snapshot.name)")
+                    callback(snapshot);
+                }
+            })
         })
         
     }
