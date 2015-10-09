@@ -17,6 +17,7 @@ class Playlist: NSManagedObject {
         playlist.name = name;
         playlist.year = year;
         return playlist;
+        CoreDataHelper.data.privateSave();
     }
     
     class func addOrGetPlaylist(inYear: Year, name: String) -> Playlist {

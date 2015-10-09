@@ -14,8 +14,9 @@ class SPTParser {
     var context: NSManagedObjectContext
     var requester: SpotifyRequester
     var session: SPTSession
-    var parsingPlaylists: [SPTPartialPlaylist] = [SPTPartialPlaylist]();
-    var snapshotPlaylists: [SPTPlaylistSnapshot] = [SPTPlaylistSnapshot]();
+    var tracks : [Track] = [Track]();
+    var months : [Int: [Track]] = [Int: [Track]]();
+    var music: [Int :[Int : [Track]]] = [Int :[Int : [Track]]]();
     
     init(withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
         context = CoreDataHelper.data.privateContext;
@@ -49,29 +50,67 @@ class SPTParser {
                     let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
                     newPlaylist.user = User.currentUser();
                 } else if let track = object as? SPTPlaylistTrack {
-                    let newTrack = Track.newTrack(track.name, date: track.addedAt);
+                    self.getDates(forTrack: track);
+                    
                 }
             })
         })
     }
     
     
-    func getDates(forTrack track: Track) {
-        if let date: NSDate = track.dateAdded {
-            let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: date)
-            let year = Year.addOrGetYear(components.year);
-            let playlist = Playlist.addOrGetPlaylist(year, name: "\(Month(rawValue: components.month))");
-            print(year.year);
-            print(playlist.name);
-        }
-        //        let month = components.month
-        //        let year = components.year
-        
-        
+    func getDates(forTrack track: SPTPlaylistTrack) {
+        self.context.performBlock({
+            let (_, month, year) = track.addedAt.dayMonthYear;
+            if let date = Month(rawValue: month)?.description() {
+                
+//                let newYear = Year.newYear(year);
+//                let newPlaylist = Playlist.addOrGetPlaylist(newYear, name: date)
+                let newTrack = Track.newTrack(track.name, date: track.addedAt);
+                if let years = self.music[year] {
+                    if let months = years[month] {
+                        
+                    } else {
+//                        music[year][month] = [newTrack];
+                    }
+                }
+
+//                newPlaylist.mutableArrayValueForKey("Track").addObject(newTrack);
+            }
+        })
+
     }
     
     enum Month: Int  {
         case January = 1, February, March, April, May, June, July, August, September, October, November, December;
+        
+        func description() -> String {
+            switch self {
+            case January:
+                return "January"
+            case February:
+                return "February"
+            case March:
+                return "March"
+            case April:
+                return "April"
+            case May:
+                return "May"
+            case June:
+                return "June"
+            case July:
+                return "July"
+            case August:
+                return "August"
+            case September:
+                return "September"
+            case October:
+                return "October"
+            case November:
+                return "November"
+            case December:
+                return "December"
+            }
+        }
     }
     
 }
