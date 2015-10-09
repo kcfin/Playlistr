@@ -15,9 +15,6 @@ class SPTParser {
     var requester: SpotifyRequester
     var session: SPTSession
     var music: [Int: [Int]] = [Int: [Int]]();
-//    var tracks : [Track] = [Track]();
-//    var months : [Int: [Track]] = [Int: [Track]]();
-//    var music: [Int :[Int : [Track]]] = [Int :[Int : [Track]]]();
     
     init(withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
         context = CoreDataHelper.data.privateContext;
@@ -45,16 +42,19 @@ class SPTParser {
     }
     
     func importParsingPlaylists() {
-        self.requester.fetchParsingPlaylists(withSession: self.session, withFinalCallback: {(object) -> Void in
-            self.context.performBlock({
-                if let snapshot = object as? SPTPlaylistSnapshot {
-                    let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
-                    newPlaylist.user = User.currentUser();
-                } else if let track = object as? SPTPlaylistTrack {
-                    self.getDates(forTrack: track);
-                }
+        self.context.performBlockAndWait({
+            self.requester.fetchParsingPlaylists(withSession: self.session, withFinalCallback: {(object) -> Void in
+                self.context.performBlock({
+                    if let snapshot = object as? SPTPlaylistSnapshot {
+                        let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
+                        newPlaylist.user = User.currentUser();
+                    } else if let track = object as? SPTPlaylistTrack {
+                        self.getDates(forTrack: track);
+                    }
+                })
             })
         })
+        print("save me");
     }
     
     
@@ -66,10 +66,11 @@ class SPTParser {
                 if var years = self.music[year] {
                     if(!years.contains(month)) {
                         // the year exists, the month doesn't
-                        let newPlaylist = Playlist.newPlaylist(date, year: Year.getYear(year)!);
+                        let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: Year.getYear(year)!);
                         newTrack.playlist = newPlaylist;
                         years.append(month);
                         self.music[year] = years;
+                        CoreDataHelper.data.privateSave();
                     } else {
                         // the year and the month exist
                         newTrack.playlist = Playlist.getPlaylist(Year.getYear(year)!, name: date);
@@ -77,13 +78,12 @@ class SPTParser {
                 } else {
                     // the year doesn't exist, create year and month
                     let newYear = Year.newYear(year);
-                    let newPlaylist = Playlist.newPlaylist(date, year: newYear);
+                    let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
                     newTrack.playlist = newPlaylist;
                     self.music[year] = [month];
                     
                 }
             }
-            CoreDataHelper.data.privateSave();
         })
     }
     

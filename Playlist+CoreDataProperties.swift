@@ -2,7 +2,7 @@
 //  Playlist+CoreDataProperties.swift
 //  Playlistr
 //
-//  Created by Katelyn Findlay on 9/29/15.
+//  Created by Katelyn Findlay on 10/9/15.
 //  Copyright © 2015 Katelyn Findlay. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,10 +14,10 @@ import CoreData
 
 extension Playlist {
 
-    @NSManaged var name: String?
     @NSManaged var imageURL: String?
-    @NSManaged var user: NSManagedObject?
-    @NSManaged var year: NSManagedObject?
+    @NSManaged var month: NSNumber?
+    @NSManaged var name: String?
     @NSManaged var track: NSSet?
+    @NSManaged var year: Year?
 
 }

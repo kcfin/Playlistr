@@ -11,13 +11,13 @@ import CoreData
 
 class Playlist: NSManagedObject {
 
-    class func newPlaylist(name: String, year: Year) -> Playlist {
+    class func newPlaylist(name: String, monthNumber: Int, year: Year) -> Playlist {
         let entity = NSEntityDescription.entityForName("Playlist", inManagedObjectContext: CoreDataHelper.data.privateContext);
         let playlist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! Playlist;
         playlist.name = name;
+        playlist.month = monthNumber;
         playlist.year = year;
         return playlist;
-//        CoreDataHelper.data.privateSave();
     }
     
     class func getPlaylist(inYear: Year, name: String) -> Playlist? {

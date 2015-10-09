@@ -61,14 +61,15 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     // MARK: - Fetched Results Controller Methods
     func getFetchedResultsController() -> NSFetchedResultsController {
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: playlistFetchRequest(), managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: nil, cacheName: nil);
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: playlistFetchRequest(), managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: "Year.year", cacheName: nil);
         return fetchedResultsController;
     }
     
     func playlistFetchRequest() -> NSFetchRequest {
-        let fetchRequest = NSFetchRequest(entityName: "ParsingPlaylist");
-        let sortDescriptor = NSSortDescriptor(key: "snapshotId", ascending: true);
-        fetchRequest.sortDescriptors = [sortDescriptor];
+        let fetchRequest = NSFetchRequest(entityName: "Playlist");
+        let sortDescriptor = NSSortDescriptor(key: "Year.year", ascending: true);
+        let monthSortDescriptor = NSSortDescriptor(key: "month", ascending: true);
+        fetchRequest.sortDescriptors = [sortDescriptor, monthSortDescriptor];
         return fetchRequest;
     }
     
@@ -78,19 +79,30 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
 
     // MARK: - Table View Methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        let sections = fetchedResultsController.sections?.count;
-        return sections!
+        if let sections = fetchedResultsController.sections?.count {
+            return sections;
+        }
+        return 0;
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let sections = fetchedResultsController.sections {
+            return sections[section].name;
+        }
+        return "";
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rows = fetchedResultsController.sections?[section].numberOfObjects;
-        return rows!;
+        if let sections = fetchedResultsController.sections {
+            return sections[section].numberOfObjects;
+        }
+        return 0;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath);
-        let pp = fetchedResultsController.objectAtIndexPath(indexPath) as! ParsingPlaylist;
-        cell.textLabel?.text = pp.snapshotId;
+        let playlist = fetchedResultsController.objectAtIndexPath(indexPath) as! Playlist;
+        cell.textLabel?.text = playlist.name;
         return cell;
     }
     

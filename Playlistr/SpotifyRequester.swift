@@ -100,11 +100,11 @@ class SpotifyRequester {
                     })
                 });
             }
-//            else {
-//                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+            else {
+                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
 //                CoreDataHelper.data.privateSave();
                 
-//            }
+            }
         })
     }
     
@@ -128,8 +128,8 @@ class SpotifyRequester {
                 })
             })
         } else {
-            print("finished list");
-            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+//            print("finished list");
+//            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
             callback();
         }
     }
@@ -163,7 +163,6 @@ class SpotifyRequester {
         for track in snapshot.items {
             if let temp = track as? SPTPlaylistTrack {
                 if(temp.isPlayable) {
-//                    print("\(temp.name)");
                     callback(temp);
                 }
             }
@@ -182,6 +181,5 @@ class SpotifyRequester {
                 })
             })
         }
-        
     }
 }
