@@ -43,31 +43,14 @@ class SPTParser {
     }
     
     func importParsingPlaylists() {
-        self.requester.fetchParsingPlaylists(withSession: self.session, withFinalCallback: {(snapshot) -> Void in
+        self.requester.fetchParsingPlaylists(withSession: self.session, withFinalCallback: {(object) -> Void in
             self.context.performBlock({
-                print("total playlist");
-                let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
-                newPlaylist.user = User.currentUser();
-            })
-        })
-    }
-    
-    func createNewPlaylists() {
-        for playlist in self.snapshotPlaylists {
-            print(playlist.name);
-            let newPlaylist = ParsingPlaylist.newParsingPlaylist(playlist.name);
-            newPlaylist.user = User.currentUser();
-        }
-        
-        CoreDataHelper.data.privateSave();
-        NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-    }
-    
-    func getSnapShotPlaylists(partialPlaylist: SPTPartialPlaylist) {
-        requester.fetchSnapshotPlaylist(withSession: session, withPlaylist: partialPlaylist, withCallback: { (snapshot) -> Void in
-            self.context.performBlock({
-                print("Snapshot \(snapshot.name)");
-                self.snapshotPlaylists.append(snapshot);
+                if let snapshot = object as? SPTPlaylistSnapshot {
+                    let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
+                    newPlaylist.user = User.currentUser();
+                } else if let track = object as? SPTPlaylistTrack {
+                    let newTrack = Track.newTrack(track.name, date: track.addedAt);
+                }
             })
         })
     }
