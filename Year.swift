@@ -18,7 +18,7 @@ class Year: NSManagedObject {
         return y;
     }
     
-    class func addOrGetYear(inYear: NSInteger) -> Year {
+    class func getYear(inYear: NSInteger) -> Year? {
         let request = NSFetchRequest(entityName: "Year");
         request.predicate = NSPredicate(format: "year == %d", inYear)
         let results: [AnyObject]?;
@@ -29,11 +29,8 @@ class Year: NSManagedObject {
             print("Error fetching year: \(error)");
         }
         
-        if let year = results?.first as? Year {
-            return year;
-        } else {
-            return newYear(inYear);
-        }
+        let year = results?.first as? Year
+        return year;
     }
     
     func addPlaylist(playlist: Playlist) {

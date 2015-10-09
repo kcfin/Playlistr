@@ -14,9 +14,10 @@ class SPTParser {
     var context: NSManagedObjectContext
     var requester: SpotifyRequester
     var session: SPTSession
-    var tracks : [Track] = [Track]();
-    var months : [Int: [Track]] = [Int: [Track]]();
-    var music: [Int :[Int : [Track]]] = [Int :[Int : [Track]]]();
+    var music: [Int: [Int]] = [Int: [Int]]();
+//    var tracks : [Track] = [Track]();
+//    var months : [Int: [Track]] = [Int: [Track]]();
+//    var music: [Int :[Int : [Track]]] = [Int :[Int : [Track]]]();
     
     init(withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
         context = CoreDataHelper.data.privateContext;
@@ -51,7 +52,6 @@ class SPTParser {
                     newPlaylist.user = User.currentUser();
                 } else if let track = object as? SPTPlaylistTrack {
                     self.getDates(forTrack: track);
-                    
                 }
             })
         })
@@ -62,22 +62,29 @@ class SPTParser {
         self.context.performBlock({
             let (_, month, year) = track.addedAt.dayMonthYear;
             if let date = Month(rawValue: month)?.description() {
-                
-//                let newYear = Year.newYear(year);
-//                let newPlaylist = Playlist.addOrGetPlaylist(newYear, name: date)
                 let newTrack = Track.newTrack(track.name, date: track.addedAt);
-                if let years = self.music[year] {
-                    if let months = years[month] {
-                        
+                if var years = self.music[year] {
+                    if(!years.contains(month)) {
+                        // the year exists, the month doesn't
+                        let newPlaylist = Playlist.newPlaylist(date, year: Year.getYear(year)!);
+                        newTrack.playlist = newPlaylist;
+                        years.append(month);
+                        self.music[year] = years;
                     } else {
-//                        music[year][month] = [newTrack];
+                        // the year and the month exist
+                        newTrack.playlist = Playlist.getPlaylist(Year.getYear(year)!, name: date);
                     }
+                } else {
+                    // the year doesn't exist, create year and month
+                    let newYear = Year.newYear(year);
+                    let newPlaylist = Playlist.newPlaylist(date, year: newYear);
+                    newTrack.playlist = newPlaylist;
+                    self.music[year] = [month];
+                    
                 }
-
-//                newPlaylist.mutableArrayValueForKey("Track").addObject(newTrack);
             }
+            CoreDataHelper.data.privateSave();
         })
-
     }
     
     enum Month: Int  {

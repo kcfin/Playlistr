@@ -17,6 +17,6 @@ extension Track {
     @NSManaged var artist: String?
     @NSManaged var dateAdded: NSDate?
     @NSManaged var name: String?
-    @NSManaged var playlist: NSSet?
+    @NSManaged var playlist: Playlist?
 
 }

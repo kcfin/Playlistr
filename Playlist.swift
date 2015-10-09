@@ -17,10 +17,10 @@ class Playlist: NSManagedObject {
         playlist.name = name;
         playlist.year = year;
         return playlist;
-        CoreDataHelper.data.privateSave();
+//        CoreDataHelper.data.privateSave();
     }
     
-    class func addOrGetPlaylist(inYear: Year, name: String) -> Playlist {
+    class func getPlaylist(inYear: Year, name: String) -> Playlist? {
         let request = NSFetchRequest(entityName: "Playlist");
         let yearPred = NSPredicate(format: "year == %@", inYear);
         let namePred = NSPredicate(format: "name == %@", name);
@@ -36,10 +36,7 @@ class Playlist: NSManagedObject {
             print("Error fetching playlist: \(error)");
         }
         
-        if let playlist = results?.first as? Playlist {
-            return playlist;
-        } else {
-            return newPlaylist(name, year: inYear);
-        }
+        let playlist = results?.first as? Playlist
+        return playlist;
     }
 }
