@@ -70,6 +70,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         let sortDescriptor = NSSortDescriptor(key: "Year.year", ascending: true);
         let monthSortDescriptor = NSSortDescriptor(key: "month", ascending: true);
         fetchRequest.sortDescriptors = [sortDescriptor, monthSortDescriptor];
+        fetchRequest.fetchBatchSize = 20;
         return fetchRequest;
     }
     
@@ -119,14 +120,13 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if(segue.identifier == "GoToPlaylist") {
-////            if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
-////                if let playlistIndex = playlistTableView.indexPathForSelectedRow?.row {
-//                    // destination.playlist = playlists[playlistIndex];
-//                    // set what is needed
-//                }
-//            }
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "GoToPlaylist") {
+            if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
+                if let playlistIndex = playlistTableView.indexPathForSelectedRow {
+                     destinationVC.playlist = fetchedResultsController.objectAtIndexPath(playlistIndex) as? Playlist;
+                }
+            }
+        }
+    }
 }

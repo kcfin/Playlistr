@@ -15,6 +15,7 @@ class Year: NSManagedObject {
         let entity = NSEntityDescription.entityForName("Year", inManagedObjectContext: CoreDataHelper.data.privateContext);
         let y = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! Year;
         y.year = inYear;
+        CoreDataHelper.data.privateSave();
         return y;
     }
     

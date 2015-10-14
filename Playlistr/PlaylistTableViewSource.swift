@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import CoreData;
 
 class PlaylistTableViewSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+    
+    var frc: NSFetchedResultsController = NSFetchedResultsController();
+    
+    func setFRC(withFRC nsfrc: NSFetchedResultsController) {
+        frc = nsfrc;
+    }
     
     let playlists = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
