@@ -54,7 +54,6 @@ class SPTParser {
                 })
             })
         })
-        print("save me");
     }
     
     
@@ -70,7 +69,6 @@ class SPTParser {
                         newTrack.playlist = newPlaylist;
                         years.append(month);
                         self.music[year] = years;
-                        CoreDataHelper.data.privateSave();
                     } else {
                         // the year and the month exist
                         newTrack.playlist = Playlist.getPlaylist(Year.getYear(year)!, name: date);

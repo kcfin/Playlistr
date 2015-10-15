@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         super.viewDidLoad();
         setupImageView();
         setupNameLabel();
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
         fetchedResultsController = getFetchedResultsController();
         fetchedResultsController.delegate = self;
         do {
@@ -28,7 +29,6 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         } catch let error as NSError {
             print("error fetching results: \(error)")
         }
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -120,16 +120,22 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        CoreDataHelper.data.privateSave();
+        CoreDataHelper.data.save();
+        
         if(segue.identifier == "GoToPlaylist") {
             if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
-                let playlist = fetchedResultsController.objectAtIndexPath(playlistTableView.indexPathForSelectedRow!) as! Playlist;
-                let fetchRequest = NSFetchRequest(entityName: "Track");
-                let namePred = NSPredicate(format: "playlist == %@", playlist.name!);
-                let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
-                fetchRequest.predicate = namePred;
-                fetchRequest.sortDescriptors = [sortDescriptor];
-                fetchRequest.fetchBatchSize = 20;
-                destinationVC.trackFR = fetchRequest;
+                if let index = playlistTableView.indexPathForSelectedRow {
+                    if let playlist = fetchedResultsController.objectAtIndexPath(index) as? Playlist {
+                        let fetchRequest = NSFetchRequest(entityName: "Track");
+                        let namePred = NSPredicate(format: "playlist == %@", playlist.name!);
+                        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
+                        fetchRequest.predicate = namePred;
+                        fetchRequest.sortDescriptors = [sortDescriptor];
+                        //                fetchRequest.fetchBatchSize = 20;
+                        destinationVC.trackFR = fetchRequest;
+                    }
+                }
             }
         }
     }

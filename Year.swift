@@ -33,9 +33,4 @@ class Year: NSManagedObject {
         let year = results?.first as? Year
         return year;
     }
-    
-    func addPlaylist(playlist: Playlist) {
-        let playlists = mutableSetValueForKey("playlist");
-        playlists.addObject(playlist);
-    }
 }

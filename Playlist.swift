@@ -18,6 +18,7 @@ class Playlist: NSManagedObject {
         playlist.month = monthNumber;
         playlist.year = year;
         CoreDataHelper.data.privateSave();
+//        CoreDataHelper.data.save()
         return playlist;
     }
     
