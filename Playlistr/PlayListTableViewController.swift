@@ -17,6 +17,8 @@ class PlayListTableViewController: UITableViewController, NSFetchedResultsContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        trackTableView.delegate = self;
+        trackTableView.dataSource = self;
         frc = getFetchedResultsController();
         frc.delegate = self;
         do {
