@@ -9,12 +9,21 @@
 import UIKit
 import CoreData
 
-class PlayListTableViewController: UITableViewController {
+class PlayListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    var playlist: Playlist?;
+    @IBOutlet var trackTableView: UITableView!
+    var frc: NSFetchedResultsController = NSFetchedResultsController();
+    var trackFR: NSFetchRequest?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        frc = getFetchedResultsController();
+        frc.delegate = self;
+        do {
+            try frc.performFetch();
+        } catch let error as NSError {
+            print("error fetching results: \(error)")
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,6 +37,11 @@ class PlayListTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getFetchedResultsController() -> NSFetchedResultsController {
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: trackFR!, managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: nil, cacheName: nil);
+        return fetchedResultsController;
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -37,8 +51,8 @@ class PlayListTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if let count = playlist?.track?.count {
-            return count;
+        if let sections = frc.sections {
+            return sections[section].numberOfObjects;
         }
         return 0;
     }
@@ -46,12 +60,13 @@ class PlayListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistCell", forIndexPath: indexPath)
-
-        // Configure the cell...
-        if let name = playlist?.track?.accessibilityElementAtIndex(indexPath.row)?.name {
-            cell.textLabel?.text = name;
-        }
-        return cell
+        let track = frc.objectAtIndexPath(indexPath) as! Track;
+        cell.textLabel?.text = track.name;
+        return cell;
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        trackTableView.reloadData();
     }
 
     /*

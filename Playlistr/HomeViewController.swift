@@ -123,10 +123,16 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "GoToPlaylist") {
             if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
-                if let playlistIndex = playlistTableView.indexPathForSelectedRow {
-                     destinationVC.playlist = fetchedResultsController.objectAtIndexPath(playlistIndex) as? Playlist;
-                }
+                let playlist = fetchedResultsController.objectAtIndexPath(playlistTableView.indexPathForSelectedRow!) as! Playlist;
+                let fetchRequest = NSFetchRequest(entityName: "Playlist");
+                let yearPred = NSPredicate(format: "year == %@", playlist.year!);
+                let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
+                fetchRequest.predicate = yearPred;
+                fetchRequest.sortDescriptors = [sortDescriptor];
+                fetchRequest.fetchBatchSize = 20;
+                destinationVC.trackFR = fetchRequest;
             }
         }
     }
+    
 }
