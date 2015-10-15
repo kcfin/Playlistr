@@ -15,7 +15,6 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
-    var profileDataSource: PlaylistTableViewSource = PlaylistTableViewSource();
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController();
     
     override func viewDidLoad() {
