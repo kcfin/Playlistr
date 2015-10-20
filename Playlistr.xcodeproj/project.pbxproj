@@ -14,8 +14,8 @@
 		EA07E5D51BAF47BF001BC449 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */; };
 		EA3A97CC1BB8EAD2005CE103 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EA718B371BB8F84600CBDC8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA718B361BB8F84600CBDC8D /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		EA82171D1BC8416800883779 /* Playlist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA82171C1BC8416800883779 /* Playlist+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		EA82171F1BCF5C2800883779 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA82171E1BCF5C2800883779 /* DateConverter.swift */; settings = {ASSET_TAGS = (); }; };
+		EA8217221BD6DD4500883779 /* Playlist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8217211BD6DD4500883779 /* Playlist+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		EA9A71801BBA26980028DA4A /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A717F1BBA26980028DA4A /* CoreDataHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		EA9A71821BBA449B0028DA4A /* PlayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71811BBA449B0028DA4A /* PlayListTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EA9A71891BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71871BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
@@ -61,8 +61,9 @@
 		EA3874D31BC8321C00F1A369 /* PlaylistrModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 6.xcdatamodel"; sourceTree = "<group>"; };
 		EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		EA718B361BB8F84600CBDC8D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		EA82171C1BC8416800883779 /* Playlist+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Playlist+CoreDataProperties.swift"; path = "../Playlist+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EA82171E1BCF5C2800883779 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
+		EA8217201BD6DD2E00883779 /* PlaylistrModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 7.xcdatamodel"; sourceTree = "<group>"; };
+		EA8217211BD6DD4500883779 /* Playlist+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Playlist+CoreDataProperties.swift"; path = "../Playlist+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EA9A717F1BBA26980028DA4A /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		EA9A71811BBA449B0028DA4A /* PlayListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListTableViewController.swift; sourceTree = "<group>"; };
 		EA9A71881BBA508B0028DA4A /* PlaylistrModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlaylistrModel.xcdatamodel; sourceTree = "<group>"; };
@@ -183,7 +184,7 @@
 			children = (
 				EA9A71A31BBC65D90028DA4A /* User+CoreDataProperties.swift */,
 				EA9A71951BBB87480028DA4A /* User.swift */,
-				EA82171C1BC8416800883779 /* Playlist+CoreDataProperties.swift */,
+				EA8217211BD6DD4500883779 /* Playlist+CoreDataProperties.swift */,
 				EA9A71911BBB7CFC0028DA4A /* Playlist.swift */,
 				EADCB3B01BC4CCD000024CEB /* Year+CoreDataProperties.swift */,
 				EA9A71A61BBC66550028DA4A /* Year.swift */,
@@ -313,7 +314,6 @@
 				EA9A71AF1BBC66550028DA4A /* ParsingPlaylist+CoreDataProperties.swift in Sources */,
 				EA9A71B01BBC66550028DA4A /* ParsingPlaylist.swift in Sources */,
 				EA9A71801BBA26980028DA4A /* CoreDataHelper.swift in Sources */,
-				EA82171D1BC8416800883779 /* Playlist+CoreDataProperties.swift in Sources */,
 				EADCB3B11BC4CCD000024CEB /* Year+CoreDataProperties.swift in Sources */,
 				EAD5E02F1BB8B36F00BE68CA /* LoginViewController.swift in Sources */,
 				EA9A71991BBB88F30028DA4A /* SpotifyRequester.swift in Sources */,
@@ -330,6 +330,7 @@
 				EAD5E0291BB8912900BE68CA /* Config.swift in Sources */,
 				EA9A71A41BBC65D90028DA4A /* User+CoreDataProperties.swift in Sources */,
 				EA07E5D51BAF47BF001BC449 /* HomeViewController.swift in Sources */,
+				EA8217221BD6DD4500883779 /* Playlist+CoreDataProperties.swift in Sources */,
 				EA9A71821BBA449B0028DA4A /* PlayListTableViewController.swift in Sources */,
 				EA9A71AE1BBC66550028DA4A /* Track.swift in Sources */,
 			);
@@ -563,6 +564,7 @@
 		EA9A71871BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				EA8217201BD6DD2E00883779 /* PlaylistrModel 7.xcdatamodel */,
 				EA3874D31BC8321C00F1A369 /* PlaylistrModel 6.xcdatamodel */,
 				EADCB3AF1BC4C8BD00024CEB /* PlaylistrModel 5.xcdatamodel */,
 				EA9A719E1BBC60AE0028DA4A /* PlaylistrModel 4.xcdatamodel */,
@@ -570,7 +572,7 @@
 				EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */,
 				EA9A71881BBA508B0028DA4A /* PlaylistrModel.xcdatamodel */,
 			);
-			currentVersion = EA3874D31BC8321C00F1A369 /* PlaylistrModel 6.xcdatamodel */;
+			currentVersion = EA8217201BD6DD2E00883779 /* PlaylistrModel 7.xcdatamodel */;
 			path = PlaylistrModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

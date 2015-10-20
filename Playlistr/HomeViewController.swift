@@ -69,16 +69,16 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     // MARK: - Fetched Results Controller Methods
     func getFetchedResultsController() -> NSFetchedResultsController {
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: playlistFetchRequest(), managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: "Year.year", cacheName: nil);
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: playlistFetchRequest(), managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: "yearSection", cacheName: nil);
         return fetchedResultsController;
     }
     
     func playlistFetchRequest() -> NSFetchRequest {
         let fetchRequest = NSFetchRequest(entityName: "Playlist");
-        let sortDescriptor = NSSortDescriptor(key: "Year.year", ascending: true);
+        let sortDescriptor = NSSortDescriptor(key: "yearSection", ascending: true);
         let monthSortDescriptor = NSSortDescriptor(key: "month", ascending: true);
         fetchRequest.sortDescriptors = [sortDescriptor, monthSortDescriptor];
-        fetchRequest.fetchBatchSize = 20;
+//        fetchRequest.fetchBatchSize = 20;
         return fetchRequest;
     }
     

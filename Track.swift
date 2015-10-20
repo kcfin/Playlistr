@@ -17,6 +17,7 @@ class Track: NSManagedObject {
         track.name = name;
         track.dateAdded = date;
 //        track.artist = artist;
+        CoreDataHelper.data.save();
         return track;
     }
 }

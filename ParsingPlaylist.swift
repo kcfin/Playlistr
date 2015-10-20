@@ -15,6 +15,8 @@ class ParsingPlaylist: NSManagedObject {
         let entity = NSEntityDescription.entityForName("ParsingPlaylist", inManagedObjectContext: CoreDataHelper.data.context);
         let parsingPlaylist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! ParsingPlaylist;
         parsingPlaylist.snapshotId = id;
+        parsingPlaylist.user = User.currentUser();
+        CoreDataHelper.data.save();
         return parsingPlaylist;
     }
 }

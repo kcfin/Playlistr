@@ -17,8 +17,8 @@ class Playlist: NSManagedObject {
         playlist.name = name;
         playlist.month = monthNumber;
         playlist.year = year;
+        playlist.yearSection = year.year;
         CoreDataHelper.data.save();
-//        CoreDataHelper.data.save()
         return playlist;
     }
     
