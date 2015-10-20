@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="ParsingPlaylist" representedClassName=".ParsingPlaylist" syncable="YES">
+        <attribute name="snapshotId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="parsingPlaylist" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Playlist" representedClassName=".Playlist" syncable="YES">
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Track" inverseName="playlist" inverseEntity="Track" syncable="YES"/>
+        <relationship name="year" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="playlist" inverseEntity="Year" syncable="YES"/>
+    </entity>
+    <entity name="Track" representedClassName=".Track" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Playlist" inverseName="track" inverseEntity="Playlist" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="parsingPlaylist" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ParsingPlaylist" inverseName="user" inverseEntity="ParsingPlaylist" syncable="YES"/>
+        <relationship name="year" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Year" inverseName="user" inverseEntity="Year" syncable="YES"/>
+    </entity>
+    <entity name="Year" representedClassName=".Year" syncable="YES">
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="playlist" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Playlist" inverseName="year" inverseEntity="Playlist" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="year" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ParsingPlaylist" positionX="-333" positionY="27" width="128" height="73"/>
+        <element name="Playlist" positionX="-65" positionY="138" width="128" height="120"/>
+        <element name="Track" positionX="-108" positionY="342" width="128" height="105"/>
+        <element name="User" positionX="-63" positionY="-99" width="128" height="103"/>
+        <element name="Year" positionX="133" positionY="18" width="128" height="90"/>
+    </elements>
+</model>

@@ -19,11 +19,13 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        setupImageView();
-        setupNameLabel();
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
+        reloadData();
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         playlistTableView.dataSource = self;
         playlistTableView.delegate = self;
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
         fetchedResultsController = getFetchedResultsController();
         fetchedResultsController.delegate = self;
         do {
@@ -31,30 +33,17 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         } catch let error as NSError {
             print("error fetching results: \(error)")
         }
-        playlistTableView.reloadData();
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-//        reloadData();
     }
 
     func setupImageView() {
+        profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
         if let data = User.currentUser()?.image {
             profileImageView.image = UIImage(data: data);
         }
-        profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
     }
     
     func setupNameLabel() {
         nameLabel.text = User.currentUser()?.name;
-        if let years = User.currentUser()?.year {
-            if let playlist = years.objectAtIndex(0) as? Playlist {
-                print(playlist.name);
-            }
-        }
     }
     
     func reloadData() {
@@ -78,7 +67,6 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         let sortDescriptor = NSSortDescriptor(key: "yearSection", ascending: true);
         let monthSortDescriptor = NSSortDescriptor(key: "month", ascending: true);
         fetchRequest.sortDescriptors = [sortDescriptor, monthSortDescriptor];
-//        fetchRequest.fetchBatchSize = 20;
         return fetchRequest;
     }
     
@@ -133,15 +121,12 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        CoreDataHelper.data.privateSave();
-        CoreDataHelper.data.save();
-        
         if(segue.identifier == "GoToPlaylist") {
             if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
                 if let index = playlistTableView.indexPathForSelectedRow {
                     if let playlist = fetchedResultsController.objectAtIndexPath(index) as? Playlist {
                         let fetchRequest = NSFetchRequest(entityName: "Track");
-                        let namePred = NSPredicate(format: "playlist == %@", playlist.name!);
+                        let namePred = NSPredicate(format: "playlist == %@", playlist);
                         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
                         fetchRequest.predicate = namePred;
                         fetchRequest.sortDescriptors = [sortDescriptor];
