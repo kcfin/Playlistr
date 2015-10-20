@@ -16,7 +16,6 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad();
         loginButton.layer.cornerRadius = loginButton.frame.size.height/2;
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToHomeScreen", name: "InitializeUser", object: nil);
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -30,10 +29,6 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-//    func goToHomeScreen() {
-//        performSegueWithIdentifier("LoginToHomeView", sender: nil);
-//    }
     
     // MARK: - IBActions
     @IBAction func loginButtonPressed(sender: AnyObject) {
@@ -55,7 +50,6 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
         let parser = SPTParser(withRequester: SpotifyRequester(), withSession: session);
         parser.importData();
-//        SpotifyRequester.fetchUser(withSession: authenticator.auth.session);
     }
     
     func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
