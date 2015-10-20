@@ -87,7 +87,7 @@ class SpotifyRequester {
         
         fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, withFinalCallback: fCallback, withCallback: {() -> Void in
             if (playlistList.hasNextPage) {
-                CoreDataHelper.data.privateContext.performBlock({
+                CoreDataHelper.data.context.performBlock({
                     playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
                         print("fetched next page")
                         if(error != nil) {
@@ -111,7 +111,7 @@ class SpotifyRequester {
     func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], withFinalCallback fCallback: SPTPartialObject -> Void, withCallback callback: () -> Void) {
         if (playlistList.count > 0)  {
             SPTPlaylistSnapshot.playlistWithURI(playlistList.first!.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
-                CoreDataHelper.data.privateContext.performBlock({
+                CoreDataHelper.data.context.performBlock({
                     if(error != nil) {
                         print("error: \(error.localizedDescription)");
                         return;
@@ -170,7 +170,7 @@ class SpotifyRequester {
         
         if (snapshot.hasNextPage) {
             snapshot.requestNextPageWithSession(session, callback: {(error, object) -> Void in
-                CoreDataHelper.data.privateContext.performBlock({
+                CoreDataHelper.data.context.performBlock({
                     if(error != nil) {
                         print("error: \(error.localizedDescription)");
                         return;

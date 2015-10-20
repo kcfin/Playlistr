@@ -40,7 +40,7 @@ class PlayListTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     func getFetchedResultsController() -> NSFetchedResultsController {
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: trackFR!, managedObjectContext: CoreDataHelper.data.privateContext, sectionNameKeyPath: nil, cacheName: nil);
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: trackFR!, managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: nil, cacheName: nil);
         return fetchedResultsController;
     }
     

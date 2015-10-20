@@ -12,8 +12,8 @@ import CoreData
 class ParsingPlaylist: NSManagedObject {
 
     class func newParsingPlaylist(id: String) -> ParsingPlaylist {
-        let entity = NSEntityDescription.entityForName("ParsingPlaylist", inManagedObjectContext: CoreDataHelper.data.privateContext);
-        let parsingPlaylist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! ParsingPlaylist;
+        let entity = NSEntityDescription.entityForName("ParsingPlaylist", inManagedObjectContext: CoreDataHelper.data.context);
+        let parsingPlaylist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! ParsingPlaylist;
         parsingPlaylist.snapshotId = id;
         return parsingPlaylist;
     }

@@ -21,6 +21,8 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         super.viewDidLoad();
         setupImageView();
         setupNameLabel();
+        playlistTableView.dataSource = self;
+        playlistTableView.delegate = self;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
         fetchedResultsController = getFetchedResultsController();
         fetchedResultsController.delegate = self;
@@ -29,12 +31,14 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         } catch let error as NSError {
             print("error fetching results: \(error)")
         }
+        playlistTableView.reloadData();
+    }
+    
+    override func viewDidAppear(animated: Bool) {
     }
     
     override func viewWillAppear(animated: Bool) {
-        reloadData();
-        playlistTableView.dataSource = self;
-        playlistTableView.delegate = self;
+//        reloadData();
     }
 
     func setupImageView() {
@@ -74,6 +78,10 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        playlistTableView.reloadData();
+    }
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
         playlistTableView.reloadData();
     }
 
@@ -120,7 +128,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        CoreDataHelper.data.privateSave();
+//        CoreDataHelper.data.privateSave();
         CoreDataHelper.data.save();
         
         if(segue.identifier == "GoToPlaylist") {

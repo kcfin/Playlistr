@@ -17,7 +17,7 @@ class SPTParser {
     var music: [Int: [Int]] = [Int: [Int]]();
     
     init(withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
-        context = CoreDataHelper.data.privateContext;
+        context = CoreDataHelper.data.context;
         requester = curRequester;
         session = inSession;
     }
