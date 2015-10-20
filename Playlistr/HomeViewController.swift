@@ -108,6 +108,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false);
         return;
     }
     
