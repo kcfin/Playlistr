@@ -50,6 +50,11 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     
     func setupNameLabel() {
         nameLabel.text = User.currentUser()?.name;
+        if let years = User.currentUser()?.year {
+            if let playlist = years.objectAtIndex(0) as? Playlist {
+                print(playlist.name);
+            }
+        }
     }
     
     func reloadData() {

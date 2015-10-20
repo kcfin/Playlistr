@@ -22,17 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil);
         let rootView = storyboard.instantiateInitialViewController();
-        window?.rootViewController = rootView;
         
         if(authenticator.auth.session == nil || !authenticator.auth.session.isValid()){
+            window?.rootViewController = rootView;
+            let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
+            loginVC.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
+            loginVC.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
             dispatch_async(dispatch_get_main_queue(), {
-                rootView?.performSegueWithIdentifier("GoToLogin", sender: nil);
+                window?.rootViewController!.presentViewController(loginVC, animated: true, completion: nil);
             })
         } else {
             if (User.currentUser() != nil) {
-                dispatch_async(dispatch_get_main_queue(), {
-                    rootView?.performSegueWithIdentifier("GoToNavController", sender: nil);
-                })
+                let navVC = storyboard.instantiateViewControllerWithIdentifier("HomeNavVC");
+                window?.rootViewController = navVC;
+//                dispatch_async(dispatch_get_main_queue(), {
+//                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+////                    rootView?.performSegueWithIdentifier("GoToNavController", sender: nil);
+//                })
             } else {
                 let parser = SPTParser(withRequester: SpotifyRequester(), withSession: authenticator.auth.session);
                 parser.importData();
