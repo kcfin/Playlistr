@@ -25,11 +25,12 @@ class User: NSManagedObject {
         return user;
     }
     
-    class func newUser(displayName: String, imgData: NSData?) -> User {
+    class func newUser(displayName: String, imgData: NSData?, uri: String) -> User {
         let userEntity = NSEntityDescription.entityForName("User", inManagedObjectContext: CoreDataHelper.data.context);
         let user = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! User;
         user.name = displayName;
         user.image = imgData;
+        user.uri = uri;
         CoreDataHelper.data.save();
         return user;
     }

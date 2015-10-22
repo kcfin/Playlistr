@@ -10,6 +10,8 @@ import Foundation
 
 class SpotifyRequester {
     
+    var sptUser: SPTUser?;
+    
     func fetchUser(withSession session: SPTSession, withCallback callback: (SPTUser) -> Void) {
         SPTUser.requestCurrentUserWithAccessToken(session.accessToken, callback: {(error, object) -> Void in
             if(error != nil) {
@@ -17,6 +19,7 @@ class SpotifyRequester {
                 return;
             } else {
                 if let user = object as? SPTUser {
+                    self.sptUser = user;
                     self.compareUsersBeforeParse(withUser: user, withCallback: callback);
                 }
             }
@@ -25,7 +28,7 @@ class SpotifyRequester {
     
     func compareUsersBeforeParse(withUser user: SPTUser, withCallback callback: (SPTUser) -> Void) {
         if let cachedUser = User.currentUser() {
-            if(cachedUser.name == user.displayName) {
+            if(cachedUser.uri == String(user.uri)) {
                 // TODO: check parsing playlists for changes and update
                 // user is already stored in core data
                 // check users playlists for changes
@@ -102,8 +105,6 @@ class SpotifyRequester {
             }
             else {
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-//                CoreDataHelper.data.privateSave();
-                
             }
         })
     }
@@ -117,7 +118,7 @@ class SpotifyRequester {
                         return;
                     }
                     if let snapshot = object as? SPTPlaylistSnapshot {
-                        if(snapshot.trackCount > 0) {
+                        if(snapshot.trackCount > 0 && String(snapshot.owner.uri) == User.currentUser()?.uri) {
                             print("got snapshot \(snapshot.name)");
                             fCallback(snapshot);
                             self.fetchTracksForPlaylist(withSession: session, withSnapshot: snapshot, withCallback: fCallback);

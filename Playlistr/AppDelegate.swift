@@ -24,22 +24,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootView = storyboard.instantiateInitialViewController();
         
         if(authenticator.auth.session == nil || !authenticator.auth.session.isValid()){
-            window?.rootViewController = rootView;
-            let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
-            loginVC.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
-            loginVC.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
-            dispatch_async(dispatch_get_main_queue(), {
-                window?.rootViewController!.presentViewController(loginVC, animated: true, completion: nil);
-            })
+            
+            if(authenticator.auth.hasTokenRefreshService) {
+                if(authenticator.renewToken()) {
+                    let navVC = storyboard.instantiateViewControllerWithIdentifier("HomeNavVC");
+                    window?.rootViewController = navVC;
+                }
+            } else {
+                window?.rootViewController = rootView;
+                let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
+                loginVC.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
+                loginVC.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+                dispatch_async(dispatch_get_main_queue(), {
+                    window?.rootViewController!.presentViewController(loginVC, animated: true, completion: nil);
+                })
+            }
         } else {
             if (User.currentUser() != nil) {
                 let navVC = storyboard.instantiateViewControllerWithIdentifier("HomeNavVC");
                 window?.rootViewController = navVC;
-//                dispatch_async(dispatch_get_main_queue(), {
-//                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-////                    rootView?.performSegueWithIdentifier("GoToNavController", sender: nil);
-//                })
             } else {
+                window?.rootViewController = rootView;
                 let parser = SPTParser(withRequester: SpotifyRequester(), withSession: authenticator.auth.session);
                 parser.importData();
             }

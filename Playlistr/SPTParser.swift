@@ -24,19 +24,19 @@ class SPTParser {
     
     func importData() {
         self.importUser();
-        self.importParsingPlaylists();
     }
     
     func importUser() {
         requester.fetchUser(withSession: session, withCallback: {(user) -> Void in
             self.context.performBlock({
+                self.importParsingPlaylists();
                 var imgData: NSData? = nil;
                 if let imgURLData = NSData(contentsOfURL: user.largestImage.imageURL) {
                     if let image = UIImage(data: imgURLData) {
                         imgData = UIImagePNGRepresentation(image);
                     }
                 }
-                User.newUser(user.displayName, imgData: imgData);
+                User.newUser(user.displayName, imgData: imgData, uri: String(user.uri));
             })
         })
     }
@@ -46,7 +46,7 @@ class SPTParser {
             self.requester.fetchParsingPlaylists(withSession: self.session, withFinalCallback: {(object) -> Void in
                 self.context.performBlock({
                     if let snapshot = object as? SPTPlaylistSnapshot {
-                        let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.name);
+                        let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.snapshotId, spotifyId: String(snapshot.uri));
                         newPlaylist.user = User.currentUser();
                     } else if let track = object as? SPTPlaylistTrack {
                         self.getDates(forTrack: track);
@@ -61,26 +61,35 @@ class SPTParser {
         self.context.performBlock({
             let (_, month, year) = track.addedAt.dayMonthYear;
             if let date = Month(rawValue: month)?.description() {
-                let newTrack = Track.newTrack(track.name, date: track.addedAt);
-                if var years = self.music[year] {
-                    if(!years.contains(month)) {
-                        // the year exists, the month doesn't
-                        let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: Year.getYear(year)!);
-                        newTrack.playlist = newPlaylist;
-                        years.append(month);
-                        self.music[year] = years;
+                if let identifier = track.identifier {
+                    
+                    if var years = self.music[year] {
+                        if(!years.contains(month)) {
+                            // the year exists, the month doesn't
+                            let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: Year.getYear(year)!);
+                            Track.newTrack(track.name, date: track.addedAt, uri: identifier, playlist: newPlaylist, year: Year.getYear(year)!)
+                            years.append(month);
+                            self.music[year] = years;
+                        } else {
+                            // the year and the month exist
+                            let newYear = Year.getYear(year)!;
+                            let newPlaylist = Playlist.getPlaylist(newYear, name: date);
+                            if(!Track.trackExists(identifier, playlist: newPlaylist!, year: newYear)) {
+                                Track.newTrack(track.name, date: track.addedAt, uri: identifier, playlist: newPlaylist!, year: newYear)
+                            }
+                        }
                     } else {
-                        // the year and the month exist
-                        newTrack.playlist = Playlist.getPlaylist(Year.getYear(year)!, name: date);
+                        // the year doesn't exist, create year and month
+                        let newYear = Year.newYear(year);
+                        let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
+                        Track.newTrack(track.name, date: track.addedAt, uri: identifier, playlist: newPlaylist, year: newYear)
+                        self.music[year] = [month];
+                        
                     }
                 } else {
-                    // the year doesn't exist, create year and month
-                    let newYear = Year.newYear(year);
-                    let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
-                    newTrack.playlist = newPlaylist;
-                    self.music[year] = [month];
-                    
+                    print("track nil");
                 }
+                
             }
         })
     }

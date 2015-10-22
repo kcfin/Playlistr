@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Playlistr
 //
-//  Created by Katelyn Findlay on 9/30/15.
+//  Created by Katelyn Findlay on 10/21/15.
 //  Copyright © 2015 Katelyn Findlay. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,7 @@ extension User {
 
     @NSManaged var image: NSData?
     @NSManaged var name: String?
+    @NSManaged var uri: String?
     @NSManaged var parsingPlaylist: NSSet?
     @NSManaged var year: NSOrderedSet?
 

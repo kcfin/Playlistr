@@ -11,10 +11,11 @@ import CoreData
 
 class ParsingPlaylist: NSManagedObject {
 
-    class func newParsingPlaylist(id: String) -> ParsingPlaylist {
+    class func newParsingPlaylist(snapshotId: String, spotifyId: String) -> ParsingPlaylist {
         let entity = NSEntityDescription.entityForName("ParsingPlaylist", inManagedObjectContext: CoreDataHelper.data.context);
         let parsingPlaylist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! ParsingPlaylist;
-        parsingPlaylist.snapshotId = id;
+        parsingPlaylist.snapshotId = snapshotId;
+        parsingPlaylist.spotifyId = spotifyId;
         parsingPlaylist.user = User.currentUser();
         CoreDataHelper.data.save();
         return parsingPlaylist;

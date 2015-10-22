@@ -26,9 +26,6 @@ class PlayListTableViewController: UITableViewController, NSFetchedResultsContro
         } catch let error as NSError {
             print("error fetching results: \(error)")
         }
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -47,12 +44,10 @@ class PlayListTableViewController: UITableViewController, NSFetchedResultsContro
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1;
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if let sections = frc.sections {
             return sections[section].numberOfObjects;
         }
@@ -69,6 +64,12 @@ class PlayListTableViewController: UITableViewController, NSFetchedResultsContro
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         trackTableView.reloadData();
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.separatorInset = UIEdgeInsetsZero;
+        tableView.layoutMargins = UIEdgeInsetsZero;
+        cell.layoutMargins = UIEdgeInsetsZero;
     }
 
     /*
