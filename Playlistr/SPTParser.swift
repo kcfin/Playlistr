@@ -61,35 +61,36 @@ class SPTParser {
         self.context.performBlock({
             let (_, month, year) = track.addedAt.dayMonthYear;
             if let date = Month(rawValue: month)?.description() {
-                if let identifier = track.identifier {
-                    
-                    if var years = self.music[year] {
-                        if(!years.contains(month)) {
-                            // the year exists, the month doesn't
-                            let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: Year.getYear(year)!);
-                            Track.newTrack(track.name, date: track.addedAt, uri: identifier, playlist: newPlaylist, year: Year.getYear(year)!)
-                            years.append(month);
-                            self.music[year] = years;
-                        } else {
-                            // the year and the month exist
-                            let newYear = Year.getYear(year)!;
-                            let newPlaylist = Playlist.getPlaylist(newYear, name: date);
-                            if(!Track.trackExists(identifier, playlist: newPlaylist!, year: newYear)) {
-                                Track.newTrack(track.name, date: track.addedAt, uri: identifier, playlist: newPlaylist!, year: newYear)
-                            }
-                        }
+                if var years = self.music[year] {
+                    if(!years.contains(month)) {
+                        // the year exists, the month doesn't
+                        let cdYear = Year.getYear(year)!
+                        let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: cdYear);
+                        let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri))
+                        newTrack.playlist = newPlaylist;
+                        newTrack.year = cdYear
+                        years.append(month);
+                        self.music[year] = years;
                     } else {
-                        // the year doesn't exist, create year and month
-                        let newYear = Year.newYear(year);
-                        let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
-                        Track.newTrack(track.name, date: track.addedAt, uri: identifier, playlist: newPlaylist, year: newYear)
-                        self.music[year] = [month];
-                        
+                        // the year and the month exist
+                        let cdYear = Year.getYear(year)!;
+                        let newPlaylist = Playlist.getPlaylist(cdYear, name: date);
+                        if(!Track.trackExists(String(track.uri), playlist: newPlaylist!, year: cdYear)) {
+                            let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri))
+                            newTrack.playlist = newPlaylist;
+                            newTrack.year = cdYear;
+                        }
                     }
                 } else {
-                    print("track nil");
+                    // the year doesn't exist, create year and month
+                    let newYear = Year.newYear(year);
+                    let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
+                    let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri))
+                    newTrack.playlist = newPlaylist;
+                    newTrack.year = newYear;
+                    self.music[year] = [month];
+                    
                 }
-                
             }
         })
     }
