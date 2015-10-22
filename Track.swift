@@ -11,15 +11,13 @@ import CoreData
 
 class Track: NSManagedObject {
 
-    class func newTrack(name: String, date: NSDate, uri: String) -> Track {
+    class func newTrack(name: String, date: NSDate, uri: String, artist: String) -> Track {
         let entity = NSEntityDescription.entityForName("Track", inManagedObjectContext: CoreDataHelper.data.context);
         let track = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! Track;
         track.name = name;
         track.dateAdded = date;
         track.uri = uri;
-//        track.playlist = playlist;
-//        track.year = year;
-//        track.artist = artist;
+        track.artist = artist;
         CoreDataHelper.data.save();
         return track;
     }

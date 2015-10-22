@@ -66,7 +66,7 @@ class SPTParser {
                         // the year exists, the month doesn't
                         let cdYear = Year.getYear(year)!
                         let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: cdYear);
-                        let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri))
+                        let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!);
                         newTrack.playlist = newPlaylist;
                         newTrack.year = cdYear
                         years.append(month);
@@ -76,7 +76,7 @@ class SPTParser {
                         let cdYear = Year.getYear(year)!;
                         let newPlaylist = Playlist.getPlaylist(cdYear, name: date);
                         if(!Track.trackExists(String(track.uri), playlist: newPlaylist!, year: cdYear)) {
-                            let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri))
+                            let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
                             newTrack.playlist = newPlaylist;
                             newTrack.year = cdYear;
                         }
@@ -85,7 +85,7 @@ class SPTParser {
                     // the year doesn't exist, create year and month
                     let newYear = Year.newYear(year);
                     let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
-                    let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri))
+                    let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
                     newTrack.playlist = newPlaylist;
                     newTrack.year = newYear;
                     self.music[year] = [month];

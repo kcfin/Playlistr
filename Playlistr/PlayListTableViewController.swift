@@ -59,6 +59,7 @@ class PlayListTableViewController: UITableViewController, NSFetchedResultsContro
         let cell = tableView.dequeueReusableCellWithIdentifier("playlistCell", forIndexPath: indexPath)
         let track = frc.objectAtIndexPath(indexPath) as! Track;
         cell.textLabel?.text = track.name;
+        cell.detailTextLabel?.text = track.artist;
         return cell;
     }
     
