@@ -69,6 +69,7 @@ class SPTParser {
                         let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!);
                         newTrack.playlist = newPlaylist;
                         newTrack.year = cdYear
+                        newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
                         years.append(month);
                         self.music[year] = years;
                     } else {
@@ -79,6 +80,7 @@ class SPTParser {
                             let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
                             newTrack.playlist = newPlaylist;
                             newTrack.year = cdYear;
+                            newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
                         }
                     }
                 } else {
@@ -88,6 +90,7 @@ class SPTParser {
                     let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
                     newTrack.playlist = newPlaylist;
                     newTrack.year = newYear;
+                    newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
                     self.music[year] = [month];
                     
                 }

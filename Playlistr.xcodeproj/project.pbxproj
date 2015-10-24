@@ -12,6 +12,7 @@
 		EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5891BAF288D001BC449 /* LaunchScreen.xib */; };
 		EA07E5971BAF288D001BC449 /* PlaylistrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5961BAF288D001BC449 /* PlaylistrTests.swift */; };
 		EA07E5D51BAF47BF001BC449 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */; };
+		EA16913D1BD961A90096376E /* SpotifyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA16913C1BD961A90096376E /* SpotifyPlayer.swift */; settings = {ASSET_TAGS = (); }; };
 		EA3A97CC1BB8EAD2005CE103 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EA718B371BB8F84600CBDC8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA718B361BB8F84600CBDC8D /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		EA82171F1BCF5C2800883779 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA82171E1BCF5C2800883779 /* DateConverter.swift */; settings = {ASSET_TAGS = (); }; };
@@ -27,7 +28,10 @@
 		EA9A71AC1BBC66550028DA4A /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71A61BBC66550028DA4A /* Year.swift */; settings = {ASSET_TAGS = (); }; };
 		EA9A71AE1BBC66550028DA4A /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71A81BBC66550028DA4A /* Track.swift */; settings = {ASSET_TAGS = (); }; };
 		EA9A71B01BBC66550028DA4A /* ParsingPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A71AA1BBC66550028DA4A /* ParsingPlaylist.swift */; settings = {ASSET_TAGS = (); }; };
-		EAAF91991BD8840900D946EB /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF91971BD8840900D946EB /* Track+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		EAA810AB1BD996A3005D1EA4 /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA810A81BD996A3005D1EA4 /* Track+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		EAA810AC1BD996A3005D1EA4 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA810A91BD996A3005D1EA4 /* Album+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		EAA810AD1BD996A3005D1EA4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA810AA1BD996A3005D1EA4 /* Album.swift */; settings = {ASSET_TAGS = (); }; };
+		EAA810AF1BD9AC9A005D1EA4 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA810AE1BD9AC9A005D1EA4 /* PlayerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EAAF919B1BD8842D00D946EB /* Year+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		EAAF919E1BD88CA900D946EB /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919D1BD88CA900D946EB /* User+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
 		EAD5E0291BB8912900BE68CA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5E0281BB8912900BE68CA /* Config.swift */; settings = {ASSET_TAGS = (); }; };
@@ -58,6 +62,7 @@
 		EA07E5951BAF288D001BC449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA07E5961BAF288D001BC449 /* PlaylistrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistrTests.swift; sourceTree = "<group>"; };
 		EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EA16913C1BD961A90096376E /* SpotifyPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyPlayer.swift; sourceTree = "<group>"; };
 		EA3874D31BC8321C00F1A369 /* PlaylistrModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 6.xcdatamodel"; sourceTree = "<group>"; };
 		EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		EA718B361BB8F84600CBDC8D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -79,8 +84,12 @@
 		EA9A71A61BBC66550028DA4A /* Year.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Year.swift; path = ../Year.swift; sourceTree = "<group>"; };
 		EA9A71A81BBC66550028DA4A /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = ../Track.swift; sourceTree = "<group>"; };
 		EA9A71AA1BBC66550028DA4A /* ParsingPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParsingPlaylist.swift; path = ../ParsingPlaylist.swift; sourceTree = "<group>"; };
+		EAA810A71BD99663005D1EA4 /* PlaylistrModel 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 11.xcdatamodel"; sourceTree = "<group>"; };
+		EAA810A81BD996A3005D1EA4 /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Track+CoreDataProperties.swift"; path = "../Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EAA810A91BD996A3005D1EA4 /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Album+CoreDataProperties.swift"; path = "../Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EAA810AA1BD996A3005D1EA4 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Album.swift; path = ../Album.swift; sourceTree = "<group>"; };
+		EAA810AE1BD9AC9A005D1EA4 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		EAAF918F1BD8830000D946EB /* PlaylistrModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 9.xcdatamodel"; sourceTree = "<group>"; };
-		EAAF91971BD8840900D946EB /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Track+CoreDataProperties.swift"; path = "../Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Year+CoreDataProperties.swift"; path = "../Year+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAAF919C1BD88C8200D946EB /* PlaylistrModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 10.xcdatamodel"; sourceTree = "<group>"; };
 		EAAF919D1BD88CA900D946EB /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -144,6 +153,8 @@
 				EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */,
 				EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */,
 				EA9A71811BBA449B0028DA4A /* PlayListTableViewController.swift */,
+				EAA810AE1BD9AC9A005D1EA4 /* PlayerViewController.swift */,
+				EA16913C1BD961A90096376E /* SpotifyPlayer.swift */,
 				EA9A71981BBB88F30028DA4A /* SpotifyRequester.swift */,
 				EA9A719A1BBB89230028DA4A /* SPTParser.swift */,
 				EA718B361BB8F84600CBDC8D /* Main.storyboard */,
@@ -191,8 +202,10 @@
 				EA9A71911BBB7CFC0028DA4A /* Playlist.swift */,
 				EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */,
 				EA9A71A61BBC66550028DA4A /* Year.swift */,
-				EAAF91971BD8840900D946EB /* Track+CoreDataProperties.swift */,
+				EAA810A81BD996A3005D1EA4 /* Track+CoreDataProperties.swift */,
 				EA9A71A81BBC66550028DA4A /* Track.swift */,
+				EAA810A91BD996A3005D1EA4 /* Album+CoreDataProperties.swift */,
+				EAA810AA1BD996A3005D1EA4 /* Album.swift */,
 				EA8217241BD812CE00883779 /* ParsingPlaylist+CoreDataProperties.swift */,
 				EA9A71AA1BBC66550028DA4A /* ParsingPlaylist.swift */,
 				EA9A717F1BBA26980028DA4A /* CoreDataHelper.swift */,
@@ -321,8 +334,10 @@
 				EA9A71931BBB7CFC0028DA4A /* Playlist.swift in Sources */,
 				EA9A71971BBB87480028DA4A /* User.swift in Sources */,
 				EA3A97CC1BB8EAD2005CE103 /* RootViewController.swift in Sources */,
+				EAA810AF1BD9AC9A005D1EA4 /* PlayerViewController.swift in Sources */,
 				EA9A71AC1BBC66550028DA4A /* Year.swift in Sources */,
 				EA9A719B1BBB89230028DA4A /* SPTParser.swift in Sources */,
+				EAA810AD1BD996A3005D1EA4 /* Album.swift in Sources */,
 				EA82171F1BCF5C2800883779 /* DateConverter.swift in Sources */,
 				EA8217261BD812CE00883779 /* ParsingPlaylist+CoreDataProperties.swift in Sources */,
 				EA9A71891BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld in Sources */,
@@ -330,10 +345,12 @@
 				EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */,
 				EAD5E0291BB8912900BE68CA /* Config.swift in Sources */,
 				EA07E5D51BAF47BF001BC449 /* HomeViewController.swift in Sources */,
+				EA16913D1BD961A90096376E /* SpotifyPlayer.swift in Sources */,
 				EA8217221BD6DD4500883779 /* Playlist+CoreDataProperties.swift in Sources */,
+				EAA810AB1BD996A3005D1EA4 /* Track+CoreDataProperties.swift in Sources */,
 				EAAF919B1BD8842D00D946EB /* Year+CoreDataProperties.swift in Sources */,
 				EAAF919E1BD88CA900D946EB /* User+CoreDataProperties.swift in Sources */,
-				EAAF91991BD8840900D946EB /* Track+CoreDataProperties.swift in Sources */,
+				EAA810AC1BD996A3005D1EA4 /* Album+CoreDataProperties.swift in Sources */,
 				EA9A71821BBA449B0028DA4A /* PlayListTableViewController.swift in Sources */,
 				EA9A71AE1BBC66550028DA4A /* Track.swift in Sources */,
 			);
@@ -567,6 +584,7 @@
 		EA9A71871BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				EAA810A71BD99663005D1EA4 /* PlaylistrModel 11.xcdatamodel */,
 				EAAF919C1BD88C8200D946EB /* PlaylistrModel 10.xcdatamodel */,
 				EAAF918F1BD8830000D946EB /* PlaylistrModel 9.xcdatamodel */,
 				EA8217231BD812B700883779 /* PlaylistrModel 8.xcdatamodel */,
@@ -578,7 +596,7 @@
 				EA9A719C1BBB941B0028DA4A /* PlaylistrModel 2.xcdatamodel */,
 				EA9A71881BBA508B0028DA4A /* PlaylistrModel.xcdatamodel */,
 			);
-			currentVersion = EAAF919C1BD88C8200D946EB /* PlaylistrModel 10.xcdatamodel */;
+			currentVersion = EAA810A71BD99663005D1EA4 /* PlaylistrModel 11.xcdatamodel */;
 			path = PlaylistrModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

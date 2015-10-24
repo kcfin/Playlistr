@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 loginVC.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
                 loginVC.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
                 dispatch_async(dispatch_get_main_queue(), {
-                    window?.rootViewController!.presentViewController(loginVC, animated: true, completion: nil);
+                    self.window?.rootViewController!.presentViewController(loginVC, animated: true, completion: nil);
                 })
             }
         } else {

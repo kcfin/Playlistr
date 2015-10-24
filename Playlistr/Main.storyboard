@@ -226,6 +226,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="NoG-GA-EaJ" kind="show" identifier="GoToPlayer" id="yOu-tq-REP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -240,6 +243,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Om1-8W-q3D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2520" y="-108"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="Cdm-h3-WTD">
+            <objects>
+                <viewController id="NoG-GA-EaJ" customClass="PlayerViewController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oD3-Km-sWh"/>
+                        <viewControllerLayoutGuide type="bottom" id="brD-36-MP4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yo3-Pk-XyH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zVt-em-8Ag" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3242" y="-108"/>
         </scene>
     </scenes>
 </document>

@@ -1,5 +1,5 @@
 //
-//  Track+CoreDataProperties.swift
+//  Album+CoreDataProperties.swift
 //  Playlistr
 //
 //  Created by Katelyn Findlay on 10/22/15.
@@ -12,14 +12,10 @@
 import Foundation
 import CoreData
 
-extension Track {
+extension Album {
 
-    @NSManaged var artist: String?
-    @NSManaged var dateAdded: NSDate?
     @NSManaged var name: String?
     @NSManaged var uri: String?
-    @NSManaged var album: NSManagedObject?
-    @NSManaged var playlist: Playlist?
-    @NSManaged var year: Year?
+    @NSManaged var tracks: NSSet?
 
 }
