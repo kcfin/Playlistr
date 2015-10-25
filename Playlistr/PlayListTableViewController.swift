@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class PlayListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class PlaylistTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet var trackTableView: UITableView!
     var frc: NSFetchedResultsController = NSFetchedResultsController();

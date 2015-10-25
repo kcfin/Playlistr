@@ -123,7 +123,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "GoToPlaylist") {
-            if let destinationVC = segue.destinationViewController as? PlayListTableViewController {
+            if let destinationVC = segue.destinationViewController as? PlaylistTableViewController {
                 if let index = playlistTableView.indexPathForSelectedRow {
                     if let playlist = fetchedResultsController.objectAtIndexPath(index) as? Playlist {
                         let fetchRequest = NSFetchRequest(entityName: "Track");
