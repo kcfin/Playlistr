@@ -34,9 +34,9 @@
 		EAA810AF1BD9AC9A005D1EA4 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA810AE1BD9AC9A005D1EA4 /* PlayerViewController.swift */; };
 		EAAF919B1BD8842D00D946EB /* Year+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */; };
 		EAAF919E1BD88CA900D946EB /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919D1BD88CA900D946EB /* User+CoreDataProperties.swift */; };
+		EAC8971B1BDD78E100852C67 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC8971A1BDD78E100852C67 /* Spotify.framework */; };
 		EAD5E0291BB8912900BE68CA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5E0281BB8912900BE68CA /* Config.swift */; };
 		EAD5E02F1BB8B36F00BE68CA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */; };
-		EADC22921BAF861F00EB884A /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22911BAF861F00EB884A /* Spotify.framework */; };
 		EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22931BAF868C00EB884A /* AVFoundation.framework */; };
 		EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22951BAF869D00EB884A /* SystemConfiguration.framework */; };
 		EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */; };
@@ -93,9 +93,9 @@
 		EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Year+CoreDataProperties.swift"; path = "../Year+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAAF919C1BD88C8200D946EB /* PlaylistrModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 10.xcdatamodel"; sourceTree = "<group>"; };
 		EAAF919D1BD88CA900D946EB /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EAC8971A1BDD78E100852C67 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		EAD5E0281BB8912900BE68CA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		EADC22911BAF861F00EB884A /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		EADC22931BAF868C00EB884A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EADC22951BAF869D00EB884A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EADC22971BAF879900EB884A /* Playlistr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Playlistr-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */,
+				EAC8971B1BDD78E100852C67 /* Spotify.framework in Frameworks */,
 				EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */,
-				EADC22921BAF861F00EB884A /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +219,7 @@
 			children = (
 				EADC22951BAF869D00EB884A /* SystemConfiguration.framework */,
 				EADC22931BAF868C00EB884A /* AVFoundation.framework */,
-				EADC22911BAF861F00EB884A /* Spotify.framework */,
+				EAC8971A1BDD78E100852C67 /* Spotify.framework */,
 			);
 			name = Frameworks;
 			path = Playlistr;

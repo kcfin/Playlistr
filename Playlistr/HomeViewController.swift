@@ -131,12 +131,10 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
                         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true);
                         fetchRequest.predicate = namePred;
                         fetchRequest.sortDescriptors = [sortDescriptor];
-                        //                fetchRequest.fetchBatchSize = 20;
                         destinationVC.trackFR = fetchRequest;
                     }
                 }
             }
         }
     }
-    
 }
