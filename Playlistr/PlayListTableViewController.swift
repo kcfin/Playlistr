@@ -122,13 +122,14 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
         if(segue.identifier == "GoToPlayer") {
             if let destinationVC = segue.destinationViewController as? PlayerViewController {
                 if let index = trackTableView.indexPathForSelectedRow {
-                    if let track = frc.objectAtIndexPath(index) as? Track {
-                        let music = SpotifyPlayer();
-                        var tracks: [NSURL] = [NSURL]();
-                        tracks.append(NSURL(string: track.uri!)!);
-                        tracks.append(NSURL(string: track.uri!)!);
-                        music.playTrack(tracks);
+                    var trackURIs: [NSURL] = [NSURL]();
+                    for object in frc.fetchedObjects! {
+                        if let track = object as? Track {
+                            trackURIs.append(NSURL(string: track.uri!)!);
+                        }
                     }
+                    destinationVC.trackURIs = trackURIs;
+                    destinationVC.index = index.row;
                 }
             }
         }

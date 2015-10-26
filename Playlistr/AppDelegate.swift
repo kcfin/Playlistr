@@ -36,43 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let parser = SPTParser(withRequester: SpotifyRequester(), withSession: authenticator.auth.session);
             parser.importData();
         } else {
+            
             authenticator.auth.renewSession(authenticator.auth.session, callback: {(error, session) -> Void in
                 if(error != nil) {
                     print("error: \(error.localizedDescription)");
                     return;
                 }
-                let sess = session as SPTSession;
-                let parser = SPTParser(withRequester: SpotifyRequester(), withSession: sess);
-                parser.importData();
-            })
-        }
-
-        
-        if(authenticator.auth.session == nil || !authenticator.auth.session.isValid()){
-            
-            if(authenticator.auth.hasTokenRefreshService) {
-                if(authenticator.renewToken()) {
-                    let navVC = storyboard.instantiateViewControllerWithIdentifier("HomeNavVC");
-                    window?.rootViewController = navVC;
+                if let sess = session as? SPTSession {
+                    let parser = SPTParser(withRequester: SpotifyRequester(), withSession: sess);
+                    parser.importData();
                 }
-            } else {
-                window?.rootViewController = rootView;
-                let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
-                loginVC.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
-                loginVC.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.window?.rootViewController!.presentViewController(loginVC, animated: true, completion: nil);
-                })
-            }
-        } else {
-            if (User.currentUser() != nil) {
-                let navVC = storyboard.instantiateViewControllerWithIdentifier("HomeNavVC");
-                window?.rootViewController = navVC;
-            } else {
-                window?.rootViewController = rootView;
-                let parser = SPTParser(withRequester: SpotifyRequester(), withSession: authenticator.auth.session);
-                parser.importData();
-            }
+            })
         }
         
         return true;
