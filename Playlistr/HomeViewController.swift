@@ -132,6 +132,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
                         fetchRequest.predicate = namePred;
                         fetchRequest.sortDescriptors = [sortDescriptor];
                         destinationVC.trackFR = fetchRequest;
+                        destinationVC.playlist = playlist;
                     }
                 }
             }

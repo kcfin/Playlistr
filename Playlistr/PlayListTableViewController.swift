@@ -14,6 +14,7 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
     @IBOutlet var trackTableView: UITableView!
     var frc: NSFetchedResultsController = NSFetchedResultsController();
     var trackFR: NSFetchRequest?;
+    var playlist: Playlist?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +80,25 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
         cell.layoutMargins = UIEdgeInsetsZero;
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let appDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate;
+        let rootView = appDelegate.window!.rootViewController as! RootViewController;
+        
+        if let player = rootView.playerVC {
+            if(player.isNewPlaylist(playlist!)) {
+                var trackURIs: [NSURL] = [NSURL]();
+                for object in frc.fetchedObjects! {
+                    if let track = object as? Track {
+                        trackURIs.append(NSURL(string: track.uri!)!);
+                    }
+                }
+                player.trackURIs = trackURIs;
+            }
+            player.playMusic(fromIndex: indexPath.row);
+            navigationController?.pushViewController(player, animated: true);
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -118,23 +138,25 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "GoToPlayer") {
-            if let destinationVC = segue.destinationViewController as? PlayerViewController {
-                if let index = trackTableView.indexPathForSelectedRow {
-                    var trackURIs: [NSURL] = [NSURL]();
-                    for object in frc.fetchedObjects! {
-                        if let track = object as? Track {
-                            trackURIs.append(NSURL(string: track.uri!)!);
-                        }
-                    }
-                    var player = SPTAudioStreamingController(clientId: SpotifyAuthenticator().auth.clientID);
-                    destinationVC.player = player;
-                    destinationVC.trackURIs = trackURIs;
-                    destinationVC.index = index.row;
-                }
-            }
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if(segue.identifier == "GoToPlayer") {
+//            if let destinationVC = segue.destinationViewController as? PlayerViewController {
+//                if let playerVC = parentVC!.playerVC {
+//                    if(playerVC.isNewPlaylist(playlist!)) {
+//                        var trackURIs: [NSURL] = [NSURL]();
+//                        for object in frc.fetchedObjects! {
+//                            if let track = object as? Track {
+//                                trackURIs.append(NSURL(string: track.uri!)!);
+//                            }
+//                        }
+//                        parentVC!.playerVC?.trackURIs = trackURIs;
+//                    }
+//                }
+//                if let index = trackTableView.indexPathForSelectedRow {
+//                    parentVC!.playerVC?.playMusic(fromIndex: index.row);
+//                }
+//            }
+//        }
+//    }
     
 }

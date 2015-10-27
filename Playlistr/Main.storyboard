@@ -226,9 +226,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="NoG-GA-EaJ" kind="show" identifier="GoToPlayer" id="yOu-tq-REP"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -247,7 +244,7 @@
         <!--Player View Controller-->
         <scene sceneID="Cdm-h3-WTD">
             <objects>
-                <viewController id="NoG-GA-EaJ" customClass="PlayerViewController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerVC" id="NoG-GA-EaJ" customClass="PlayerViewController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oD3-Km-sWh"/>
                         <viewControllerLayoutGuide type="bottom" id="brD-36-MP4"/>

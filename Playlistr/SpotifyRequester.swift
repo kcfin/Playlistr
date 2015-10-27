@@ -163,7 +163,7 @@ class SpotifyRequester {
         
         for track in snapshot.items {
             if let temp = track as? SPTPlaylistTrack {
-                if(temp.isPlayable) {
+                if(temp.playableUri != nil) {
                     callback(temp);
                 }
             }
