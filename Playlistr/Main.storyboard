@@ -4,6 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -129,7 +130,7 @@
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="cNa-8C-FRf" secondAttribute="centerX" id="C9Q-Y6-5ye"/>
                                     <constraint firstItem="tmS-LK-3md" firstAttribute="bottom" secondItem="hPW-gJ-58E" secondAttribute="centerY" id="RBQ-ah-Ln4"/>
-                                    <constraint firstItem="tmS-LK-3md" firstAttribute="width" secondItem="hPW-gJ-58E" secondAttribute="height" multiplier="1:3" id="fh9-s6-jNb"/>
+                                    <constraint firstItem="tmS-LK-3md" firstAttribute="width" secondItem="hPW-gJ-58E" secondAttribute="height" multiplier="1:2" id="fh9-s6-jNb"/>
                                     <constraint firstItem="tmS-LK-3md" firstAttribute="bottom" secondItem="cNa-8C-FRf" secondAttribute="top" constant="-20" id="iSC-b1-BaX"/>
                                     <constraint firstAttribute="centerX" secondItem="tmS-LK-3md" secondAttribute="centerX" id="y2S-Ba-mfQ"/>
                                 </constraints>
@@ -200,7 +201,68 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="pqZ-LP-hI7">
                             <rect key="frame" x="0.0" y="64" width="600" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4d-Ei-eSP" userLabel="Images View">
+                                    <rect key="frame" x="226" y="50" width="149.5" height="150"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iUj-qe-CSi" userLabel="Album2">
+                                            <rect key="frame" x="75" y="0.0" width="74.5" height="74.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="iUj-qe-CSi" secondAttribute="height" id="0lh-ZD-4mx"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Gy-i0-8NY" userLabel="Album3">
+                                            <rect key="frame" x="0.0" y="75.5" width="75" height="74.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="1Gy-i0-8NY" secondAttribute="height" id="jiy-re-50E"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FoE-9F-tGu" userLabel="Album4">
+                                            <rect key="frame" x="75" y="75.5" width="74.5" height="74.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="FoE-9F-tGu" secondAttribute="height" id="mWc-P7-ugd"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrL-F9-aQk" userLabel="Album1">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="hrL-F9-aQk" secondAttribute="height" id="gC8-sX-Y7v"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="FoE-9F-tGu" firstAttribute="width" secondItem="t4d-Ei-eSP" secondAttribute="width" multiplier="1:2" id="0w9-NG-pc7"/>
+                                        <constraint firstItem="iUj-qe-CSi" firstAttribute="width" secondItem="t4d-Ei-eSP" secondAttribute="width" multiplier="1:2" id="2pB-lb-Zgg"/>
+                                        <constraint firstAttribute="bottom" secondItem="1Gy-i0-8NY" secondAttribute="bottom" id="AY0-0X-aQp"/>
+                                        <constraint firstItem="hrL-F9-aQk" firstAttribute="top" secondItem="t4d-Ei-eSP" secondAttribute="top" id="J0F-Sh-Vwk"/>
+                                        <constraint firstItem="1Gy-i0-8NY" firstAttribute="width" secondItem="t4d-Ei-eSP" secondAttribute="width" multiplier="1:2" id="UcY-cP-Wnv"/>
+                                        <constraint firstItem="1Gy-i0-8NY" firstAttribute="leading" secondItem="t4d-Ei-eSP" secondAttribute="leading" id="V2K-DQ-W7L"/>
+                                        <constraint firstAttribute="width" secondItem="t4d-Ei-eSP" secondAttribute="height" id="Xnf-va-OaQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="iUj-qe-CSi" secondAttribute="trailing" id="fSa-uZ-0Ch"/>
+                                        <constraint firstAttribute="trailing" secondItem="FoE-9F-tGu" secondAttribute="trailing" id="hu8-Ur-Aur"/>
+                                        <constraint firstAttribute="bottom" secondItem="FoE-9F-tGu" secondAttribute="bottom" id="sNN-VI-CEK"/>
+                                        <constraint firstItem="hrL-F9-aQk" firstAttribute="width" secondItem="t4d-Ei-eSP" secondAttribute="width" multiplier="1:2" id="umw-QZ-gvw"/>
+                                        <constraint firstItem="iUj-qe-CSi" firstAttribute="top" secondItem="t4d-Ei-eSP" secondAttribute="top" id="uvG-q6-0xX"/>
+                                        <constraint firstItem="hrL-F9-aQk" firstAttribute="leading" secondItem="t4d-Ei-eSP" secondAttribute="leading" id="wtW-0f-DLP"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b28-Dd-DPr">
+                                    <rect key="frame" x="263" y="225" width="73.5" height="35"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" red="0.76446132249999998" green="0.89060527150000002" blue="0.67417138369999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="b28-Dd-DPr" secondAttribute="top" multiplier="2:3" id="Nnl-PQ-2TU"/>
+                                <constraint firstItem="t4d-Ei-eSP" firstAttribute="height" secondItem="pqZ-LP-hI7" secondAttribute="height" multiplier="1:2" id="XoP-hU-dqM"/>
+                                <constraint firstItem="b28-Dd-DPr" firstAttribute="centerX" secondItem="pqZ-LP-hI7" secondAttribute="centerX" id="j0D-UV-sBj"/>
+                                <constraint firstAttribute="centerX" secondItem="t4d-Ei-eSP" secondAttribute="centerX" id="j0g-5O-GZd"/>
+                                <constraint firstAttribute="centerY" secondItem="t4d-Ei-eSP" secondAttribute="top" multiplier="3:1" id="vdd-6W-RRN"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistCell" textLabel="LoX-OU-M9Q" detailTextLabel="COP-2g-k15" style="IBUITableViewCellStyleSubtitle" id="1uS-n6-yi8">
@@ -234,6 +296,11 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="albumFour" destination="FoE-9F-tGu" id="b8p-DZ-9l6"/>
+                        <outlet property="albumOne" destination="hrL-F9-aQk" id="4ZV-Nn-pRp"/>
+                        <outlet property="albumThree" destination="1Gy-i0-8NY" id="c8J-vX-cDK"/>
+                        <outlet property="albumTwo" destination="iUj-qe-CSi" id="tjb-B7-PYY"/>
+                        <outlet property="playlistLabel" destination="b28-Dd-DPr" id="EwN-P0-iLO"/>
                         <outlet property="trackTableView" destination="9t9-sn-AWY" id="BEB-qW-dKq"/>
                     </connections>
                 </tableViewController>

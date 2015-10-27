@@ -11,6 +11,11 @@ import CoreData
 
 class PlaylistTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    @IBOutlet weak var playlistLabel: UILabel!
+    @IBOutlet weak var albumOne: UIImageView!
+    @IBOutlet weak var albumTwo: UIImageView!
+    @IBOutlet weak var albumThree: UIImageView!
+    @IBOutlet weak var albumFour: UIImageView!
     @IBOutlet var trackTableView: UITableView!
     var frc: NSFetchedResultsController = NSFetchedResultsController();
     var trackFR: NSFetchRequest?;
@@ -27,9 +32,54 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
         } catch let error as NSError {
             print("error fetching results: \(error)")
         }
+        setPlaylistLabel();
+        setAlbumImages();
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func setAlbumImages() {
+        var count = 0;
+        var trackURI: [NSURL] = [NSURL]();
+        
+        for object in frc.fetchedObjects! {
+            if(count == 4) {
+                break;
+            }
+            if let track = object as? Track {
+                trackURI.append(NSURL(string: track.uri!)!);
+            }
+            count++;
+        }
+        
+        if(count == 4) {
+            
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                // do some task
+                SPTTrack.tracksWithURIs(trackURI, session: SpotifyAuthenticator().auth.session, callback: {(error, object) -> Void in
+                    if(error != nil) {
+                        print("error fetching tracks");
+                        return;
+                    }
+                    dispatch_async(dispatch_get_main_queue()) {
+                        // update some UI
+                        if let tracks = object as? [SPTPartialTrack] {
+                            self.albumOne.image = UIImage(data: NSData(contentsOfURL: tracks[0].album.largestCover.imageURL)!);
+                            self.albumTwo.image = UIImage(data: NSData(contentsOfURL: tracks[1].album.largestCover.imageURL)!);
+                            self.albumThree.image = UIImage(data: NSData(contentsOfURL: tracks[2].album.largestCover.imageURL)!);
+                            self.albumFour.image = UIImage(data: NSData(contentsOfURL: tracks[3].album.largestCover.imageURL)!);
+
+                        }
+                    }
+                })
+            }
+        }
+    }
+    
+    func setPlaylistLabel() {
+        playlistLabel.text = playlist?.name;
     }
     
     override func didReceiveMemoryWarning() {
@@ -138,25 +188,25 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if(segue.identifier == "GoToPlayer") {
-//            if let destinationVC = segue.destinationViewController as? PlayerViewController {
-//                if let playerVC = parentVC!.playerVC {
-//                    if(playerVC.isNewPlaylist(playlist!)) {
-//                        var trackURIs: [NSURL] = [NSURL]();
-//                        for object in frc.fetchedObjects! {
-//                            if let track = object as? Track {
-//                                trackURIs.append(NSURL(string: track.uri!)!);
-//                            }
-//                        }
-//                        parentVC!.playerVC?.trackURIs = trackURIs;
-//                    }
-//                }
-//                if let index = trackTableView.indexPathForSelectedRow {
-//                    parentVC!.playerVC?.playMusic(fromIndex: index.row);
-//                }
-//            }
-//        }
-//    }
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        if(segue.identifier == "GoToPlayer") {
+    //            if let destinationVC = segue.destinationViewController as? PlayerViewController {
+    //                if let playerVC = parentVC!.playerVC {
+    //                    if(playerVC.isNewPlaylist(playlist!)) {
+    //                        var trackURIs: [NSURL] = [NSURL]();
+    //                        for object in frc.fetchedObjects! {
+    //                            if let track = object as? Track {
+    //                                trackURIs.append(NSURL(string: track.uri!)!);
+    //                            }
+    //                        }
+    //                        parentVC!.playerVC?.trackURIs = trackURIs;
+    //                    }
+    //                }
+    //                if let index = trackTableView.indexPathForSelectedRow {
+    //                    parentVC!.playerVC?.playMusic(fromIndex: index.row);
+    //                }
+    //            }
+    //        }
+    //    }
     
 }
