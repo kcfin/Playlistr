@@ -128,6 +128,8 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
                             trackURIs.append(NSURL(string: track.uri!)!);
                         }
                     }
+                    var player = SPTAudioStreamingController(clientId: SpotifyAuthenticator().auth.clientID);
+                    destinationVC.player = player;
                     destinationVC.trackURIs = trackURIs;
                     destinationVC.index = index.row;
                 }

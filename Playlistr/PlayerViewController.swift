@@ -35,24 +35,21 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
     func playMusic() {
         let auth = SpotifyAuthenticator().auth;
         
-        if(player == nil) {
-            player = SPTAudioStreamingController(clientId: auth.clientID);
+//        if(player == nil) {
+//            player = SPTAudioStreamingController(clientId: auth.clientID);
             player?.playbackDelegate = self;
-        }
+//        }
         
         player!.loginWithSession(auth.session, callback: {(error) -> Void in
             if(error != nil) {
                 print("error");
                 return;
             }
-            print("playing URIS");
             self.player!.playURIs(self.trackURIs, fromIndex: 3, callback: {(error) -> Void in
                 if(error != nil) {
                     print("error");
                     return;
                 }
-                
-                print("playing song");
             })
         })
     }
