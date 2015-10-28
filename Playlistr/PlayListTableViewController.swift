@@ -40,42 +40,54 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     func setAlbumImages() {
-        var count = 0;
+//        var count = 0;
         var trackURI: [NSURL] = [NSURL]();
+        var albums: [UIImageView] = [albumOne, albumTwo, albumThree, albumFour];
         
-        for object in frc.fetchedObjects! {
-            if(count == 4) {
-                break;
+//        for object in frc.fetchedObjects! {
+//            if(count == 4) {
+//                break;
+//            }
+//            if let track = object as? Track {
+//                trackURI.append(NSURL(string: track.uri!)!);
+//            }
+//            count++;
+//        }
+        
+        for _ in 0...3 {
+            if let t = frc.objectAtIndexPath(NSIndexPath(forRow: Int(arc4random_uniform(UInt32((frc.fetchedObjects?.count)!-1))), inSection: 0)) as? Track {
+                trackURI.append(NSURL(string: t.uri!)!);
             }
-            if let track = object as? Track {
-                trackURI.append(NSURL(string: track.uri!)!);
-            }
-            count++;
         }
         
-        if(count == 4) {
-            
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                // do some task
-                SPTTrack.tracksWithURIs(trackURI, session: SpotifyAuthenticator().auth.session, callback: {(error, object) -> Void in
-                    if(error != nil) {
-                        print("error fetching tracks");
-                        return;
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        // do some task
+        SPTTrack.tracksWithURIs(trackURI, session: SpotifyAuthenticator().auth.session, callback: {(error, object) -> Void in
+            if(error != nil) {
+                print("error fetching tracks");
+                return;
+            }
+                // update some UI
+                if let tracks = object as? [SPTPartialTrack] {
+                    var trackNums: Int;
+                    if (tracks.count < albums.count) {
+                        trackNums = tracks.count-1;
+                    } else {
+                        trackNums = albums.count-1;
                     }
-                    dispatch_async(dispatch_get_main_queue()) {
-                        // update some UI
-                        if let tracks = object as? [SPTPartialTrack] {
-                            self.albumOne.image = UIImage(data: NSData(contentsOfURL: tracks[0].album.largestCover.imageURL)!);
-                            self.albumTwo.image = UIImage(data: NSData(contentsOfURL: tracks[1].album.largestCover.imageURL)!);
-                            self.albumThree.image = UIImage(data: NSData(contentsOfURL: tracks[2].album.largestCover.imageURL)!);
-                            self.albumFour.image = UIImage(data: NSData(contentsOfURL: tracks[3].album.largestCover.imageURL)!);
-
+                    for index in 0...trackNums {
+                        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                        if let data = NSData(contentsOfURL: tracks[index].album.largestCover.imageURL) {
+                            if let image = UIImage(data: data) {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    albums[index].image = image;
+                                }
+                            }
                         }
                     }
-                })
+                }
             }
-        }
+        })
     }
     
     func setPlaylistLabel() {
@@ -145,7 +157,9 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
                 player.trackURIs = trackURIs;
             }
             player.playMusic(fromIndex: indexPath.row);
-            navigationController?.pushViewController(player, animated: true);
+            player.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
+            player.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+            presentViewController(player, animated: true, completion: nil);
         }
     }
     

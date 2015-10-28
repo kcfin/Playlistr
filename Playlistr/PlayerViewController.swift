@@ -68,7 +68,9 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
         })
     }
     
-    
+    @IBAction func downButtonPressed(sender: AnyObject) {
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
+    }
     
     /*
     // MARK: - Navigation

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5u7-MV-dTw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -130,7 +131,7 @@
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="cNa-8C-FRf" secondAttribute="centerX" id="C9Q-Y6-5ye"/>
                                     <constraint firstItem="tmS-LK-3md" firstAttribute="bottom" secondItem="hPW-gJ-58E" secondAttribute="centerY" id="RBQ-ah-Ln4"/>
-                                    <constraint firstItem="tmS-LK-3md" firstAttribute="width" secondItem="hPW-gJ-58E" secondAttribute="height" multiplier="1:2" id="fh9-s6-jNb"/>
+                                    <constraint firstItem="tmS-LK-3md" firstAttribute="width" secondItem="hPW-gJ-58E" secondAttribute="height" multiplier="1:3" id="fh9-s6-jNb"/>
                                     <constraint firstItem="tmS-LK-3md" firstAttribute="bottom" secondItem="cNa-8C-FRf" secondAttribute="top" constant="-20" id="iSC-b1-BaX"/>
                                     <constraint firstAttribute="centerX" secondItem="tmS-LK-3md" secondAttribute="centerX" id="y2S-Ba-mfQ"/>
                                 </constraints>
@@ -203,28 +204,28 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4d-Ei-eSP" userLabel="Images View">
-                                    <rect key="frame" x="226" y="50" width="149.5" height="150"/>
+                                    <rect key="frame" x="211" y="37.5" width="179.5" height="180"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iUj-qe-CSi" userLabel="Album2">
-                                            <rect key="frame" x="75" y="0.0" width="74.5" height="74.5"/>
+                                            <rect key="frame" x="90" y="0.0" width="89.5" height="89.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="iUj-qe-CSi" secondAttribute="height" id="0lh-ZD-4mx"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Gy-i0-8NY" userLabel="Album3">
-                                            <rect key="frame" x="0.0" y="75.5" width="75" height="74.5"/>
+                                            <rect key="frame" x="0.0" y="90.5" width="90" height="89.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="1Gy-i0-8NY" secondAttribute="height" id="jiy-re-50E"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FoE-9F-tGu" userLabel="Album4">
-                                            <rect key="frame" x="75" y="75.5" width="74.5" height="74.5"/>
+                                            <rect key="frame" x="90" y="90.5" width="89.5" height="89.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="FoE-9F-tGu" secondAttribute="height" id="mWc-P7-ugd"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrL-F9-aQk" userLabel="Album1">
-                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="hrL-F9-aQk" secondAttribute="height" id="gC8-sX-Y7v"/>
@@ -249,7 +250,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b28-Dd-DPr">
-                                    <rect key="frame" x="263" y="225" width="73.5" height="35"/>
+                                    <rect key="frame" x="263" y="240" width="73.5" height="35"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -257,11 +258,11 @@
                             </subviews>
                             <color key="backgroundColor" red="0.76446132249999998" green="0.89060527150000002" blue="0.67417138369999996" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="centerY" secondItem="b28-Dd-DPr" secondAttribute="top" multiplier="2:3" id="Nnl-PQ-2TU"/>
-                                <constraint firstItem="t4d-Ei-eSP" firstAttribute="height" secondItem="pqZ-LP-hI7" secondAttribute="height" multiplier="1:2" id="XoP-hU-dqM"/>
+                                <constraint firstAttribute="baseline" secondItem="b28-Dd-DPr" secondAttribute="top" multiplier="5:4" id="Nnl-PQ-2TU"/>
+                                <constraint firstItem="t4d-Ei-eSP" firstAttribute="height" secondItem="pqZ-LP-hI7" secondAttribute="height" multiplier="3:5" id="XoP-hU-dqM"/>
                                 <constraint firstItem="b28-Dd-DPr" firstAttribute="centerX" secondItem="pqZ-LP-hI7" secondAttribute="centerX" id="j0D-UV-sBj"/>
                                 <constraint firstAttribute="centerX" secondItem="t4d-Ei-eSP" secondAttribute="centerX" id="j0g-5O-GZd"/>
-                                <constraint firstAttribute="centerY" secondItem="t4d-Ei-eSP" secondAttribute="top" multiplier="3:1" id="vdd-6W-RRN"/>
+                                <constraint firstAttribute="centerY" secondItem="t4d-Ei-eSP" secondAttribute="firstBaseline" multiplier="4:1" id="vdd-6W-RRN"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -319,7 +320,23 @@
                     <view key="view" contentMode="scaleToFill" id="Yo3-Pk-XyH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMY-F6-pgo">
+                                <rect key="frame" x="555" y="15" width="30" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="▽">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downButtonPressed:" destination="NoG-GA-EaJ" eventType="touchUpInside" id="Qwr-En-m3Y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.76446132249999998" green="0.89060527150000002" blue="0.67417138369999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IMY-F6-pgo" secondAttribute="trailing" constant="15" id="LSK-DC-ESN"/>
+                            <constraint firstItem="IMY-F6-pgo" firstAttribute="top" secondItem="Yo3-Pk-XyH" secondAttribute="top" constant="15" id="bKt-OI-hRa"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zVt-em-8Ag" userLabel="First Responder" sceneMemberID="firstResponder"/>
