@@ -13,40 +13,42 @@
             <objects>
                 <viewController storyboardIdentifier="LoginVC" id="xh1-Gg-CHq" customClass="LoginViewController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WKL-pg-YVF"/>
-                        <viewControllerLayoutGuide type="bottom" id="VN3-3R-CTb"/>
+                        <viewControllerLayoutGuide type="top" id="2ZR-ei-oQL"/>
+                        <viewControllerLayoutGuide type="bottom" id="CKl-WV-zrN"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="sm6-dI-LDA">
+                    <view key="view" contentMode="scaleToFill" id="c97-d5-gCV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EQ-nx-e0z">
-                                <rect key="frame" x="200" y="275" width="200" height="50"/>
-                                <color key="backgroundColor" red="0.76446132248631249" green="0.89060527146464641" blue="0.67417138373450314" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="palmtrees.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="A36-hD-LBn">
+                                <rect key="frame" x="60.5" y="0.0" width="480" height="600"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="FOM-5Z-yaP"/>
-                                    <constraint firstAttribute="height" constant="50" id="QNa-Nq-aIc"/>
+                                    <constraint firstAttribute="width" secondItem="A36-hD-LBn" secondAttribute="height" multiplier="4:5" id="PY7-8R-R58"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Log In With Spotify">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWD-VO-vhq">
+                                <rect key="frame" x="162" y="275" width="276.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CCX-0c-dbY"/>
+                                    <constraint firstAttribute="width" secondItem="zWD-VO-vhq" secondAttribute="height" multiplier="221:40" id="qBl-0V-Jxr"/>
+                                </constraints>
+                                <state key="normal" image="log_in-mobile.png">
+                                    <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonPressed:" destination="xh1-Gg-CHq" eventType="touchUpInside" id="aJk-Ut-4cA"/>
+                                    <action selector="loginButtonPressed:" destination="xh1-Gg-CHq" eventType="touchUpInside" id="iFl-2m-V6g"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7EQ-nx-e0z" firstAttribute="centerX" secondItem="sm6-dI-LDA" secondAttribute="centerX" id="Q0z-EH-YU0"/>
-                            <constraint firstItem="7EQ-nx-e0z" firstAttribute="centerY" secondItem="sm6-dI-LDA" secondAttribute="centerY" id="k93-7l-lhY"/>
+                            <constraint firstItem="zWD-VO-vhq" firstAttribute="centerX" secondItem="c97-d5-gCV" secondAttribute="centerX" id="4hT-XX-AKU"/>
+                            <constraint firstItem="A36-hD-LBn" firstAttribute="centerX" secondItem="c97-d5-gCV" secondAttribute="centerX" id="IPl-8V-CDO"/>
+                            <constraint firstItem="A36-hD-LBn" firstAttribute="centerY" secondItem="c97-d5-gCV" secondAttribute="centerY" id="JTp-Xm-N9T"/>
+                            <constraint firstItem="A36-hD-LBn" firstAttribute="height" secondItem="c97-d5-gCV" secondAttribute="height" id="Q9y-BU-0tl"/>
+                            <constraint firstItem="zWD-VO-vhq" firstAttribute="centerY" secondItem="c97-d5-gCV" secondAttribute="centerY" id="TH8-zI-6uB"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="loginButton" destination="7EQ-nx-e0z" id="84a-PC-Qg4"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s1m-0F-ic0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -344,4 +346,8 @@
             <point key="canvasLocation" x="3242" y="-108"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="log_in-mobile.png" width="488" height="88"/>
+        <image name="palmtrees.jpg" width="688" height="860"/>
+    </resources>
 </document>

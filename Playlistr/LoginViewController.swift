@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        loginButton.layer.cornerRadius = loginButton.frame.size.height/2;
+//        loginButton.layer.cornerRadius = loginButton.frame.size.height/2;
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     }
     
     // MARK: - IBActions
-    @IBAction func loginButtonPressed(sender: AnyObject) {
+@IBAction func loginButtonPressed(sender: AnyObject) {
         let authVC = SPTAuthViewController.authenticationViewController();
         authVC.delegate = self;
         authVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;

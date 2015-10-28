@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA03D30D1BE152BB000328B6 /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30C1BE152BB000328B6 /* sunset.jpg */; };
+		EA03D30F1BE15466000328B6 /* log_in-mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30E1BE15466000328B6 /* log_in-mobile.png */; };
+		EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3101BE16A0E000328B6 /* palmtrees.jpg */; };
 		EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5801BAF288D001BC449 /* AppDelegate.swift */; };
 		EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5871BAF288D001BC449 /* Images.xcassets */; };
 		EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5891BAF288D001BC449 /* LaunchScreen.xib */; };
@@ -52,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA03D30C1BE152BB000328B6 /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
+		EA03D30E1BE15466000328B6 /* log_in-mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "log_in-mobile.png"; sourceTree = "<group>"; };
+		EA03D3101BE16A0E000328B6 /* palmtrees.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = palmtrees.jpg; sourceTree = "<group>"; };
 		EA07E57B1BAF288D001BC449 /* Playlistr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playlistr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA07E57F1BAF288D001BC449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA07E5801BAF288D001BC449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +172,9 @@
 			children = (
 				EAD5E0281BB8912900BE68CA /* Config.swift */,
 				EA07E5871BAF288D001BC449 /* Images.xcassets */,
+				EA03D3101BE16A0E000328B6 /* palmtrees.jpg */,
+				EA03D30C1BE152BB000328B6 /* sunset.jpg */,
+				EA03D30E1BE15466000328B6 /* log_in-mobile.png */,
 				EA07E5891BAF288D001BC449 /* LaunchScreen.xib */,
 				EADC22971BAF879900EB884A /* Playlistr-Bridging-Header.h */,
 				EA07E57F1BAF288D001BC449 /* Info.plist */,
@@ -304,9 +313,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA03D30D1BE152BB000328B6 /* sunset.jpg in Resources */,
 				EA718B371BB8F84600CBDC8D /* Main.storyboard in Resources */,
+				EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */,
 				EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */,
 				EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */,
+				EA03D30F1BE15466000328B6 /* log_in-mobile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
