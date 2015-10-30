@@ -39,7 +39,7 @@ class CoreDataHelper: NSObject {
     
     var fetchController: NSFetchedResultsController?
     var context: NSManagedObjectContext
-//    var privateContext: NSManagedObjectContext
+    var privateContext: NSManagedObjectContext
     private var coordinator: NSPersistentStoreCoordinator
     private var store: NSPersistentStore
     private var model: NSManagedObjectModel?
@@ -54,8 +54,8 @@ class CoreDataHelper: NSObject {
         coordinator = NSPersistentStoreCoordinator(managedObjectModel: model!)
         context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         context.persistentStoreCoordinator = coordinator
-//        privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType);
-//        privateContext.parentContext = context;
+        privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType);
+        privateContext.parentContext = context;
         store = try! coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
     }
     
@@ -89,18 +89,18 @@ class CoreDataHelper: NSObject {
         }
     }
     
-//    func privateSave() {
-//        if self.privateContext.hasChanges {
-//            var error: NSError?
-//            do {
-//                try self.privateContext.save()
-//                print("private context saved")
-//            } catch let error1 as NSError {
-//                error = error1
-//                print("context could not save, error: \(error)")
-//            }
-//        } else {
-//            print("no private changes to save")
-//        }
-//    }
+    func privateSave() {
+        if self.privateContext.hasChanges {
+            var error: NSError?
+            do {
+                try self.privateContext.save()
+                print("private context saved")
+            } catch let error1 as NSError {
+                error = error1
+                print("context could not save, error: \(error)")
+            }
+        } else {
+            print("no private changes to save")
+        }
+    }
 }
