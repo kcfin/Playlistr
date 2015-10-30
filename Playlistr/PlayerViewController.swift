@@ -10,10 +10,12 @@ import UIKit
 
 class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     
+    @IBOutlet weak var albumCover: UIImageView!
     var player: SPTAudioStreamingController?;
     var trackURIs: [NSURL] = [NSURL]();
     var playlist: Playlist?;
     let auth = SpotifyAuthenticator().auth;
+    var index: Int?;
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -42,6 +44,28 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
         super.didReceiveMemoryWarning()
     }
     
+    func setAlbumArtwork() {
+        SPTTrack.trackWithURI(trackURIs[index!], session: auth.session, callback: {(error, object) -> Void in
+            if(error != nil) {
+                print("error fetching track for player view");
+                return;
+            }
+            
+            if let track = object as? SPTPartialTrack {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                    if let data = NSData(contentsOfURL: track.album.largestCover.imageURL) {
+                        if let image = UIImage(data: data) {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.albumCover.image = image;
+                            }
+                        }
+                    }
+                }
+
+            }
+        })
+    }
+    
     func isNewPlaylist(newPlaylist: Playlist) -> Bool {
         if(playlist != nil) {
             if(playlist == newPlaylist) {
@@ -58,9 +82,10 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
     }
     
     
-    func playMusic(fromIndex index: Int) {
+    func playMusic() {
+        setAlbumArtwork();
         
-        self.player!.playURIs(self.trackURIs, fromIndex: Int32(index), callback: {(error) -> Void in
+        self.player!.playURIs(self.trackURIs, fromIndex: Int32(index!), callback: {(error) -> Void in
             if(error != nil) {
                 print("error");
                 return;

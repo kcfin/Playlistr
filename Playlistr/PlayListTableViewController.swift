@@ -156,7 +156,8 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
                 }
                 player.trackURIs = trackURIs;
             }
-            player.playMusic(fromIndex: indexPath.row);
+            player.index = indexPath.row;
+            player.playMusic();
             player.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
             player.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
             presentViewController(player, animated: true, completion: nil);
