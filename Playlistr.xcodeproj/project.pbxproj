@@ -13,6 +13,7 @@
 		EA03D3151BE40D98000328B6 /* video-play-64.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3141BE40D98000328B6 /* video-play-64.png */; };
 		EA03D3181BE40E80000328B6 /* back-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3161BE40E80000328B6 /* back-arrow.png */; };
 		EA03D3191BE40E80000328B6 /* forward-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3171BE40E80000328B6 /* forward-arrow.png */; };
+		EA03D31B1BE413F8000328B6 /* arrow-44-64.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D31A1BE413F8000328B6 /* arrow-44-64.png */; };
 		EA07E5811BAF288D001BC449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA07E5801BAF288D001BC449 /* AppDelegate.swift */; };
 		EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5871BAF288D001BC449 /* Images.xcassets */; };
 		EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA07E5891BAF288D001BC449 /* LaunchScreen.xib */; };
@@ -64,6 +65,7 @@
 		EA03D3141BE40D98000328B6 /* video-play-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "video-play-64.png"; path = "../video-play-64.png"; sourceTree = "<group>"; };
 		EA03D3161BE40E80000328B6 /* back-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back-arrow.png"; path = "../back-arrow.png"; sourceTree = "<group>"; };
 		EA03D3171BE40E80000328B6 /* forward-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "forward-arrow.png"; path = "../forward-arrow.png"; sourceTree = "<group>"; };
+		EA03D31A1BE413F8000328B6 /* arrow-44-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-44-64.png"; sourceTree = "<group>"; };
 		EA07E57B1BAF288D001BC449 /* Playlistr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playlistr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA07E57F1BAF288D001BC449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA07E5801BAF288D001BC449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				EAD5E0281BB8912900BE68CA /* Config.swift */,
 				EA07E5871BAF288D001BC449 /* Images.xcassets */,
 				EA03D3141BE40D98000328B6 /* video-play-64.png */,
+				EA03D31A1BE413F8000328B6 /* arrow-44-64.png */,
 				EA03D3161BE40E80000328B6 /* back-arrow.png */,
 				EA03D3171BE40E80000328B6 /* forward-arrow.png */,
 				EA03D3101BE16A0E000328B6 /* palmtrees.jpg */,
@@ -327,6 +330,7 @@
 				EA03D3181BE40E80000328B6 /* back-arrow.png in Resources */,
 				EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */,
 				EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */,
+				EA03D31B1BE413F8000328B6 /* arrow-44-64.png in Resources */,
 				EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */,
 				EA03D3151BE40D98000328B6 /* video-play-64.png in Resources */,
 				EA03D3191BE40E80000328B6 /* forward-arrow.png in Resources */,

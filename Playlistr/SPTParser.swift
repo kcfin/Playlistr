@@ -27,23 +27,25 @@ class SPTParser {
     }
     
     func importUser() {
-        requester.fetchUser(withSession: session, withCallback: {(user) -> Void in
+        requester.fetchUser(withSession: session, withCallback: {(user, isUpdating) -> Void in
             self.context.performBlock({
-                self.importParsingPlaylists();
-                var imgData: NSData? = nil;
-                if let imgURLData = NSData(contentsOfURL: user.largestImage.imageURL) {
-                    if let image = UIImage(data: imgURLData) {
-                        imgData = UIImagePNGRepresentation(image);
+                self.importParsingPlaylists(isUpdating);
+                if(!isUpdating) {
+                    var imgData: NSData? = nil;
+                    if let imgURLData = NSData(contentsOfURL: user.largestImage.imageURL) {
+                        if let image = UIImage(data: imgURLData) {
+                            imgData = UIImagePNGRepresentation(image);
+                        }
                     }
+                    User.newUser(user.displayName, imgData: imgData, uri: String(user.uri));
                 }
-                User.newUser(user.displayName, imgData: imgData, uri: String(user.uri));
             })
         })
     }
     
-    func importParsingPlaylists() {
+    func importParsingPlaylists(isUpdating: Bool) {
         self.context.performBlockAndWait({
-            self.requester.fetchParsingPlaylists(withSession: self.session, withFinalCallback: {(object) -> Void in
+            self.requester.fetchParsingPlaylists(withSession: self.session, isUpdating: isUpdating, withFinalCallback: {(object) -> Void in
                 self.context.performBlock({
                     if let snapshot = object as? SPTPlaylistSnapshot {
                         let newPlaylist = ParsingPlaylist.newParsingPlaylist(snapshot.snapshotId, spotifyId: String(snapshot.uri));

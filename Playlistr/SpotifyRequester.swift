@@ -12,7 +12,7 @@ class SpotifyRequester {
     
     var sptUser: SPTUser?;
     
-    func fetchUser(withSession session: SPTSession, withCallback callback: (SPTUser) -> Void) {
+    func fetchUser(withSession session: SPTSession, withCallback callback: (SPTUser, Bool) -> Void) {
         SPTUser.requestCurrentUserWithAccessToken(session.accessToken, callback: {(error, object) -> Void in
             if(error != nil) {
                 print("error: \(error.localizedDescription)");
@@ -26,23 +26,25 @@ class SpotifyRequester {
         });
     }
     
-    func compareUsersBeforeParse(withUser user: SPTUser, withCallback callback: (SPTUser) -> Void) {
+    func compareUsersBeforeParse(withUser user: SPTUser, withCallback callback: (SPTUser, Bool) -> Void) {
+        var isUpdating = false;
         if let cachedUser = User.currentUser() {
             if(cachedUser.uri == String(user.uri)) {
                 // TODO: check parsing playlists for changes and update
                 // user is already stored in core data
                 // check users playlists for changes
                 // display data
-                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-                return;
+                isUpdating = true;
+//                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+//                return;
             } else {
                 User.removeCurrentUser();
             }
         }
-        callback(user);
+        callback(user, isUpdating);
     }
     
-    func fetchParsingPlaylists(withSession session: SPTSession, withFinalCallback fCallback: SPTPartialObject -> Void) {
+    func fetchParsingPlaylists(withSession session: SPTSession, isUpdating: Bool, withFinalCallback fCallback: SPTPartialObject -> Void) {
         
         SPTPlaylistList.playlistsForUserWithSession(session, callback: {(error, object) -> Void in
             if(error != nil) {
@@ -50,7 +52,7 @@ class SpotifyRequester {
                 return;
             }
             if let list = object as? SPTPlaylistList {
-                self.fetchAllPlaylists(withSession: session, withList: list, withFinalCallBack: fCallback);
+                self.fetchAllPlaylists(withSession: session, withList: list, isUpdating: isUpdating, withFinalCallBack: fCallback);
             }
         });
     }
@@ -78,8 +80,7 @@ class SpotifyRequester {
     //        }
     //    }
     
-    
-    func fetchAllPlaylists(withSession session: SPTSession, withList playlistList: SPTListPage, withFinalCallBack fCallback: SPTPartialObject -> Void) {
+    func fetchAllPlaylists(withSession session: SPTSession, withList playlistList: SPTListPage, isUpdating: Bool, withFinalCallBack fCallback: SPTPartialObject -> Void) {
         
         var playlists: [SPTPartialPlaylist] = [SPTPartialPlaylist]();
         for item in playlistList.items {
@@ -88,7 +89,7 @@ class SpotifyRequester {
             }
         }
         
-        fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, withFinalCallback: fCallback, withCallback: {() -> Void in
+        fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: {() -> Void in
             if (playlistList.hasNextPage) {
                 CoreDataHelper.data.context.performBlock({
                     playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
@@ -98,7 +99,7 @@ class SpotifyRequester {
                             return;
                         }
                         if let newPage = object as? SPTListPage {
-                            self.fetchAllPlaylists(withSession: session, withList: newPage, withFinalCallBack: fCallback);
+                            self.fetchAllPlaylists(withSession: session, withList: newPage, isUpdating: isUpdating, withFinalCallBack: fCallback);
                         }
                     })
                 });
@@ -109,7 +110,7 @@ class SpotifyRequester {
         })
     }
     
-    func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], withFinalCallback fCallback: SPTPartialObject -> Void, withCallback callback: () -> Void) {
+    func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], isUpdating: Bool, withFinalCallback fCallback: SPTPartialObject -> Void, withCallback callback: () -> Void) {
         if (playlistList.count > 0)  {
             SPTPlaylistSnapshot.playlistWithURI(playlistList.first!.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
                 CoreDataHelper.data.context.performBlock({
@@ -120,11 +121,18 @@ class SpotifyRequester {
                     if let snapshot = object as? SPTPlaylistSnapshot {
                         if(snapshot.trackCount > 0 && String(snapshot.owner.uri) == User.currentUser()?.uri) {
                             print("got snapshot \(snapshot.name)");
-                            fCallback(snapshot);
-                            self.fetchTracksForPlaylist(withSession: session, withSnapshot: snapshot, withCallback: fCallback);
+                            if(isUpdating) {
+                                if(ParsingPlaylist.playlistHasChanged(snapshot.snapshotId, spotifyId: String(snapshot.uri))) {
+                                    print("playlist needs updating");
+                                }
+                                // check playlist
+                            } else {
+                                fCallback(snapshot);
+                                self.fetchTracksForPlaylist(withSession: session, withSnapshot: snapshot, withCallback: fCallback);
+                            }
                         }
                         playlistList.removeFirst();
-                        self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, withFinalCallback: fCallback, withCallback: callback);
+                        self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: callback);
                     }
                 })
             })
