@@ -94,7 +94,7 @@ class CoreDataHelper: NSObject {
             var error: NSError?
             do {
                 try self.privateContext.save()
-                print("private context saved")
+//                print("private context saved")
             } catch let error1 as NSError {
                 error = error1
                 print("context could not save, error: \(error)")

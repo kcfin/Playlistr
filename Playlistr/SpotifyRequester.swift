@@ -35,7 +35,7 @@ class SpotifyRequester {
                 // check users playlists for changes
                 // display data
                 isUpdating = true;
-                //                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
                 //                return;
             } else {
                 User.removeCurrentUser();
@@ -93,7 +93,7 @@ class SpotifyRequester {
         
         fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: {() -> Void in
             if (playlistList.hasNextPage) {
-                CoreDataHelper.data.context.performBlock({
+//                CoreDataHelper.data.privateContext.performBlock({
                     playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
                         print("fetched next page")
                         if(error != nil) {
@@ -104,9 +104,11 @@ class SpotifyRequester {
                             self.fetchAllPlaylists(withSession: session, withList: newPage, isUpdating: isUpdating, withFinalCallBack: fCallback);
                         }
                     })
-                });
+//                });
             }
             else {
+                ParsingPlaylist.removeDeletedPlaylists();
+                CoreDataHelper.data.save();
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
             }
         })
@@ -115,7 +117,7 @@ class SpotifyRequester {
     func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], isUpdating: Bool, withFinalCallback fCallback: SPTPartialObject -> Void, withCallback callback: () -> Void) {
         if (playlistList.count > 0)  {
             SPTPlaylistSnapshot.playlistWithURI(playlistList.first!.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
-                CoreDataHelper.data.context.performBlock({
+//                CoreDataHelper.data.privateContext.performBlock({
                     if(error != nil) {
                         print("error: \(error.localizedDescription)");
                         return;
@@ -136,7 +138,7 @@ class SpotifyRequester {
                         self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: callback);
                     }
                 })
-            })
+//            })
         } else {
             callback();
         }
@@ -178,7 +180,7 @@ class SpotifyRequester {
         
         if (snapshot.hasNextPage) {
             snapshot.requestNextPageWithSession(session, callback: {(error, object) -> Void in
-                CoreDataHelper.data.context.performBlock({
+//                CoreDataHelper.data.privateContext.performBlock({
                     if(error != nil) {
                         print("error: \(error.localizedDescription)");
                         return;
@@ -187,7 +189,7 @@ class SpotifyRequester {
                         self.fetchAllTracks(withSession: session, withCallback: callback, withSnapshot: newPage)
                     }
                 })
-            })
+//            })
         }
     }
 }

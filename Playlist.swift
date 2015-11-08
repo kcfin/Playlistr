@@ -12,13 +12,13 @@ import CoreData
 class Playlist: NSManagedObject {
 
     class func newPlaylist(name: String, monthNumber: Int, year: NSNumber) -> Playlist {
-        let entity = NSEntityDescription.entityForName("Playlist", inManagedObjectContext: CoreDataHelper.data.context);
-        let playlist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! Playlist;
+        let entity = NSEntityDescription.entityForName("Playlist", inManagedObjectContext: CoreDataHelper.data.privateContext);
+        let playlist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! Playlist;
         playlist.name = name;
         playlist.month = monthNumber;
 //        playlist.year = year;
         playlist.yearSection = year;
-        CoreDataHelper.data.save();
+        CoreDataHelper.data.privateSave();
         return playlist;
     }
     
@@ -32,7 +32,7 @@ class Playlist: NSManagedObject {
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: preds);
         let results: [AnyObject]?;
         do {
-            results = try CoreDataHelper.data.context.executeFetchRequest(request);
+            results = try CoreDataHelper.data.privateContext.executeFetchRequest(request);
         } catch let error as NSError {
             results = nil
             print("Error fetching playlist: \(error)");

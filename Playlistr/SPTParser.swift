@@ -17,7 +17,7 @@ class SPTParser {
     var music: [Int: [Int]] = [Int: [Int]]();
     
     init(withRequester curRequester: SpotifyRequester, withSession inSession: SPTSession) {
-        context = CoreDataHelper.data.context;
+        context = CoreDataHelper.data.privateContext;
         requester = curRequester;
         session = inSession;
     }
@@ -28,7 +28,7 @@ class SPTParser {
     
     func importUser() {
         requester.fetchUser(withSession: session, withCallback: {(user, isUpdating) -> Void in
-            self.context.performBlock({
+            self.context.performBlockAndWait({
                 self.importParsingPlaylists(isUpdating);
                 if(!isUpdating) {
                     var imgData: NSData? = nil;
@@ -44,7 +44,7 @@ class SPTParser {
     }
     
     func importParsingPlaylists(isUpdating: Bool) {
-        self.context.performBlockAndWait({
+        self.context.performBlock({
             self.requester.fetchParsingPlaylists(withSession: self.session, isUpdating: isUpdating, withFinalCallback: {(object) -> Void in
                 self.context.performBlock({
                     if let snapshot = object as? SPTPlaylistSnapshot {

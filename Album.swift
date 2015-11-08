@@ -12,11 +12,11 @@ import CoreData
 class Album: NSManagedObject {
 
     class func newAlbum(name: String, uri: String) -> Album {
-        let entity = NSEntityDescription.entityForName("Album", inManagedObjectContext: CoreDataHelper.data.context);
-        let album = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! Album;
+        let entity = NSEntityDescription.entityForName("Album", inManagedObjectContext: CoreDataHelper.data.privateContext);
+        let album = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! Album;
         album.uri = uri;
         album.name = name;
-        CoreDataHelper.data.save();
+        CoreDataHelper.data.privateSave();
         return album;
     }
     
@@ -28,7 +28,7 @@ class Album: NSManagedObject {
         
         let results: [AnyObject]?;
         do {
-            results = try CoreDataHelper.data.context.executeFetchRequest(request);
+            results = try CoreDataHelper.data.privateContext.executeFetchRequest(request);
         } catch let error as NSError {
             results = nil
             print("Error fetching year: \(error)");

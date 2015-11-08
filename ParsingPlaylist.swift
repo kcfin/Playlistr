@@ -10,15 +10,15 @@ import Foundation
 import CoreData
 
 class ParsingPlaylist: NSManagedObject {
-
+    
     class func newParsingPlaylist(snapshotId: String, spotifyId: String) -> ParsingPlaylist {
-        let entity = NSEntityDescription.entityForName("ParsingPlaylist", inManagedObjectContext: CoreDataHelper.data.context);
-        let parsingPlaylist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! ParsingPlaylist;
+        let entity = NSEntityDescription.entityForName("ParsingPlaylist", inManagedObjectContext: CoreDataHelper.data.privateContext);
+        let parsingPlaylist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! ParsingPlaylist;
         parsingPlaylist.snapshotId = snapshotId;
         parsingPlaylist.spotifyId = spotifyId;
         parsingPlaylist.dateChecked = NSDate().dateWithoutTime();
         parsingPlaylist.user = User.currentUser();
-        CoreDataHelper.data.save();
+        CoreDataHelper.data.privateSave();
         return parsingPlaylist;
     }
     
@@ -51,11 +51,28 @@ class ParsingPlaylist: NSManagedObject {
     
     class func deletePlaylist(playlist: ParsingPlaylist) {
         print("delete playlist \(playlist.spotifyId)")
-        CoreDataHelper.data.context.deleteObject(playlist);
-        CoreDataHelper.data.save();
+        CoreDataHelper.data.privateContext.deleteObject(playlist);
+        CoreDataHelper.data.privateSave();
     }
     
     class func removeDeletedPlaylists() {
-        
+//        CoreDataHelper.data.privateContext.performBlock({
+            let request = NSFetchRequest(entityName: "ParsingPlaylist");
+            let datePred = NSPredicate(format: "dateChecked != %@", NSDate().dateWithoutTime());
+//            let trackPred = NSPredicate(format: "track.count == %@", 0);
+//            let preds = NSCompoundPredicate(orPredicateWithSubpredicates: [datePred, trackPred]);
+            request.predicate = datePred;
+            let results: [AnyObject]?;
+            do {
+                results = try CoreDataHelper.data.privateContext.executeFetchRequest(request);
+            } catch let error as NSError {
+                results = nil
+                print("Error fetching year: \(error)");
+            }
+            
+            for object in results! {
+                ParsingPlaylist.deletePlaylist(object as! ParsingPlaylist);
+            }
+//        })
     }
 }

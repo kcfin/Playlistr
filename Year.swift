@@ -12,11 +12,11 @@ import CoreData
 class Year: NSManagedObject {
 
     class func newYear(inYear: NSInteger) -> Year {
-        let entity = NSEntityDescription.entityForName("Year", inManagedObjectContext: CoreDataHelper.data.context);
-        let y = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! Year;
+        let entity = NSEntityDescription.entityForName("Year", inManagedObjectContext: CoreDataHelper.data.privateContext);
+        let y = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! Year;
         y.year = inYear;
         y.user = User.currentUser()
-        CoreDataHelper.data.save();
+        CoreDataHelper.data.privateSave();
         return y;
     }
     
@@ -25,7 +25,7 @@ class Year: NSManagedObject {
         request.predicate = NSPredicate(format: "year == %d", inYear)
         let results: [AnyObject]?;
         do {
-            results = try CoreDataHelper.data.context.executeFetchRequest(request);
+            results = try CoreDataHelper.data.privateContext.executeFetchRequest(request);
         } catch let error as NSError {
             results = nil
             print("Error fetching year: \(error)");

@@ -123,7 +123,7 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
         let track = frc.objectAtIndexPath(indexPath) as! Track;
         cell.textLabel?.text = track.name;
         var albumName: String = "";
-        if let album = track.album as? Album {
+        if let album = track.album {
             if (!album.name!.isEmpty) {
                 albumName = " - \(album.name!)";
             }

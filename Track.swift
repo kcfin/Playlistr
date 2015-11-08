@@ -12,13 +12,13 @@ import CoreData
 class Track: NSManagedObject {
 
     class func newTrack(name: String, date: NSDate, uri: String, artist: String) -> Track {
-        let entity = NSEntityDescription.entityForName("Track", inManagedObjectContext: CoreDataHelper.data.context);
-        let track = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! Track;
+        let entity = NSEntityDescription.entityForName("Track", inManagedObjectContext: CoreDataHelper.data.privateContext);
+        let track = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.privateContext) as! Track;
         track.name = name;
         track.dateAdded = date;
         track.uri = uri;
         track.artist = artist;
-        CoreDataHelper.data.save();
+        CoreDataHelper.data.privateSave();
         return track;
     }
     
@@ -31,7 +31,7 @@ class Track: NSManagedObject {
         
         let results: [AnyObject]?;
         do {
-            results = try CoreDataHelper.data.context.executeFetchRequest(request);
+            results = try CoreDataHelper.data.privateContext.executeFetchRequest(request);
         } catch let error as NSError {
             results = nil
             print("Error fetching playlist: \(error)");
