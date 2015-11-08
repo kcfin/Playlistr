@@ -56,7 +56,6 @@ class ParsingPlaylist: NSManagedObject {
     }
     
     class func removeDeletedPlaylists() {
-//        CoreDataHelper.data.privateContext.performBlock({
             let request = NSFetchRequest(entityName: "ParsingPlaylist");
             let datePred = NSPredicate(format: "dateChecked != %@", NSDate().dateWithoutTime());
 //            let trackPred = NSPredicate(format: "track.count == %@", 0);
@@ -73,6 +72,5 @@ class ParsingPlaylist: NSManagedObject {
             for object in results! {
                 ParsingPlaylist.deletePlaylist(object as! ParsingPlaylist);
             }
-//        })
     }
 }

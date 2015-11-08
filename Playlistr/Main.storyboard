@@ -339,7 +339,7 @@
                                     <constraint firstAttribute="width" secondItem="ljY-sy-B07" secondAttribute="height" id="z3Z-U7-7v1"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-44-64.png" translatesAutoresizingMaskIntoConstraints="NO" id="nIz-dU-Nbd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forward-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="nIz-dU-Nbd">
                                 <rect key="frame" x="355" y="425" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nIz-dU-Nbd" secondAttribute="height" id="egt-ZQ-9Xz"/>
@@ -386,8 +386,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow-44-64.png" width="64" height="64"/>
         <image name="back-arrow.png" width="64" height="64"/>
+        <image name="forward-icon.png" width="64" height="64"/>
         <image name="log_in-mobile.png" width="488" height="88"/>
         <image name="palmtrees.jpg" width="688" height="860"/>
         <image name="video-play-64.png" width="64" height="64"/>

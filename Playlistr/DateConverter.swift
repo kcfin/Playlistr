@@ -18,7 +18,8 @@ public extension NSDate {
     func dateWithoutTime() -> NSDate {
         let timeZone = NSTimeZone.localTimeZone()
         let timeIntervalWithTimeZone = self.timeIntervalSinceReferenceDate + Double(timeZone.secondsFromGMT)
-        let timeInterval = floor(timeIntervalWithTimeZone / 86400) * 86400
+        let timeInterval = floor(timeIntervalWithTimeZone / 1440) * 1440
+        let date = NSDate(timeIntervalSinceReferenceDate: timeInterval);
         return NSDate(timeIntervalSinceReferenceDate: timeInterval)
     }
 }
