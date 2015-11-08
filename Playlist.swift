@@ -11,20 +11,20 @@ import CoreData
 
 class Playlist: NSManagedObject {
 
-    class func newPlaylist(name: String, monthNumber: Int, year: Year) -> Playlist {
+    class func newPlaylist(name: String, monthNumber: Int, year: NSNumber) -> Playlist {
         let entity = NSEntityDescription.entityForName("Playlist", inManagedObjectContext: CoreDataHelper.data.context);
         let playlist = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: CoreDataHelper.data.context) as! Playlist;
         playlist.name = name;
         playlist.month = monthNumber;
-        playlist.year = year;
-        playlist.yearSection = year.year;
+//        playlist.year = year;
+        playlist.yearSection = year;
         CoreDataHelper.data.save();
         return playlist;
     }
     
-    class func getPlaylist(inYear: Year, name: String) -> Playlist? {
+    class func getPlaylist(inYear: NSNumber, name: String) -> Playlist? {
         let request = NSFetchRequest(entityName: "Playlist");
-        let yearPred = NSPredicate(format: "year == %@", inYear);
+        let yearPred = NSPredicate(format: "yearSection == %@", inYear);
         let namePred = NSPredicate(format: "name == %@", name);
         var preds : [NSPredicate] = [NSPredicate]();
         preds.append(yearPred);

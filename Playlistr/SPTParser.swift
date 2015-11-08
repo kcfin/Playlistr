@@ -62,43 +62,61 @@ class SPTParser {
     func getDates(forTrack track: SPTPlaylistTrack) {
         self.context.performBlock({
             let (_, month, year) = track.addedAt.dayMonthYear;
-            if let date = Month(rawValue: month)?.description() {
-                if var years = self.music[year] {
-                    if(!years.contains(month)) {
-                        // the year exists, the month doesn't
-                        let cdYear = Year.getYear(year)!
-                        let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: cdYear);
-                        let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!);
-                        newTrack.playlist = newPlaylist;
-                        newTrack.year = cdYear
-                        newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
-                        years.append(month);
-                        self.music[year] = years;
-                    } else {
-                        // the year and the month exist
-                        let cdYear = Year.getYear(year)!;
-                        let newPlaylist = Playlist.getPlaylist(cdYear, name: date);
-                        if(!Track.trackExists(String(track.uri), playlist: newPlaylist!, year: cdYear)) {
-                            let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
-                            newTrack.playlist = newPlaylist;
-                            newTrack.year = cdYear;
-                            newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
-                        }
-                    }
-                } else {
-                    // the year doesn't exist, create year and month
-                    let newYear = Year.newYear(year);
-                    let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
-                    let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
-                    newTrack.playlist = newPlaylist;
-                    newTrack.year = newYear;
-                    newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
-                    self.music[year] = [month];
-                    
+            if let monthName = Month(rawValue: month)?.description() {
+                var playlist = Playlist.getPlaylist(year, name: monthName);
+                if (playlist == nil) {
+                    playlist = Playlist.newPlaylist(monthName, monthNumber: month, year: year);
                 }
+                var newTrack = Track.trackExists(String(track.uri), playlist: playlist!);
+                if (newTrack == nil) {
+                    newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!);
+                }
+                newTrack?.playlist = playlist!;
+                newTrack?.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri));
             }
         })
     }
+    
+//    func getDates(forTrack track: SPTPlaylistTrack) {
+//        self.context.performBlock({
+//            let (_, month, year) = track.addedAt.dayMonthYear;
+//            if let date = Month(rawValue: month)?.description() {
+//                if var years = self.music[year] {
+//                    if(!years.contains(month)) {
+//                        // the year exists, the month doesn't
+//                        let cdYear = Year.getYear(year)!
+//                        let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: cdYear);
+//                        let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!);
+//                        newTrack.playlist = newPlaylist;
+//                        newTrack.year = cdYear
+//                        newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
+//                        years.append(month);
+//                        self.music[year] = years;
+//                    } else {
+//                        // the year and the month exist
+//                        let cdYear = Year.getYear(year)!;
+//                        let newPlaylist = Playlist.getPlaylist(cdYear, name: date);
+//                        if(!Track.trackExists(String(track.uri), playlist: newPlaylist!, year: cdYear)) {
+//                            let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
+//                            newTrack.playlist = newPlaylist;
+//                            newTrack.year = cdYear;
+//                            newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
+//                        }
+//                    }
+//                } else {
+//                    // the year doesn't exist, create year and month
+//                    let newYear = Year.newYear(year);
+//                    let newPlaylist = Playlist.newPlaylist(date, monthNumber: month, year: newYear);
+//                    let newTrack = Track.newTrack(track.name, date: track.addedAt, uri: String(track.uri), artist: (track.artists.first?.name)!)
+//                    newTrack.playlist = newPlaylist;
+//                    newTrack.year = newYear;
+//                    newTrack.album = Album.getOrCreateAlbum(track.album.name, uri: String(track.album.uri))
+//                    self.music[year] = [month];
+//                    
+//                }
+//            }
+//        })
+//    }
     
     enum Month: Int  {
         case January = 1, February, March, April, May, June, July, August, September, October, November, December;

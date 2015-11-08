@@ -14,4 +14,11 @@ public extension NSDate {
         let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
         return (components.day, components.month, components.year)
     }
+    
+    func dateWithoutTime() -> NSDate {
+        let timeZone = NSTimeZone.localTimeZone()
+        let timeIntervalWithTimeZone = self.timeIntervalSinceReferenceDate + Double(timeZone.secondsFromGMT)
+        let timeInterval = floor(timeIntervalWithTimeZone / 86400) * 86400
+        return NSDate(timeIntervalSinceReferenceDate: timeInterval)
+    }
 }

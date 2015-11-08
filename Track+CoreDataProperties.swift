@@ -2,7 +2,7 @@
 //  Track+CoreDataProperties.swift
 //  Playlistr
 //
-//  Created by Katelyn Findlay on 10/22/15.
+//  Created by Katelyn Findlay on 11/6/15.
 //  Copyright © 2015 Katelyn Findlay. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,8 +18,9 @@ extension Track {
     @NSManaged var dateAdded: NSDate?
     @NSManaged var name: String?
     @NSManaged var uri: String?
-    @NSManaged var album: NSManagedObject?
+    @NSManaged var album: Album?
     @NSManaged var playlist: Playlist?
     @NSManaged var year: Year?
+    @NSManaged var parsingPlaylist: ParsingPlaylist?
 
 }

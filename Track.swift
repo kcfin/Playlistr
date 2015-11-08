@@ -22,25 +22,22 @@ class Track: NSManagedObject {
         return track;
     }
     
-    class func trackExists(uri: String, playlist: Playlist, year: Year) -> Bool {
+    class func trackExists(uri: String, playlist: Playlist) -> Track? {
         let request = NSFetchRequest(entityName: "Track");
-        let yearPred = NSPredicate(format: "year == %@", year)
+//        let yearPred = NSPredicate(format: "year == %@", year)
         let playlistPred = NSPredicate(format: "playlist == %@", playlist)
         let uriPred = NSPredicate(format: "uri == %@", uri)
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [yearPred, playlistPred, uriPred])
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [playlistPred, uriPred])
         
-        var error: NSError?;
-        let results = CoreDataHelper.data.context.countForFetchRequest(request, error: &error);
-        
-        if let e = error {
-            print("error fetching track \(e)");
-            return false;
+        let results: [AnyObject]?;
+        do {
+            results = try CoreDataHelper.data.context.executeFetchRequest(request);
+        } catch let error as NSError {
+            results = nil
+            print("Error fetching playlist: \(error)");
         }
         
-        if (results != 0) {
-            return true;
-        } else {
-            return false;
-        }
+        let track = results?.first as? Track;
+        return track;
     }
 }

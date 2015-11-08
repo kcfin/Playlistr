@@ -35,8 +35,8 @@ class SpotifyRequester {
                 // check users playlists for changes
                 // display data
                 isUpdating = true;
-//                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-//                return;
+                //                NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
+                //                return;
             } else {
                 User.removeCurrentUser();
             }
@@ -85,7 +85,9 @@ class SpotifyRequester {
         var playlists: [SPTPartialPlaylist] = [SPTPartialPlaylist]();
         for item in playlistList.items {
             if let playlist = item as? SPTPartialPlaylist {
-                playlists.append(playlist);
+                if(String(playlist.owner.uri) == User.currentUser()!.uri && playlist.trackCount > 0) {
+                    playlists.append(playlist);
+                }
             }
         }
         
@@ -119,17 +121,16 @@ class SpotifyRequester {
                         return;
                     }
                     if let snapshot = object as? SPTPlaylistSnapshot {
-                        if(snapshot.trackCount > 0 && String(snapshot.owner.uri) == User.currentUser()?.uri) {
-                            print("got snapshot \(snapshot.name)");
-                            if(isUpdating) {
-                                if(ParsingPlaylist.playlistHasChanged(snapshot.snapshotId, spotifyId: String(snapshot.uri))) {
-                                    print("playlist needs updating");
-                                }
-                                // check playlist
-                            } else {
+                        print("got snapshot \(snapshot.name)");
+                        if(isUpdating) {
+                            if(ParsingPlaylist.playlistHasChanged(snapshot.snapshotId, spotifyId: String(snapshot.uri))) {
+                                print("playlist needs updating");
                                 fCallback(snapshot);
-                                self.fetchTracksForPlaylist(withSession: session, withSnapshot: snapshot, withCallback: fCallback);
+                                self.fetchAllTracks(withSession: session, withCallback: fCallback, withSnapshot: snapshot.firstTrackPage);
                             }
+                        } else {
+                            fCallback(snapshot);
+                            self.fetchAllTracks(withSession: session, withCallback: fCallback, withSnapshot: snapshot.firstTrackPage);
                         }
                         playlistList.removeFirst();
                         self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: callback);
@@ -137,8 +138,6 @@ class SpotifyRequester {
                 })
             })
         } else {
-//            print("finished list");
-//            NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
             callback();
         }
     }
@@ -160,12 +159,12 @@ class SpotifyRequester {
     //
     //    }
     
-    func fetchTracksForPlaylist(withSession session: SPTSession, withSnapshot snapshot: SPTPlaylistSnapshot, withCallback callback: (SPTPartialObject) -> Void) {
-        
-        if let snapPage = snapshot.firstTrackPage {
-            fetchAllTracks(withSession: session, withCallback: callback, withSnapshot: snapPage);
-        }
-    }
+    //    func fetchTracksForPlaylist(withSession session: SPTSession, withSnapshot snapshot: SPTPlaylistSnapshot, withCallback callback: (SPTPartialObject) -> Void) {
+    //
+    //        if let snapPage = snapshot.firstTrackPage {
+    //            fetchAllTracks(withSession: session, withCallback: callback, withSnapshot: snapPage);
+    //        }
+    //    }
     
     func fetchAllTracks(withSession session: SPTSession, withCallback callback: (SPTPartialObject) -> Void, withSnapshot snapshot: SPTListPage) {
         
