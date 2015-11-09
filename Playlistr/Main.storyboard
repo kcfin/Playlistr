@@ -357,7 +357,7 @@
                                     <constraint firstAttribute="width" secondItem="wS0-wP-dD3" secondAttribute="height" id="Jou-yR-YlE"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhI-OD-h17" userLabel="Pause Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhI-OD-h17" userLabel="Pause Button">
                                 <rect key="frame" x="275" y="425" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hhI-OD-h17" secondAttribute="height" id="JzU-GG-HqL"/>
@@ -370,10 +370,16 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kd0-sw-5BZ" userLabel="Forward Button">
                                 <rect key="frame" x="355" y="418" width="50" height="64"/>
                                 <state key="normal" image="forwardButton.png"/>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="NoG-GA-EaJ" eventType="touchUpInside" id="yY4-A2-gYQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-ZF-kfn" userLabel="Back Button">
                                 <rect key="frame" x="195" y="418" width="50" height="64"/>
                                 <state key="normal" image="backButton.png"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="NoG-GA-EaJ" eventType="touchUpInside" id="c0g-ho-QXl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.76446132249999998" green="0.89060527150000002" blue="0.67417138369999996" alpha="1" colorSpace="calibratedRGB"/>

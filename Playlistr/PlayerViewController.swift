@@ -130,7 +130,23 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
         }
     }
     
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        if (index == 0) {
+            index = trackList.count - 1;
+        } else {
+            index!--;
+        }
+        playMusic();
+    }
     
+    @IBAction func nextButtonPressed(sender: AnyObject) {
+        if (index == trackList.count - 1) {
+            index = 0;
+        } else {
+            index!++;
+        }
+        playMusic();
+    }
     /*
     // MARK: - Navigation
     
