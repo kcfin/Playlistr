@@ -183,9 +183,9 @@
 			children = (
 				EAAB98001BF05A3000CAF0CD /* Images */,
 				EAD5E0281BB8912900BE68CA /* Config.swift */,
+				EADC22971BAF879900EB884A /* Playlistr-Bridging-Header.h */,
 				EA07E5871BAF288D001BC449 /* Images.xcassets */,
 				EA07E5891BAF288D001BC449 /* LaunchScreen.xib */,
-				EADC22971BAF879900EB884A /* Playlistr-Bridging-Header.h */,
 				EA07E57F1BAF288D001BC449 /* Info.plist */,
 			);
 			name = "Supporting Files";

@@ -113,7 +113,12 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
                 print("error");
                 return;
             }
+            self.pauseButton.setImage(UIImage(named: "pauseButton.png"), forState: UIControlState.Normal);
         })
+    }
+    
+    func togglePlayButton() {
+        
     }
     
     @IBAction func downButtonPressed(sender: AnyObject) {

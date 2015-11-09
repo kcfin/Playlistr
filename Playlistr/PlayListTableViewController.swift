@@ -149,12 +149,16 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
         if let player = rootView.playerVC {
             if(player.isNewPlaylist(playlist!)) {
                 var trackURIs: [NSURL] = [NSURL]();
+                var trackList: [Track] = [Track]();
                 for object in frc.fetchedObjects! {
                     if let track = object as? Track {
                         trackURIs.append(NSURL(string: track.uri!)!);
+                        trackList.append(track);
                     }
                 }
                 player.trackURIs = trackURIs;
+                player.trackList = trackList;
+                
             }
             player.index = indexPath.row;
             player.playMusic();

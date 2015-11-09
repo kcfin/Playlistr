@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("error: \(error.localizedDescription)");
                     return;
                 }
-                if let sess = session as? SPTSession {
+                if let sess = session {
                     let parser = SPTParser(withRequester: SpotifyRequester(), withSession: sess);
                     parser.importData();
                 }
