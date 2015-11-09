@@ -10,6 +10,7 @@ import UIKit
 
 class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     
+    @IBOutlet weak var pauseButton: UIImageView!
     @IBOutlet weak var albumCover: UIImageView!
     @IBOutlet weak var trackLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
@@ -117,6 +118,8 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
     @IBAction func downButtonPressed(sender: AnyObject) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
     }
+    
+    
     
     /*
     // MARK: - Navigation
