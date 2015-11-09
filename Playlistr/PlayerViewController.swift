@@ -10,11 +10,12 @@ import UIKit
 
 class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     
-    @IBOutlet weak var pauseButton: UIImageView!
+    @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var albumCover: UIImageView!
     @IBOutlet weak var trackLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var albumLabel: UILabel!
+//    var isPlaying: Bool?;
     var player: SPTAudioStreamingController?;
     var trackURIs: [NSURL] = [NSURL]();
     var trackList: [Track] = [Track]();
@@ -119,6 +120,15 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil);
     }
     
+    @IBAction func playPauseButtonPressed(sender: UIButton) {
+        if(player!.isPlaying) {
+            player?.setIsPlaying(false, callback: nil);
+            pauseButton.setImage(UIImage(named: "playButton.png"), forState: UIControlState.Normal);
+        } else {
+            player?.setIsPlaying(true, callback: nil);
+            pauseButton.setImage(UIImage(named: "pauseButton.png"), forState: UIControlState.Normal);
+        }
+    }
     
     
     /*

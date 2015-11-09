@@ -335,19 +335,19 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyF-jf-nR3">
                                 <rect key="frame" x="275" y="100" width="49" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tc-il-ila">
                                 <rect key="frame" x="276" y="129" width="47.5" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jb-V3-VFl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jb-V3-VFl">
                                 <rect key="frame" x="270.5" y="158" width="58" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -357,12 +357,15 @@
                                     <constraint firstAttribute="width" secondItem="wS0-wP-dD3" secondAttribute="height" id="Jou-yR-YlE"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhI-OD-h17" userLabel="Pause Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhI-OD-h17" userLabel="Pause Button">
                                 <rect key="frame" x="275" y="425" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hhI-OD-h17" secondAttribute="height" id="JzU-GG-HqL"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="pauseButton.png"/>
+                                <state key="normal" image="pauseButton.png"/>
+                                <connections>
+                                    <action selector="playPauseButtonPressed:" destination="NoG-GA-EaJ" eventType="touchUpInside" id="5iZ-bv-hES"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kd0-sw-5BZ" userLabel="Forward Button">
                                 <rect key="frame" x="355" y="418" width="50" height="64"/>
@@ -401,6 +404,7 @@
                         <outlet property="albumCover" destination="wS0-wP-dD3" id="w30-In-JHS"/>
                         <outlet property="albumLabel" destination="7Jb-V3-VFl" id="ljJ-Di-Z9m"/>
                         <outlet property="artistLabel" destination="1tc-il-ila" id="jFz-cJ-d9H"/>
+                        <outlet property="pauseButton" destination="hhI-OD-h17" id="YuC-S3-kVu"/>
                         <outlet property="trackLabel" destination="cyF-jf-nR3" id="sGk-fe-khh"/>
                     </connections>
                 </viewController>
