@@ -38,6 +38,7 @@
 		EAAB97F31BF0174700CAF0CD /* back-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97F21BF0174700CAF0CD /* back-arrow.png */; };
 		EAAB97F51BF0180800CAF0CD /* play-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97F41BF0180800CAF0CD /* play-icon.png */; };
 		EAAB97F71BF0189F00CAF0CD /* video-play-64.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97F61BF0189F00CAF0CD /* video-play-64.png */; };
+		EAAB97FF1BF036A800CAF0CD /* pause-256.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97FE1BF036A800CAF0CD /* pause-256.png */; };
 		EAAF919B1BD8842D00D946EB /* Year+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */; };
 		EAAF919E1BD88CA900D946EB /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919D1BD88CA900D946EB /* User+CoreDataProperties.swift */; };
 		EAC8971B1BDD78E100852C67 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC8971A1BDD78E100852C67 /* Spotify.framework */; };
@@ -102,6 +103,7 @@
 		EAAB97F21BF0174700CAF0CD /* back-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow.png"; sourceTree = "<group>"; };
 		EAAB97F41BF0180800CAF0CD /* play-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-icon.png"; sourceTree = "<group>"; };
 		EAAB97F61BF0189F00CAF0CD /* video-play-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-play-64.png"; sourceTree = "<group>"; };
+		EAAB97FE1BF036A800CAF0CD /* pause-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause-256.png"; path = "../pause-256.png"; sourceTree = "<group>"; };
 		EAAF918F1BD8830000D946EB /* PlaylistrModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Year+CoreDataProperties.swift"; path = "../Year+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAAF919C1BD88C8200D946EB /* PlaylistrModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 10.xcdatamodel"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				EAD5E0281BB8912900BE68CA /* Config.swift */,
 				EA07E5871BAF288D001BC449 /* Images.xcassets */,
+				EAAB97FE1BF036A800CAF0CD /* pause-256.png */,
 				EAAB97F61BF0189F00CAF0CD /* video-play-64.png */,
 				EAAB97F41BF0180800CAF0CD /* play-icon.png */,
 				EA03D31A1BE413F8000328B6 /* forward-icon.png */,
@@ -331,6 +334,7 @@
 				EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */,
 				EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */,
 				EA03D31B1BE413F8000328B6 /* forward-icon.png in Resources */,
+				EAAB97FF1BF036A800CAF0CD /* pause-256.png in Resources */,
 				EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */,
 				EAAB97F31BF0174700CAF0CD /* back-arrow.png in Resources */,
 				EAAB97F71BF0189F00CAF0CD /* video-play-64.png in Resources */,

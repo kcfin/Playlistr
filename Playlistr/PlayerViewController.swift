@@ -11,8 +11,12 @@ import UIKit
 class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     
     @IBOutlet weak var albumCover: UIImageView!
+    @IBOutlet weak var trackLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var albumLabel: UILabel!
     var player: SPTAudioStreamingController?;
     var trackURIs: [NSURL] = [NSURL]();
+    var trackList: [Track] = [Track]();
     var playlist: Playlist?;
     let auth = SpotifyAuthenticator().auth;
     var index: Int?;
@@ -45,6 +49,10 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
     }
     
     func setAlbumArtwork() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.albumCover.image = nil;
+        }
+        
         SPTTrack.trackWithURI(trackURIs[index!], session: auth.session, callback: {(error, object) -> Void in
             if(error != nil) {
                 print("error fetching track for player view");
@@ -61,9 +69,20 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
                         }
                     }
                 }
-
+                
             }
         })
+    }
+    
+    
+    func setTrackInfo() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.trackLabel.text = self.trackList[self.index!].name;
+            self.artistLabel.text = self.trackList[self.index!].artist;
+            if let albumText = self.trackList[self.index!].album?.name {
+                self.albumLabel.text = albumText;
+            }
+        }
     }
     
     func isNewPlaylist(newPlaylist: Playlist) -> Bool {
@@ -72,6 +91,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
                 return false;
             } else {
                 trackURIs.removeAll();
+                trackList.removeAll();
                 playlist = newPlaylist;
                 return true;
             }
@@ -84,6 +104,7 @@ class PlayerViewController: UIViewController, SPTAudioStreamingPlaybackDelegate 
     
     func playMusic() {
         setAlbumArtwork();
+        setTrackInfo();
         
         self.player!.playURIs(self.trackURIs, fromIndex: Int32(index!), callback: {(error) -> Void in
             if(error != nil) {

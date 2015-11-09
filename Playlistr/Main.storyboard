@@ -333,7 +333,7 @@
                                     <action selector="downButtonPressed:" destination="NoG-GA-EaJ" eventType="touchUpInside" id="Qwr-En-m3Y"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video-play-64.png" translatesAutoresizingMaskIntoConstraints="NO" id="ljY-sy-B07">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pause-256.png" translatesAutoresizingMaskIntoConstraints="NO" id="ljY-sy-B07">
                                 <rect key="frame" x="275" y="425" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ljY-sy-B07" secondAttribute="height" id="z3Z-U7-7v1"/>
@@ -357,27 +357,54 @@
                                     <constraint firstAttribute="width" secondItem="wS0-wP-dD3" secondAttribute="height" id="Jou-yR-YlE"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyF-jf-nR3">
+                                <rect key="frame" x="275" y="100" width="49" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tc-il-ila">
+                                <rect key="frame" x="276" y="129" width="47.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jb-V3-VFl">
+                                <rect key="frame" x="270.5" y="158" width="58" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.76446132249999998" green="0.89060527150000002" blue="0.67417138369999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ljY-sy-B07" firstAttribute="centerX" secondItem="Yo3-Pk-XyH" secondAttribute="centerX" id="1v3-1Q-TnO"/>
                             <constraint firstItem="nIz-dU-Nbd" firstAttribute="centerY" secondItem="Yo3-Pk-XyH" secondAttribute="centerY" multiplier="3:2" id="3ZQ-Gv-vCv"/>
+                            <constraint firstItem="cyF-jf-nR3" firstAttribute="centerX" secondItem="Yo3-Pk-XyH" secondAttribute="centerX" id="3xY-1c-wvL"/>
                             <constraint firstItem="ljY-sy-B07" firstAttribute="centerY" secondItem="Yo3-Pk-XyH" secondAttribute="centerY" multiplier="3:2" id="691-Er-lXx"/>
+                            <constraint firstItem="1tc-il-ila" firstAttribute="centerX" secondItem="Yo3-Pk-XyH" secondAttribute="centerX" id="7Y5-wr-EDr"/>
                             <constraint firstItem="nIz-dU-Nbd" firstAttribute="width" secondItem="ljY-sy-B07" secondAttribute="width" id="8Nb-6y-NOQ"/>
                             <constraint firstItem="UgO-4Q-Cnz" firstAttribute="centerY" secondItem="Yo3-Pk-XyH" secondAttribute="centerY" multiplier="3:2" id="Doo-sz-VFs"/>
                             <constraint firstItem="nIz-dU-Nbd" firstAttribute="leading" secondItem="ljY-sy-B07" secondAttribute="trailing" constant="30" id="Gdt-vL-1q8"/>
+                            <constraint firstItem="7Jb-V3-VFl" firstAttribute="centerX" secondItem="Yo3-Pk-XyH" secondAttribute="centerX" id="H83-a8-MPk"/>
                             <constraint firstAttribute="trailing" secondItem="IMY-F6-pgo" secondAttribute="trailing" constant="15" id="LSK-DC-ESN"/>
                             <constraint firstItem="wS0-wP-dD3" firstAttribute="centerX" secondItem="Yo3-Pk-XyH" secondAttribute="centerX" id="NNU-kY-AKM"/>
+                            <constraint firstItem="cyF-jf-nR3" firstAttribute="bottom" secondItem="1tc-il-ila" secondAttribute="top" constant="-5" id="QbK-MS-yVu"/>
                             <constraint firstItem="ljY-sy-B07" firstAttribute="width" secondItem="UgO-4Q-Cnz" secondAttribute="width" id="R5N-v2-LbX"/>
                             <constraint firstItem="wS0-wP-dD3" firstAttribute="centerY" secondItem="Yo3-Pk-XyH" secondAttribute="centerY" id="SYt-2G-Mte"/>
                             <constraint firstItem="wS0-wP-dD3" firstAttribute="height" secondItem="Yo3-Pk-XyH" secondAttribute="height" multiplier="1:3" id="TUe-L3-iIg"/>
+                            <constraint firstItem="1tc-il-ila" firstAttribute="bottom" secondItem="7Jb-V3-VFl" secondAttribute="top" constant="-5" id="WDZ-1f-9Xv"/>
                             <constraint firstItem="IMY-F6-pgo" firstAttribute="top" secondItem="Yo3-Pk-XyH" secondAttribute="top" constant="15" id="bKt-OI-hRa"/>
+                            <constraint firstItem="cyF-jf-nR3" firstAttribute="top" secondItem="Yo3-Pk-XyH" secondAttribute="centerY" multiplier="1:3" id="bTS-gN-TFo"/>
                             <constraint firstItem="ljY-sy-B07" firstAttribute="width" secondItem="wS0-wP-dD3" secondAttribute="width" multiplier="1:4" id="wRd-DE-78q"/>
                             <constraint firstItem="ljY-sy-B07" firstAttribute="leading" secondItem="UgO-4Q-Cnz" secondAttribute="trailing" constant="30" id="yQS-p2-nic"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="albumCover" destination="wS0-wP-dD3" id="w30-In-JHS"/>
+                        <outlet property="albumLabel" destination="7Jb-V3-VFl" id="ljJ-Di-Z9m"/>
+                        <outlet property="artistLabel" destination="1tc-il-ila" id="jFz-cJ-d9H"/>
+                        <outlet property="trackLabel" destination="cyF-jf-nR3" id="sGk-fe-khh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zVt-em-8Ag" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -390,6 +417,6 @@
         <image name="forward-icon.png" width="64" height="64"/>
         <image name="log_in-mobile.png" width="488" height="88"/>
         <image name="palmtrees.jpg" width="688" height="860"/>
-        <image name="video-play-64.png" width="64" height="64"/>
+        <image name="pause-256.png" width="207" height="207"/>
     </resources>
 </document>
