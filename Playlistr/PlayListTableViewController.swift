@@ -16,6 +16,11 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
     @IBOutlet weak var albumTwo: UIImageView!
     @IBOutlet weak var albumThree: UIImageView!
     @IBOutlet weak var albumFour: UIImageView!
+    @IBOutlet var headerView: UIView! {
+        didSet {
+            headerView.backgroundColor = UIColor.ThemeColor()
+        }
+    }
     @IBOutlet var trackTableView: UITableView!
     var frc: NSFetchedResultsController = NSFetchedResultsController();
     var trackFR: NSFetchRequest?;

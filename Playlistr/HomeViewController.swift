@@ -11,9 +11,13 @@ import CoreData
 
 class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var profileView: UIView! {
+        didSet {
+            profileView.backgroundColor = UIColor.ThemeColor()
+        }
+    }
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var playlistTableView: UITableView!
     var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController();
     
@@ -50,12 +54,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
         setupImageView();
         setupNameLabel();
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     // MARK: - Fetched Results Controller Methods
     func getFetchedResultsController() -> NSFetchedResultsController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: playlistFetchRequest(), managedObjectContext: CoreDataHelper.data.context, sectionNameKeyPath: "yearSection", cacheName: nil);

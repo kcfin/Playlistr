@@ -258,7 +258,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.76446132249999998" green="0.89060527150000002" blue="0.67417138369999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.76470588235294112" green="0.8901960784313725" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="baseline" secondItem="b28-Dd-DPr" secondAttribute="top" multiplier="5:4" id="Nnl-PQ-2TU"/>
                                 <constraint firstItem="t4d-Ei-eSP" firstAttribute="height" secondItem="pqZ-LP-hI7" secondAttribute="height" multiplier="3:5" id="XoP-hU-dqM"/>
@@ -303,6 +303,7 @@
                         <outlet property="albumOne" destination="hrL-F9-aQk" id="4ZV-Nn-pRp"/>
                         <outlet property="albumThree" destination="1Gy-i0-8NY" id="c8J-vX-cDK"/>
                         <outlet property="albumTwo" destination="iUj-qe-CSi" id="tjb-B7-PYY"/>
+                        <outlet property="headerView" destination="pqZ-LP-hI7" id="oMl-SO-ijt"/>
                         <outlet property="playlistLabel" destination="b28-Dd-DPr" id="EwN-P0-iLO"/>
                         <outlet property="trackTableView" destination="9t9-sn-AWY" id="BEB-qW-dKq"/>
                     </connections>
