@@ -40,10 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             authenticator.auth.renewSession(authenticator.auth.session, callback: {(error, session) -> Void in
                 if(error != nil) {
                     print("error: \(error.localizedDescription)");
-                    return;
-                }
-                if let sess = session {
-                    let parser = SPTParser(withRequester: SpotifyRequester(), withSession: sess);
+                    let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginVC");
+                    loginVC.modalPresentationStyle = UIModalPresentationStyle.FullScreen;
+                    loginVC.modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.window?.rootViewController!.presentViewController(loginVC, animated: true, completion: nil);
+                    })
+                } else {
+                    let parser = SPTParser(withRequester: SpotifyRequester(), withSession: session);
                     parser.importData();
                 }
             })

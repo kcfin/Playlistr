@@ -82,7 +82,19 @@
                     <view key="view" contentMode="scaleToFill" id="q8G-T6-sVu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headphones.png" translatesAutoresizingMaskIntoConstraints="NO" id="EQ9-BP-JWh">
+                                <rect key="frame" x="210" y="210" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="EQ9-BP-JWh" secondAttribute="height" id="iFU-WW-kFp"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EQ9-BP-JWh" firstAttribute="centerX" secondItem="q8G-T6-sVu" secondAttribute="centerX" id="cnH-Yo-UbF"/>
+                            <constraint firstItem="EQ9-BP-JWh" firstAttribute="centerY" secondItem="q8G-T6-sVu" secondAttribute="centerY" id="lk4-4b-tDb"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="xh1-Gg-CHq" kind="show" identifier="GoToLogin" animates="NO" id="KH9-OG-7Gt"/>
@@ -422,6 +434,7 @@
     <resources>
         <image name="backButton.png" width="64" height="64"/>
         <image name="forwardButton.png" width="64" height="64"/>
+        <image name="headphones.png" width="180" height="180"/>
         <image name="log_in-mobile.png" width="488" height="88"/>
         <image name="palmtrees.jpg" width="688" height="860"/>
         <image name="pauseButton.png" width="207" height="207"/>

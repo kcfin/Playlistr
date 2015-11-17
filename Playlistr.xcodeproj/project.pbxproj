@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BC050C81CF34EC96D219820 /* Pods_Playlistr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FC647CEA730AD1DA21DE61 /* Pods_Playlistr.framework */; };
 		EA03D30D1BE152BB000328B6 /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30C1BE152BB000328B6 /* sunset.jpg */; };
 		EA03D30F1BE15466000328B6 /* log_in-mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30E1BE15466000328B6 /* log_in-mobile.png */; };
 		EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3101BE16A0E000328B6 /* palmtrees.jpg */; };
@@ -39,6 +40,7 @@
 		EAAB97F51BF0180800CAF0CD /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97F41BF0180800CAF0CD /* playButton.png */; };
 		EAAB97F71BF0189F00CAF0CD /* video-play-64.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97F61BF0189F00CAF0CD /* video-play-64.png */; };
 		EAAB97FF1BF036A800CAF0CD /* pauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97FE1BF036A800CAF0CD /* pauseButton.png */; };
+		EAAB98041BF3BFEE00CAF0CD /* headphones.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB98031BF3BFEE00CAF0CD /* headphones.png */; };
 		EAAF919B1BD8842D00D946EB /* Year+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */; };
 		EAAF919E1BD88CA900D946EB /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAF919D1BD88CA900D946EB /* User+CoreDataProperties.swift */; };
 		EAC8971B1BDD78E100852C67 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC8971A1BDD78E100852C67 /* Spotify.framework */; };
@@ -60,6 +62,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79176536264CD924336639C3 /* Pods-Playlistr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playlistr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Playlistr/Pods-Playlistr.debug.xcconfig"; sourceTree = "<group>"; };
+		A3FC647CEA730AD1DA21DE61 /* Pods_Playlistr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Playlistr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD6150E74759B664D1CE6400 /* Pods-Playlistr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playlistr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Playlistr/Pods-Playlistr.release.xcconfig"; sourceTree = "<group>"; };
 		EA03D30C1BE152BB000328B6 /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
 		EA03D30E1BE15466000328B6 /* log_in-mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "log_in-mobile.png"; sourceTree = "<group>"; };
 		EA03D3101BE16A0E000328B6 /* palmtrees.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = palmtrees.jpg; sourceTree = "<group>"; };
@@ -104,6 +109,7 @@
 		EAAB97F41BF0180800CAF0CD /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
 		EAAB97F61BF0189F00CAF0CD /* video-play-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-play-64.png"; sourceTree = "<group>"; };
 		EAAB97FE1BF036A800CAF0CD /* pauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pauseButton.png; path = ../pauseButton.png; sourceTree = "<group>"; };
+		EAAB98031BF3BFEE00CAF0CD /* headphones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headphones.png; path = Images.xcassets/AppIcon.appiconset/headphones.png; sourceTree = "<group>"; };
 		EAAF918F1BD8830000D946EB /* PlaylistrModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		EAAF919A1BD8842D00D946EB /* Year+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Year+CoreDataProperties.swift"; path = "../Year+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAAF919C1BD88C8200D946EB /* PlaylistrModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 10.xcdatamodel"; sourceTree = "<group>"; };
@@ -126,6 +132,7 @@
 				EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */,
 				EAC8971B1BDD78E100852C67 /* Spotify.framework in Frameworks */,
 				EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */,
+				8BC050C81CF34EC96D219820 /* Pods_Playlistr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +153,7 @@
 				EA07E5931BAF288D001BC449 /* PlaylistrTests */,
 				EA07E57C1BAF288D001BC449 /* Products */,
 				EADC228E1BAF856A00EB884A /* Frameworks */,
+				F0FD99307A22677FB3F9115C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,6 +248,7 @@
 				EA03D3101BE16A0E000328B6 /* palmtrees.jpg */,
 				EA03D30C1BE152BB000328B6 /* sunset.jpg */,
 				EA03D30E1BE15466000328B6 /* log_in-mobile.png */,
+				EAAB98031BF3BFEE00CAF0CD /* headphones.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -250,9 +259,19 @@
 				EADC22951BAF869D00EB884A /* SystemConfiguration.framework */,
 				EADC22931BAF868C00EB884A /* AVFoundation.framework */,
 				EAC8971A1BDD78E100852C67 /* Spotify.framework */,
+				A3FC647CEA730AD1DA21DE61 /* Pods_Playlistr.framework */,
 			);
 			name = Frameworks;
 			path = Playlistr;
+			sourceTree = "<group>";
+		};
+		F0FD99307A22677FB3F9115C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79176536264CD924336639C3 /* Pods-Playlistr.debug.xcconfig */,
+				DD6150E74759B664D1CE6400 /* Pods-Playlistr.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +281,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA07E59A1BAF288D001BC449 /* Build configuration list for PBXNativeTarget "Playlistr" */;
 			buildPhases = (
+				EAA8F76ECF5288845F9D0815 /* Check Pods Manifest.lock */,
 				EA07E5771BAF288D001BC449 /* Sources */,
 				EA07E5781BAF288D001BC449 /* Frameworks */,
 				EA07E5791BAF288D001BC449 /* Resources */,
+				BA0CDE9415F2669165BDD86B /* Embed Pods Frameworks */,
+				88A1E1573BEACEC546F38DBF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -337,6 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAAB98041BF3BFEE00CAF0CD /* headphones.png in Resources */,
 				EA03D30D1BE152BB000328B6 /* sunset.jpg in Resources */,
 				EA718B371BB8F84600CBDC8D /* Main.storyboard in Resources */,
 				EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */,
@@ -359,6 +382,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		88A1E1573BEACEC546F38DBF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Playlistr/Pods-Playlistr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA0CDE9415F2669165BDD86B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Playlistr/Pods-Playlistr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EAA8F76ECF5288845F9D0815 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA07E5771BAF288D001BC449 /* Sources */ = {
@@ -508,6 +579,7 @@
 		};
 		EA07E59B1BAF288D001BC449 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79176536264CD924336639C3 /* Pods-Playlistr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -532,6 +604,7 @@
 		};
 		EA07E59C1BAF288D001BC449 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD6150E74759B664D1CE6400 /* Pods-Playlistr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

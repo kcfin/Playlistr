@@ -51,8 +51,9 @@ class ParsingPlaylist: NSManagedObject {
     
     class func deletePlaylist(playlist: ParsingPlaylist) {
         print("delete playlist \(playlist.spotifyId)")
-        CoreDataHelper.data.privateContext.deleteObject(playlist);
+        CoreDataHelper.data.context.deleteObject(playlist);
         CoreDataHelper.data.privateSave();
+        CoreDataHelper.data.save();
     }
     
     class func removeDeletedPlaylists() {
