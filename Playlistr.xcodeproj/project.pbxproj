@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89D775671BFBE1F500497D78 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D775661BFBE1F500497D78 /* NavigationController.swift */; settings = {ASSET_TAGS = (); }; };
+		89D775691BFBE22D00497D78 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D775681BFBE22D00497D78 /* Colors.swift */; settings = {ASSET_TAGS = (); }; };
 		EA03D30D1BE152BB000328B6 /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30C1BE152BB000328B6 /* sunset.jpg */; };
 		EA03D30F1BE15466000328B6 /* log_in-mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30E1BE15466000328B6 /* log_in-mobile.png */; };
 		EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3101BE16A0E000328B6 /* palmtrees.jpg */; };
@@ -60,6 +62,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		89D775661BFBE1F500497D78 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		89D775681BFBE22D00497D78 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EA03D30C1BE152BB000328B6 /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
 		EA03D30E1BE15466000328B6 /* log_in-mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "log_in-mobile.png"; sourceTree = "<group>"; };
 		EA03D3101BE16A0E000328B6 /* palmtrees.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = palmtrees.jpg; sourceTree = "<group>"; };
@@ -139,6 +143,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89D7756A1BFBE37100497D78 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EA82171E1BCF5C2800883779 /* DateConverter.swift */,
+				89D775661BFBE1F500497D78 /* NavigationController.swift */,
+				89D775681BFBE22D00497D78 /* Colors.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		89D7756B1BFBE38100497D78 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EA9A71981BBB88F30028DA4A /* SpotifyRequester.swift */,
+				EA9A719A1BBB89230028DA4A /* SPTParser.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		EA07E5721BAF288D001BC449 = {
 			isa = PBXGroup;
 			children = (
@@ -162,16 +185,15 @@
 			isa = PBXGroup;
 			children = (
 				EA07E5801BAF288D001BC449 /* AppDelegate.swift */,
-				EA82171E1BCF5C2800883779 /* DateConverter.swift */,
-				EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */,
+				EA718B361BB8F84600CBDC8D /* Main.storyboard */,
 				EAD5E02E1BB8B36F00BE68CA /* LoginViewController.swift */,
 				EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */,
 				EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */,
-				EA9A71811BBA449B0028DA4A /* PlaylistTableViewController.swift */,
 				EAA810AE1BD9AC9A005D1EA4 /* PlayerViewController.swift */,
-				EA9A71981BBB88F30028DA4A /* SpotifyRequester.swift */,
-				EA9A719A1BBB89230028DA4A /* SPTParser.swift */,
-				EA718B361BB8F84600CBDC8D /* Main.storyboard */,
+				EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */,
+				EA9A71811BBA449B0028DA4A /* PlaylistTableViewController.swift */,
+				89D7756B1BFBE38100497D78 /* Data */,
+				89D7756A1BFBE37100497D78 /* Util */,
 				EA9A71861BBA503B0028DA4A /* CoreData */,
 				EA07E57E1BAF288D001BC449 /* Supporting Files */,
 			);
@@ -375,6 +397,7 @@
 				EAA810AF1BD9AC9A005D1EA4 /* PlayerViewController.swift in Sources */,
 				EA9A71AC1BBC66550028DA4A /* Year.swift in Sources */,
 				EA9A719B1BBB89230028DA4A /* SPTParser.swift in Sources */,
+				89D775691BFBE22D00497D78 /* Colors.swift in Sources */,
 				EAA810AD1BD996A3005D1EA4 /* Album.swift in Sources */,
 				EA82171F1BCF5C2800883779 /* DateConverter.swift in Sources */,
 				EA9A71891BBA508B0028DA4A /* PlaylistrModel.xcdatamodeld in Sources */,
@@ -386,6 +409,7 @@
 				EA8217221BD6DD4500883779 /* Playlist+CoreDataProperties.swift in Sources */,
 				EAAF919B1BD8842D00D946EB /* Year+CoreDataProperties.swift in Sources */,
 				EA03D3201BED66D6000328B6 /* ParsingPlaylist+CoreDataProperties.swift in Sources */,
+				89D775671BFBE1F500497D78 /* NavigationController.swift in Sources */,
 				EAAF919E1BD88CA900D946EB /* User+CoreDataProperties.swift in Sources */,
 				EAA810AC1BD996A3005D1EA4 /* Album+CoreDataProperties.swift in Sources */,
 				EA9A71821BBA449B0028DA4A /* PlaylistTableViewController.swift in Sources */,

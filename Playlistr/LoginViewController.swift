@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, SPTAuthViewDelegate {
     }
     
     // MARK: - IBActions
-@IBAction func loginButtonPressed(sender: AnyObject) {
+    @IBAction func loginButtonPressed(sender: AnyObject) {
         let authVC = SPTAuthViewController.authenticationViewController();
         authVC.delegate = self;
         authVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
