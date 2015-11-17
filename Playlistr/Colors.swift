@@ -11,7 +11,7 @@ import Foundation
 extension UIColor {
     
     class func NavBarColor() -> UIColor {
-        return UIColor(hex: 0xE6E6E6, alpha:1)
+        return UIColor(hex: 0xA6A6A6, alpha:1)
     }
 
     class func ThemeColor() -> UIColor {

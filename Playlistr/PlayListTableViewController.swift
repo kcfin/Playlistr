@@ -39,26 +39,11 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
         }
         setPlaylistLabel();
         setAlbumImages();
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func setAlbumImages() {
-//        var count = 0;
         var trackURI: [NSURL] = [NSURL]();
         var albums: [UIImageView] = [albumOne, albumTwo, albumThree, albumFour];
-        
-//        for object in frc.fetchedObjects! {
-//            if(count == 4) {
-//                break;
-//            }
-//            if let track = object as? Track {
-//                trackURI.append(NSURL(string: track.uri!)!);
-//            }
-//            count++;
-//        }
-        
         for _ in 0...3 {
             if let t = frc.objectAtIndexPath(NSIndexPath(forRow: Int(arc4random_uniform(UInt32((frc.fetchedObjects?.count)!-1))), inSection: 0)) as? Track {
                 trackURI.append(NSURL(string: t.uri!)!);
@@ -97,6 +82,7 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
     
     func setPlaylistLabel() {
         playlistLabel.text = playlist?.name;
+        title = playlist?.name
     }
     
     override func didReceiveMemoryWarning() {
@@ -172,65 +158,4 @@ class PlaylistTableViewController: UITableViewController, NSFetchedResultsContro
             presentViewController(player, animated: true, completion: nil);
         }
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the specified item to be editable.
-    return true
-    }
-    */
-    
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-    // Delete the row from the data source
-    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
-    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-    }
-    */
-    
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-    
-    }
-    */
-    
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the item to be re-orderable.
-    return true
-    }
-    */
-    
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        if(segue.identifier == "GoToPlayer") {
-    //            if let destinationVC = segue.destinationViewController as? PlayerViewController {
-    //                if let playerVC = parentVC!.playerVC {
-    //                    if(playerVC.isNewPlaylist(playlist!)) {
-    //                        var trackURIs: [NSURL] = [NSURL]();
-    //                        for object in frc.fetchedObjects! {
-    //                            if let track = object as? Track {
-    //                                trackURIs.append(NSURL(string: track.uri!)!);
-    //                            }
-    //                        }
-    //                        parentVC!.playerVC?.trackURIs = trackURIs;
-    //                    }
-    //                }
-    //                if let index = trackTableView.indexPathForSelectedRow {
-    //                    parentVC!.playerVC?.playMusic(fromIndex: index.row);
-    //                }
-    //            }
-    //        }
-    //    }
-    
 }
