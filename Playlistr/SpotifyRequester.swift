@@ -30,13 +30,8 @@ class SpotifyRequester {
         var isUpdating = false;
         if let cachedUser = User.currentUser() {
             if(cachedUser.uri == String(user.uri)) {
-                // TODO: check parsing playlists for changes and update
-                // user is already stored in core data
-                // check users playlists for changes
-                // display data
                 isUpdating = true;
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
-                //                return;
             } else {
                 User.removeCurrentUser();
             }
@@ -93,18 +88,16 @@ class SpotifyRequester {
         
         fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlists, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: {() -> Void in
             if (playlistList.hasNextPage) {
-//                CoreDataHelper.data.privateContext.performBlock({
-                    playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
-                        print("fetched next page")
-                        if(error != nil) {
-                            print("error: \(error.localizedDescription)");
-                            return;
-                        }
-                        if let newPage = object as? SPTListPage {
-                            self.fetchAllPlaylists(withSession: session, withList: newPage, isUpdating: isUpdating, withFinalCallBack: fCallback);
-                        }
-                    })
-//                });
+                playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
+                    print("fetched next page")
+                    if(error != nil) {
+                        print("error: \(error.localizedDescription)");
+                        return;
+                    }
+                    if let newPage = object as? SPTListPage {
+                        self.fetchAllPlaylists(withSession: session, withList: newPage, isUpdating: isUpdating, withFinalCallBack: fCallback);
+                    }
+                })
             }
             else {
                 ParsingPlaylist.removeDeletedPlaylists();
@@ -117,28 +110,26 @@ class SpotifyRequester {
     func fetchSnapshotForPlaylist(withSession session: SPTSession, var withPartialPlaylists playlistList: [SPTPartialPlaylist], isUpdating: Bool, withFinalCallback fCallback: SPTPartialObject -> Void, withCallback callback: () -> Void) {
         if (playlistList.count > 0)  {
             SPTPlaylistSnapshot.playlistWithURI(playlistList.first!.uri, accessToken: session.accessToken, callback: {(error, object) -> Void in
-//                CoreDataHelper.data.privateContext.performBlock({
-                    if(error != nil) {
-                        print("error: \(error.localizedDescription)");
-                        return;
-                    }
-                    if let snapshot = object as? SPTPlaylistSnapshot {
-                        print("got snapshot \(snapshot.name)");
-                        if(isUpdating) {
-                            if(ParsingPlaylist.playlistHasChanged(snapshot.snapshotId, spotifyId: String(snapshot.uri))) {
-                                print("playlist needs updating");
-                                fCallback(snapshot);
-                                self.fetchAllTracks(withSession: session, withCallback: fCallback, withSnapshot: snapshot.firstTrackPage);
-                            }
-                        } else {
+                if(error != nil) {
+                    print("error: \(error.localizedDescription)");
+                    return;
+                }
+                if let snapshot = object as? SPTPlaylistSnapshot {
+                    print("got snapshot \(snapshot.name)");
+                    if(isUpdating) {
+                        if(ParsingPlaylist.playlistHasChanged(snapshot.snapshotId, spotifyId: String(snapshot.uri))) {
+                            print("playlist needs updating");
                             fCallback(snapshot);
                             self.fetchAllTracks(withSession: session, withCallback: fCallback, withSnapshot: snapshot.firstTrackPage);
                         }
-                        playlistList.removeFirst();
-                        self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: callback);
+                    } else {
+                        fCallback(snapshot);
+                        self.fetchAllTracks(withSession: session, withCallback: fCallback, withSnapshot: snapshot.firstTrackPage);
                     }
-                })
-//            })
+                    playlistList.removeFirst();
+                    self.fetchSnapshotForPlaylist(withSession: session, withPartialPlaylists: playlistList, isUpdating: isUpdating, withFinalCallback: fCallback, withCallback: callback);
+                }
+            })
         } else {
             callback();
         }
@@ -180,16 +171,14 @@ class SpotifyRequester {
         
         if (snapshot.hasNextPage) {
             snapshot.requestNextPageWithSession(session, callback: {(error, object) -> Void in
-//                CoreDataHelper.data.privateContext.performBlock({
-                    if(error != nil) {
-                        print("error: \(error.localizedDescription)");
-                        return;
-                    }
-                    if let newPage = object as? SPTListPage {
-                        self.fetchAllTracks(withSession: session, withCallback: callback, withSnapshot: newPage)
-                    }
-                })
-//            })
+                if(error != nil) {
+                    print("error: \(error.localizedDescription)");
+                    return;
+                }
+                if let newPage = object as? SPTListPage {
+                    self.fetchAllTracks(withSession: session, withCallback: callback, withSnapshot: newPage)
+                }
+            })
         }
     }
 }
