@@ -64,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="anH-8z-muM" kind="relationship" relationship="rootViewController" id="XE6-Co-VAf"/>
+                        <segue destination="anH-8z-muM" kind="relationship" relationship="rootViewController" id="zIp-z1-hnJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ynh-1l-YN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -98,12 +98,31 @@
                     </view>
                     <connections>
                         <segue destination="xh1-Gg-CHq" kind="show" identifier="GoToLogin" animates="NO" id="KH9-OG-7Gt"/>
-                        <segue destination="7Lr-wP-d96" kind="show" identifier="GoToNavController" id="N29-Xy-ull"/>
+                        <segue destination="9Is-il-biR" kind="show" identifier="GoToNavController" id="MsC-eE-QOG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttF-Oo-Wey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="-382"/>
+            <point key="canvasLocation" x="154" y="-284"/>
+        </scene>
+        <!--Sliding View Controller-->
+        <scene sceneID="CGU-sr-kLi">
+            <objects>
+                <viewController storyboardIdentifier="SlidingVC" id="9Is-il-biR" customClass="SlidingViewController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rmc-hF-xko"/>
+                        <viewControllerLayoutGuide type="bottom" id="bJF-41-XpO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q1x-Ix-DL3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6nB-ae-hCa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEx-yT-D7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="522"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="ez8-IR-fjl">
@@ -120,8 +139,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPW-gJ-58E">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="268"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNa-8C-FRf">
-                                        <rect key="frame" x="257" y="154" width="86" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNa-8C-FRf">
+                                        <rect key="frame" x="224" y="154" width="151" height="35"/>
                                         <attributedString key="attributedText">
                                             <fragment content="User Name">
                                                 <attributes>
@@ -134,7 +153,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tmS-LK-3md">
-                                        <rect key="frame" x="249" y="49" width="89" height="90"/>
+                                        <rect key="frame" x="255" y="44" width="89" height="89"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="tmS-LK-3md" secondAttribute="height" multiplier="1:1" id="GIJ-SL-Ejg"/>
@@ -193,7 +212,14 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="Dt1-B2-F9e"/>
+                    <navigationItem key="navigationItem" id="Dt1-B2-F9e">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="mUo-TW-iTr">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mPB-er-nlo" customClass="DOHamburgerButton" customModule="DOHamburgerButton">
+                                <rect key="frame" x="20" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="nameLabel" destination="cNa-8C-FRf" id="E1L-rP-Uug"/>
                         <outlet property="playlistTableView" destination="etQ-mX-QTH" id="WqV-ci-b2G"/>

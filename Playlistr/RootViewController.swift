@@ -28,4 +28,14 @@ class RootViewController: UIViewController {
         playerVC!.login();
         performSegueWithIdentifier("GoToNavController", sender: nil);
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "GoToNavController") {
+            if let slidingVC = segue.destinationViewController as? SlidingViewController {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil);
+                let topVC = storyboard.instantiateViewControllerWithIdentifier("HomeNavVC") as? UINavigationController;
+                slidingVC.topViewController = topVC;
+            }
+        }
+    }
 }

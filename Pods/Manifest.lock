@@ -1,10 +1,13 @@
 PODS:
+  - DOHamburgerButton (0.0.1)
   - ECSlidingViewController (2.0.3)
 
 DEPENDENCIES:
+  - DOHamburgerButton
   - ECSlidingViewController (~> 2.0.3)
 
 SPEC CHECKSUMS:
+  DOHamburgerButton: 2afce23a99d7cb629bf65cd04c102fff962caab8
   ECSlidingViewController: 6485c14f23b4487e9946535421ca8f111f86cc53
 
 COCOAPODS: 0.39.0

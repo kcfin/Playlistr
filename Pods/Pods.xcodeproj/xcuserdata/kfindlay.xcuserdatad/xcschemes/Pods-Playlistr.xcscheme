@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E88BDC6821C6A0E8EB6E6BCC'
+               BlueprintIdentifier = '09B8604A8A280519E98A9949'
                BlueprintName = 'Pods-Playlistr'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Playlistr.framework'>

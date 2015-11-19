@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DOHamburgerButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ECSlidingViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B75D88FDD19C2994ED680B0DA53ADBA5</key>
+		<key>7FC09BC1F7491A7C6C6F9FCBEF3CDAF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C3AAC7026505AA67E5E48DC98F926D26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB35D29388577F2949079B78C2CB2F89</key>
 		<dict>
 			<key>primary</key>
 			<true/>

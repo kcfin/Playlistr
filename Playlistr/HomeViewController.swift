@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import DOHamburgerButton
 
 class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -34,14 +35,14 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
             print("error fetching results: \(error)")
         }
     }
-
+    
     func setupImageView() {
         profileImageView.layer.cornerRadius = profileImageView.bounds.width/2;
         if let data = User.currentUser()?.image {
             profileImageView.image = UIImage(data: data);
         }
     }
-    
+
     func setupNameLabel() {
         nameLabel.text = User.currentUser()?.name;
     }

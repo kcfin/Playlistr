@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8BC050C81CF34EC96D219820 /* Pods_Playlistr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FC647CEA730AD1DA21DE61 /* Pods_Playlistr.framework */; };
 		EA03D30D1BE152BB000328B6 /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30C1BE152BB000328B6 /* sunset.jpg */; };
 		EA03D30F1BE15466000328B6 /* log_in-mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30E1BE15466000328B6 /* log_in-mobile.png */; };
 		EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3101BE16A0E000328B6 /* palmtrees.jpg */; };
@@ -30,6 +29,7 @@
 		EAAB97F51BF0180800CAF0CD /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97F41BF0180800CAF0CD /* playButton.png */; };
 		EAAB97F71BF0189F00CAF0CD /* video-play-64.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB97F61BF0189F00CAF0CD /* video-play-64.png */; };
 		EAAB98041BF3BFEE00CAF0CD /* headphones.png in Resources */ = {isa = PBXBuildFile; fileRef = EAAB98031BF3BFEE00CAF0CD /* headphones.png */; };
+		EABA74041BFD753900E01F76 /* SlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA74031BFD753900E01F76 /* SlidingViewController.swift */; };
 		EAC3E60A1BFD05A2001EBDCA /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC3E5FE1BFD05A2001EBDCA /* Album.swift */; };
 		EAC3E60B1BFD05A2001EBDCA /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC3E5FF1BFD05A2001EBDCA /* Album+CoreDataProperties.swift */; };
 		EAC3E60C1BFD05A2001EBDCA /* ParsingPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC3E6001BFD05A2001EBDCA /* ParsingPlaylist.swift */; };
@@ -49,6 +49,7 @@
 		EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22931BAF868C00EB884A /* AVFoundation.framework */; };
 		EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADC22951BAF869D00EB884A /* SystemConfiguration.framework */; };
 		EADC229B1BAF886A00EB884A /* SpotifyAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADC229A1BAF886A00EB884A /* SpotifyAuthenticator.swift */; };
+		F1982282F544A182F052F773 /* Pods_Playlistr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FC647CEA730AD1DA21DE61 /* Pods_Playlistr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		EAAB98031BF3BFEE00CAF0CD /* headphones.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headphones.png; path = Images.xcassets/AppIcon.appiconset/headphones.png; sourceTree = "<group>"; };
 		EAAF918F1BD8830000D946EB /* PlaylistrModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		EAAF919C1BD88C8200D946EB /* PlaylistrModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "PlaylistrModel 10.xcdatamodel"; sourceTree = "<group>"; };
+		EABA74031BFD753900E01F76 /* SlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingViewController.swift; sourceTree = "<group>"; };
 		EAC3E5FE1BFD05A2001EBDCA /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		EAC3E5FF1BFD05A2001EBDCA /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EAC3E6001BFD05A2001EBDCA /* ParsingPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingPlaylist.swift; sourceTree = "<group>"; };
@@ -132,7 +134,7 @@
 				EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */,
 				EAC8971B1BDD78E100852C67 /* Spotify.framework in Frameworks */,
 				EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */,
-				8BC050C81CF34EC96D219820 /* Pods_Playlistr.framework in Frameworks */,
+				F1982282F544A182F052F773 /* Pods_Playlistr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +173,7 @@
 			children = (
 				EA07E5801BAF288D001BC449 /* AppDelegate.swift */,
 				EA3A97CB1BB8EAD2005CE103 /* RootViewController.swift */,
+				EABA74031BFD753900E01F76 /* SlidingViewController.swift */,
 				EA07E5D41BAF47BF001BC449 /* HomeViewController.swift */,
 				EA9A71811BBA449B0028DA4A /* PlaylistTableViewController.swift */,
 				EAA810AE1BD9AC9A005D1EA4 /* PlayerViewController.swift */,
@@ -469,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA9A71801BBA26980028DA4A /* CoreDataHelper.swift in Sources */,
+				EABA74041BFD753900E01F76 /* SlidingViewController.swift in Sources */,
 				EAD5E02F1BB8B36F00BE68CA /* LoginViewController.swift in Sources */,
 				EA9A71991BBB88F30028DA4A /* SpotifyRequester.swift in Sources */,
 				EAC3E60B1BFD05A2001EBDCA /* Album+CoreDataProperties.swift in Sources */,
@@ -625,7 +629,10 @@
 				INFOPLIST_FILE = Playlistr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kcfindlay.Playlistr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -650,7 +657,10 @@
 				INFOPLIST_FILE = Playlistr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kcfindlay.Playlistr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

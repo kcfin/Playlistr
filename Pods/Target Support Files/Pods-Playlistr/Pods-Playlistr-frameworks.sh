@@ -84,8 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Playlistr/DOHamburgerButton.framework"
   install_framework "Pods-Playlistr/ECSlidingViewController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Playlistr/DOHamburgerButton.framework"
   install_framework "Pods-Playlistr/ECSlidingViewController.framework"
 fi
