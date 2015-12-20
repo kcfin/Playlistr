@@ -53,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
         
-        return true;
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+//        return true;
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -141,6 +143,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    //FACEBOOK
+
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
 }
