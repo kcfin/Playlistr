@@ -89,14 +89,27 @@
                                     <constraint firstAttribute="width" secondItem="EQ9-BP-JWh" secondAttribute="height" id="iFU-WW-kFp"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnj-i5-wiI">
+                                <rect key="frame" x="180" y="437" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y2U-x1-AAV">
+                                <rect key="frame" x="290" y="116" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Nnj-i5-wiI" firstAttribute="centerX" secondItem="q8G-T6-sVu" secondAttribute="centerX" id="VwP-UG-j53"/>
                             <constraint firstItem="EQ9-BP-JWh" firstAttribute="centerX" secondItem="q8G-T6-sVu" secondAttribute="centerX" id="cnH-Yo-UbF"/>
                             <constraint firstItem="EQ9-BP-JWh" firstAttribute="centerY" secondItem="q8G-T6-sVu" secondAttribute="centerY" id="lk4-4b-tDb"/>
+                            <constraint firstItem="y2U-x1-AAV" firstAttribute="centerX" secondItem="q8G-T6-sVu" secondAttribute="centerX" id="qya-u9-g5H"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fetchingStatusIndicator" destination="y2U-x1-AAV" id="A30-pf-yIm"/>
+                        <outlet property="progressText" destination="Nnj-i5-wiI" id="iek-7v-VQu"/>
                         <segue destination="xh1-Gg-CHq" kind="show" identifier="GoToLogin" animates="NO" id="KH9-OG-7Gt"/>
                         <segue destination="9Is-il-biR" kind="show" identifier="GoToNavController" id="MsC-eE-QOG"/>
                     </connections>

@@ -90,6 +90,7 @@ class SpotifyRequester {
             if (playlistList.hasNextPage) {
                 playlistList.requestNextPageWithAccessToken(session.accessToken, callback:  {(error, object) -> Void in
                     print("fetched next page")
+                    NSNotificationCenter.defaultCenter().postNotificationName("FetchingSpotifyNotification", object: self, userInfo: ["msg":"fetched next page"])
                     if(error != nil) {
                         print("error: \(error.localizedDescription)");
                         return;
@@ -100,6 +101,7 @@ class SpotifyRequester {
                 })
             }
             else {
+                print("I AM DONE")
                 ParsingPlaylist.removeDeletedPlaylists();
                 CoreDataHelper.data.save();
                 NSNotificationCenter.defaultCenter().postNotificationName("InitializeUser", object: self);
@@ -115,6 +117,7 @@ class SpotifyRequester {
                     return;
                 }
                 if let snapshot = object as? SPTPlaylistSnapshot {
+                    NSNotificationCenter.defaultCenter().postNotificationName("FetchingSpotifyNotification", object: self, userInfo: ["msg":"got snapshot \(snapshot.name)"])
                     print("got snapshot \(snapshot.name)");
                     if(isUpdating) {
                         if(ParsingPlaylist.playlistHasChanged(snapshot.snapshotId, spotifyId: String(snapshot.uri))) {
