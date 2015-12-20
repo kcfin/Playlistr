@@ -12,11 +12,15 @@ class RootViewController: UIViewController {
 
     var playerVC: PlayerViewController?;
     
+    @IBOutlet weak var progressText: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         playerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerVC") as? PlayerViewController;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToHomeScreen", name: "InitializeUser", object: nil);
         // Do any additional setup after loading the view.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"receiveTestNotificaton:", name: "TestNotification", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +33,15 @@ class RootViewController: UIViewController {
         performSegueWithIdentifier("GoToNavController", sender: nil);
     }
     
+     func receiveTestNotificaton(notification: NSNotification){
+        print("got notification");
+        let dict = notification.userInfo! as NSDictionary
+        print(dict.objectForKey("msg") as! NSString)
+        
+        progressText.text = dict.objectForKey("msg") as! String
+        progressText.textAlignment = NSTextAlignment.Center
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "GoToNavController") {
             if let slidingVC = segue.destinationViewController as? SlidingViewController {
@@ -38,4 +51,6 @@ class RootViewController: UIViewController {
             }
         }
     }
+    
+    
 }
