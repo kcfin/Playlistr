@@ -14,13 +14,18 @@ class RootViewController: UIViewController {
     
     @IBOutlet weak var progressText: UITextView!
     
+    var didStartFetching = false;
+    
+    @IBOutlet weak var fetchingStatusIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         playerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayerVC") as? PlayerViewController;
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToHomeScreen", name: "InitializeUser", object: nil);
         // Do any additional setup after loading the view.
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"receiveTestNotificaton:", name: "TestNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"receiveFetchingSpotifyNotification:", name: "FetchingSpotifyNotification", object: nil)
+        didStartFetching = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,13 +38,18 @@ class RootViewController: UIViewController {
         performSegueWithIdentifier("GoToNavController", sender: nil);
     }
     
-     func receiveTestNotificaton(notification: NSNotification){
-        print("got notification");
+     func receiveFetchingSpotifyNotification(notification: NSNotification){
         let dict = notification.userInfo! as NSDictionary
-        print(dict.objectForKey("msg") as! NSString)
         
         progressText.text = dict.objectForKey("msg") as! String
         progressText.textAlignment = NSTextAlignment.Center
+        
+        if(!didStartFetching){
+            didStartFetching = true;
+            fetchingStatusIndicator.startAnimating()
+        }
+        
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
