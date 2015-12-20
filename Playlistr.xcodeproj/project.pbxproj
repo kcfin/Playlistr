@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A37ABAAB1C21202600693A37 /* circle-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = A37ABAAA1C21202600693A37 /* circle-mask.png */; };
+		A3FC60B01C20D25400D6BBAA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FC60AD1C20D25400D6BBAA /* FBSDKCoreKit.framework */; };
+		A3FC60B11C20D25400D6BBAA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FC60AE1C20D25400D6BBAA /* FBSDKLoginKit.framework */; };
+		A3FC60B21C20D25400D6BBAA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FC60AF1C20D25400D6BBAA /* FBSDKShareKit.framework */; };
+		A3FC60B41C20E4C500D6BBAA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3FC60B31C20E4C500D6BBAA /* Default-568h@2x.png */; };
 		EA03D30D1BE152BB000328B6 /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30C1BE152BB000328B6 /* sunset.jpg */; };
 		EA03D30F1BE15466000328B6 /* log_in-mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = EA03D30E1BE15466000328B6 /* log_in-mobile.png */; };
 		EA03D3111BE16A0E000328B6 /* palmtrees.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA03D3101BE16A0E000328B6 /* palmtrees.jpg */; };
@@ -64,6 +69,11 @@
 
 /* Begin PBXFileReference section */
 		79176536264CD924336639C3 /* Pods-Playlistr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playlistr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Playlistr/Pods-Playlistr.debug.xcconfig"; sourceTree = "<group>"; };
+		A37ABAAA1C21202600693A37 /* circle-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-mask.png"; path = "../../Downloads/circle-mask.png"; sourceTree = "<group>"; };
+		A3FC60AD1C20D25400D6BBAA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		A3FC60AE1C20D25400D6BBAA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		A3FC60AF1C20D25400D6BBAA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		A3FC60B31C20E4C500D6BBAA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A3FC647CEA730AD1DA21DE61 /* Pods_Playlistr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Playlistr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6150E74759B664D1CE6400 /* Pods-Playlistr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Playlistr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Playlistr/Pods-Playlistr.release.xcconfig"; sourceTree = "<group>"; };
 		EA03D30C1BE152BB000328B6 /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
@@ -131,7 +141,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3FC60B01C20D25400D6BBAA /* FBSDKCoreKit.framework in Frameworks */,
 				EADC22961BAF869D00EB884A /* SystemConfiguration.framework in Frameworks */,
+				A3FC60B11C20D25400D6BBAA /* FBSDKLoginKit.framework in Frameworks */,
+				A3FC60B21C20D25400D6BBAA /* FBSDKShareKit.framework in Frameworks */,
 				EAC8971B1BDD78E100852C67 /* Spotify.framework in Frameworks */,
 				EADC22941BAF868C00EB884A /* AVFoundation.framework in Frameworks */,
 				F1982282F544A182F052F773 /* Pods_Playlistr.framework in Frameworks */,
@@ -151,6 +164,7 @@
 		EA07E5721BAF288D001BC449 = {
 			isa = PBXGroup;
 			children = (
+				A3FC60B31C20E4C500D6BBAA /* Default-568h@2x.png */,
 				EA07E57D1BAF288D001BC449 /* Playlistr */,
 				EA07E5931BAF288D001BC449 /* PlaylistrTests */,
 				EA07E57C1BAF288D001BC449 /* Products */,
@@ -236,6 +250,7 @@
 		EAAB98001BF05A3000CAF0CD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A37ABAAA1C21202600693A37 /* circle-mask.png */,
 				EAC3E6021BFD05A2001EBDCA /* pauseButton.png */,
 				EAAB97F61BF0189F00CAF0CD /* video-play-64.png */,
 				EAAB97F41BF0180800CAF0CD /* playButton.png */,
@@ -291,6 +306,9 @@
 		EADC228E1BAF856A00EB884A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3FC60AD1C20D25400D6BBAA /* FBSDKCoreKit.framework */,
+				A3FC60AE1C20D25400D6BBAA /* FBSDKLoginKit.framework */,
+				A3FC60AF1C20D25400D6BBAA /* FBSDKShareKit.framework */,
 				EADC22951BAF869D00EB884A /* SystemConfiguration.framework */,
 				EADC22931BAF868C00EB884A /* AVFoundation.framework */,
 				EAC8971A1BDD78E100852C67 /* Spotify.framework */,
@@ -357,7 +375,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Katelyn Findlay";
 				TargetAttributes = {
 					EA07E57A1BAF288D001BC449 = {
@@ -401,8 +419,10 @@
 				EA07E58B1BAF288D001BC449 /* LaunchScreen.xib in Resources */,
 				EA03D31B1BE413F8000328B6 /* forwardButton.png in Resources */,
 				EAC3E60E1BFD05A2001EBDCA /* pauseButton.png in Resources */,
+				A37ABAAB1C21202600693A37 /* circle-mask.png in Resources */,
 				EA07E5881BAF288D001BC449 /* Images.xcassets in Resources */,
 				EAAB97F31BF0174700CAF0CD /* backButton.png in Resources */,
+				A3FC60B41C20E4C500D6BBAA /* Default-568h@2x.png in Resources */,
 				EAAB97F71BF0189F00CAF0CD /* video-play-64.png in Resources */,
 				EAAB97F51BF0180800CAF0CD /* playButton.png in Resources */,
 				EA03D30F1BE15466000328B6 /* log_in-mobile.png in Resources */,
@@ -551,6 +571,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = /Users/luke/Documents/FacebookSDK;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -597,6 +619,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = /Users/luke/Documents/FacebookSDK;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -682,6 +705,7 @@
 				);
 				INFOPLIST_FILE = PlaylistrTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kcfin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Playlistr.app/Playlistr";
 			};
@@ -697,6 +721,7 @@
 				);
 				INFOPLIST_FILE = PlaylistrTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kcfin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Playlistr.app/Playlistr";
 			};
