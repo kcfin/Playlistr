@@ -173,7 +173,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wV8-s5-LZs" secondAttribute="height" multiplier="1:1" id="V1u-Ia-aCe"/>
+                                            <constraint firstAttribute="width" constant="89" id="hi2-5o-1y4"/>
+                                            <constraint firstAttribute="height" constant="89" id="uJ7-fo-MWv"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="V1u-Ia-aCe"/>
+                                            </mask>
+                                        </variation>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.76446132249999998" green="0.89060527150000002" blue="0.67417138369999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -185,7 +192,14 @@
                                     <constraint firstAttribute="bottom" secondItem="BcN-yq-Qke" secondAttribute="bottom" id="jgM-R4-Myi"/>
                                     <constraint firstAttribute="centerX" secondItem="BcN-yq-Qke" secondAttribute="centerX" id="oFf-P4-BaR"/>
                                     <constraint firstItem="wV8-s5-LZs" firstAttribute="width" secondItem="oSj-f3-9MJ" secondAttribute="height" multiplier="1:3" id="v0k-Cz-p9E"/>
+                                    <constraint firstItem="wV8-s5-LZs" firstAttribute="centerX" secondItem="oSj-f3-9MJ" secondAttribute="centerX" id="vjq-lC-po0"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="65C-f6-nkg"/>
+                                        <exclude reference="Zl5-GL-aNN"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-xh-7Xa">
                                 <rect key="frame" x="0.0" y="231" width="600" height="369"/>
