@@ -111,31 +111,48 @@
                         <outlet property="fetchingStatusIndicator" destination="y2U-x1-AAV" id="A30-pf-yIm"/>
                         <outlet property="progressText" destination="Nnj-i5-wiI" id="iek-7v-VQu"/>
                         <segue destination="xh1-Gg-CHq" kind="show" identifier="GoToLogin" animates="NO" id="KH9-OG-7Gt"/>
-                        <segue destination="9Is-il-biR" kind="show" identifier="GoToNavController" id="MsC-eE-QOG"/>
+                        <segue destination="T6Z-YX-Kp1" kind="show" identifier="GoToNavController" id="j9M-p9-7xq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttF-Oo-Wey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="154" y="-284"/>
         </scene>
-        <!--Sliding View Controller-->
-        <scene sceneID="CGU-sr-kLi">
+        <!--Reveal View Controller-->
+        <scene sceneID="V3z-O5-7Kt">
             <objects>
-                <viewController storyboardIdentifier="SlidingVC" id="9Is-il-biR" customClass="SlidingViewController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="T6Z-YX-Kp1" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rmc-hF-xko"/>
-                        <viewControllerLayoutGuide type="bottom" id="bJF-41-XpO"/>
+                        <viewControllerLayoutGuide type="top" id="1gR-Ou-lJH"/>
+                        <viewControllerLayoutGuide type="bottom" id="gP7-HS-0Dw"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Q1x-Ix-DL3">
+                    <view key="view" contentMode="scaleToFill" id="EIr-wp-zxO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6nB-ae-hCa"/>
+                    <connections>
+                        <segue destination="jIf-51-wg7" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="mhp-eR-vhu"/>
+                        <segue destination="7Lr-wP-d96" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="Btf-9j-Fm3"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aEx-yT-D7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cTx-8l-z3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="362" y="522"/>
+            <point key="canvasLocation" x="362" y="668"/>
+        </scene>
+        <!--Menu Controller-->
+        <scene sceneID="kld-RH-Grh">
+            <objects>
+                <viewController id="jIf-51-wg7" customClass="MenuController" customModule="Playlistr" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nV8-1H-xNQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4PV-Xo-Z31" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="794" y="1604"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="ez8-IR-fjl">
@@ -230,10 +247,14 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mPB-er-nlo" customClass="DOHamburgerButton" customModule="DOHamburgerButton">
                                 <rect key="frame" x="20" y="7" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="tapped:" destination="anH-8z-muM" eventType="touchUpInside" id="0WU-Fx-jHD"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="hamburgerButton" destination="mPB-er-nlo" id="fJT-9p-OSq"/>
                         <outlet property="nameLabel" destination="cNa-8C-FRf" id="E1L-rP-Uug"/>
                         <outlet property="playlistTableView" destination="etQ-mX-QTH" id="WqV-ci-b2G"/>
                         <outlet property="profileImageView" destination="tmS-LK-3md" id="ut6-jw-Sbs"/>

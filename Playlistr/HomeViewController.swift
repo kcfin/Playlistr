@@ -12,6 +12,7 @@ import DOHamburgerButton
 
 class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet var hamburgerButton: DOHamburgerButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileView: UIView!
@@ -21,7 +22,15 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad();
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadData", name: "InitializeUser", object: nil);
+        
+        if self.revealViewController() != nil{
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         reloadData();
+    }
+    
+    @IBAction func tapped(sender: DOHamburgerButton) {
+        revealViewController().revealToggle(sender)
     }
     
     override func viewWillAppear(animated: Bool) {
