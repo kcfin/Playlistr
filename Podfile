@@ -12,3 +12,4 @@ target 'PlaylistrTests' do
     
 end
 
+xcodeproj ‘Playlistr.xcodeproj’
